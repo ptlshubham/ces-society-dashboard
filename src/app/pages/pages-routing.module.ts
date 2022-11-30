@@ -9,6 +9,9 @@ const routes: Routes = [
     component: DashboardComponent
   },
   {
+    path: 'home', loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
+  },
+  {
     path: 'apps', loadChildren: () => import('./apps/apps.module').then(m => m.AppsModule)
   },
   {

@@ -51,7 +51,8 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     FormModule,
     TablesModule,
     ChartModule,
-    LeafletModule
+    LeafletModule,
+    FormModule
   ]
 })
 export class PagesModule { }
