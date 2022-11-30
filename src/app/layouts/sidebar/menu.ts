@@ -59,6 +59,12 @@ export const MENU: MenuItem[] = [
         label: 'Blogs',
         icon: 'file-plus',
         link: '/home/blog',
+    },
+    {
+        id: 10,
+        label: 'College List',
+        icon: 'list',
+        link: '/home/college-list',
     }
     // {
     //     id: 3,

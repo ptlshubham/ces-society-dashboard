@@ -7,6 +7,7 @@ import { AuthenticationService } from '../../core/services/auth.service';
 import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
 import { environment } from '../../../environments/environment';
 import { LAYOUT_MODE } from '../../layouts/layouts.model';
+import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
   selector: 'app-login',
@@ -29,15 +30,20 @@ export class LoginComponent implements OnInit {
   returnUrl!: string;
   layout_mode!: string;
   fieldTextType!: boolean;
+  institute: any;
+  collegeList: any = [];
 
   constructor(private formBuilder: UntypedFormBuilder,
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
     private authFackservice: AuthfakeauthenticationService,
+    private homeService: HomeService
   ) {
+    this.getAllInstituteDetails();
     // redirect to home if already logged in
-    if (this.authenticationService.currentUserValue) {
+    if (
+      this.authenticationService.currentUserValue) {
       this.router.navigate(['/']);
     }
   }
@@ -56,7 +62,11 @@ export class LoginComponent implements OnInit {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
     document.body.setAttribute('data-layout', 'vertical');
   }
-
+  getAllInstituteDetails() {
+    this.homeService.getAllInstituteData().subscribe((res: any) => {
+      this.collegeList = res;
+    })
+  }
   // convenience getter for easy access to form fields
   get f() { return this.loginForm.controls; }
 
@@ -65,7 +75,8 @@ export class LoginComponent implements OnInit {
    */
   onSubmit() {
     this.submitted = true;
-
+    this.institute
+    debugger
     // stop here if form is invalid
     if (this.loginForm.invalid) {
       return;

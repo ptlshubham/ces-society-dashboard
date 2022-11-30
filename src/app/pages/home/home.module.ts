@@ -12,6 +12,8 @@ import { StudentResultComponent } from './student-result/student-result.componen
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { BlogComponent } from './blog/blog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
+import { CollegeListComponent } from './college-list/college-list.component';
+import { FormsModule } from '@angular/forms';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -31,11 +33,13 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     StudentResultComponent,
     InfrastructureComponent,
     BlogComponent,
+    CollegeListComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     FormModule,
+    FormsModule,
     CKEditorModule,
     DropzoneModule
   ],
