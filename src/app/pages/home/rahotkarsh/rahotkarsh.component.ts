@@ -43,4 +43,9 @@ export class RahotkarshComponent implements OnInit {
       debugger
     })
   }
+  removeBeneficiaryDetails(id: any) {
+    this.donationService.removeBeneficiaryDetailsById(id).subscribe((res: any) => {
+      this.getAllBeneficiaryDetails();
+    })
+  }
 }
