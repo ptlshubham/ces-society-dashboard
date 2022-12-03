@@ -13,7 +13,8 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Select Purpose</label>
-                                    <select required class="form-control form-select">
+                                    <select required class="form-control form-select"
+                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="imageModel.purpose">
                                         <option value>Select</option>
                                         <option value="slider">Slider For Homepage</option>
                                         <option value="image">Image For Gallery</option>
@@ -45,7 +46,7 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="saveGalleryDetails()">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -68,31 +69,32 @@
                                 <th class="text-center">Purpose</th>
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Active & Deactive</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-end">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-left">1</td>
-                                <td class="text-center">Slider For Homepage </td>
+                            <tr *ngFor="let c of imagesData;let i=index">
+                                <td class="text-left">{{i+1}}</td>
+                                <td class="text-center">{{c.purpose}} </td>
                                 <td class="text-center">
-                                    <img src="assets/images/users/avatar-5.jpg" alt="" class="rounded avatar-lg">
+                                    <img src="http://localhost:9000{{c.image}}" alt="" class="rounded avatar-lg">
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-success waves-effect btn-label waves-light"><i
+                                    <button type="button" class="btn btn-success waves-effect btn-label waves-light" *ngIf="c.isactive" (click)="deactiveBanners(i)"><i
                                             class="bx bx-check-double label-icon"></i> Active</button>
-                                    <button type="button" class="btn btn-danger waves-effect btn-label waves-light"><i
+                                    <button type="button" class="btn btn-danger waves-effect btn-label waves-light" *ngIf="!c.isactive" (click)="activeBanners(i)"><i
                                             class="bx bx-block label-icon"></i> Deactive</button>
                                 </td>
-                                <td class="text-right">
-                                    <div class="d-flex flex-wrap gap-2">
+                                <td class="text-end">
+                                    <button type="button" class="btn btn-soft-danger waves-effect waves-light"
+                                    data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept" (click)="removeBannersImages(c.id)"><i
+                                        class="bx bx-trash-alt font-size-16 align-middle"></i></button>
+                                    <!-- <div class="d-flex flex-wrap gap-2 text-end">
                                         <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
                                                 class="bx bx-edit font-size-16 align-middle"></i></button>
-                                        <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
-                                                class="bx bx-trash-alt font-size-16 align-middle"></i></button>
-                                    </div>
+                                      
+                                    </div> -->
                                 </td>
 
                             </tr>

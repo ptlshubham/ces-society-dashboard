@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { BlogComponent } from './blog/blog.component';
 import { CollegeListComponent } from './college-list/college-list.component';
+import { DepartmentComponent } from './department/department.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { NewsComponent } from './news/news.component';
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'college-list',
     component: CollegeListComponent
+  },
+  {
+    path: 'department',
+    component: DepartmentComponent
   },
  
 ];

@@ -13,7 +13,9 @@ import { InfrastructureComponent } from './infrastructure/infrastructure.compone
 import { BlogComponent } from './blog/blog.component';
 import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CollegeListComponent } from './college-list/college-list.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { DepartmentComponent } from './department/department.component';
+import { NgbAccordionModule, NgbAlertModule, NgbCarouselModule, NgbCollapseModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule, NgbPopoverModule, NgbProgressbarModule, NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -34,14 +36,27 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     InfrastructureComponent,
     BlogComponent,
     CollegeListComponent,
+    DepartmentComponent,
   ],
   imports: [
     CommonModule,
     HomeRoutingModule,
     FormModule,
     FormsModule,
+    ReactiveFormsModule,
     CKEditorModule,
-    DropzoneModule
+    NgbAlertModule,
+    DropzoneModule,
+    NgbDropdownModule,
+    NgbCarouselModule,
+    NgbProgressbarModule,
+    NgbNavModule,
+    NgbCollapseModule,
+    NgbAccordionModule,
+    NgbPopoverModule,
+    NgbTooltipModule,
+    NgbPaginationModule,
+    NgbToastModule,
   ],
   providers: [
     {

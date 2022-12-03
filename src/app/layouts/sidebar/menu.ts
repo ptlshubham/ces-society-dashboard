@@ -13,6 +13,12 @@ export const MENU: MenuItem[] = [
         link: '/',
     },
     {
+        id: 11,
+        label: 'Department List',
+        icon: 'list',
+        link: '/home/department',
+    },
+    {
         id: 3,
         label: 'Image Uploader',
         icon: 'image',

@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
+import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HomeService {
@@ -8,9 +9,7 @@ export class HomeService {
         private http: HttpClient
     ) { }
 
-
     saveInstituteData(data: any) {
-        debugger
         return this.http.post(ApiService.saveInsituteDetailsURL, data);
     }
 
@@ -18,17 +17,48 @@ export class HomeService {
         return this.http.get(ApiService.getAllInstituteDetailsURL);
     }
 
+    saveBannersImagesData(data: any) {
+
+        return this.http.post(ApiService.saveGalleryImagesURL, data);
+    }
+    uploadBannersImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadGalleryImagesURL, img);
+    }
+    getBannersImagesById(id: any) {
+        let data = {
+            institute_id: id
+        };
+        return this.http.post(ApiService.getImagesByIdDetailsURL, data);
+    }
+    activeDeavctiveBanners(data: any): Observable<any> {
+        return this.http.post<any>(ApiService.updateActiveDeactiveBannersURL, data);
+    }
+    removeBannersImagesById(id: any) {
+        let data = {
+            id: id
+        };
+        return this.http.post(ApiService.removeImagesByIdDetailsURL, data);
+    }
+    saveDepartmentListData(data: any) {
+
+        return this.http.post(ApiService.saveDepartmentListURL, data);
+    }
+    getDepartmentDataById(institute_id: any) {
+        return this.http.get(ApiService.getDepartmentByIdDetailsURL + institute_id);
+    }
+    removeDepartmentDataById(institute_id: any) {
+        return this.http.get(ApiService.removeDepartmentByIdDetailsURL + institute_id);
+    }
+    updateDepartmentListData(data: any) {
+
+        return this.http.post(ApiService.updateDepartmentListURL, data);
+    }
     // saveSellerTradeRequest(data: any) {
-    //     debugger
+    //      
     //     return this.http.post(ApiService.saveSellerTradeRequestURL, data);
     // }
 
-    // getAllTradingDatabyIdForSeller(id: any) {
-    //     let data = {
-    //         uid: id
-    //     };
-    //     return this.http.post(ApiService.getAllTradingDatabyIdForSellerURL, data);
-    // }
+
 
     // newTradeReqForSeller() {
     //     let data = {
@@ -48,10 +78,7 @@ export class HomeService {
     //     return this.http.post<any>(ApiService.uploadWeightSlipImageURL, img);
 
     // }
-    // inoviceRecieptImage(img: any): Observable<any> {
-    //     return this.http.post<any>(ApiService.invoiceRecieptImageUploadURL, img);
 
-    // }
     // uploadDeliveryRecieptImage(img: any): Observable<any> {
     //     return this.http.post<any>(ApiService.uploadDeliveryRecieptImageURL, img);
 

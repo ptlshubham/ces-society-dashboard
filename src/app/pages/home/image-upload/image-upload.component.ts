@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
   selector: 'app-image-upload',
@@ -15,15 +16,32 @@ export class ImageUploadComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  materialImage: any;
-  materialMultiImage: any = [];
+  bannersImage: any;
+  public imageModel: any = {};
+  imagesData: any = [];
+
   constructor(
     public formBuilder: UntypedFormBuilder,
+    private homeService: HomeService
   ) { }
 
   ngOnInit(): void {
-   
+    this.getImagesDataById();
   }
+  saveGalleryDetails() {
+    this.imageModel.image = this.bannersImage;
+    this.imageModel.institute_id = localStorage.getItem('InstituteId');
+
+    this.homeService.saveBannersImagesData(this.imageModel).subscribe((res: any) => {
+      this.getImagesDataById();
+    })
+  }
+  getImagesDataById() {
+    this.homeService.getBannersImagesById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.imagesData = res;
+    })
+  }
+
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
@@ -39,16 +57,33 @@ export class ImageUploadComponent implements OnInit {
         formdata.append('file', file);
 
 
-        // this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
-        //   this.materialImage = response;
+        this.homeService.uploadBannersImage(formdata).subscribe((response) => {
+          this.bannersImage = response;
 
-        //   this.editFile = false;
-        //   this.removeUpload = true;
-        // })
+          this.editFile = false;
+          this.removeUpload = true;
+        })
       }
       // ChangeDetectorRef since file is loading outside the zone
       // this.cd.markForCheck();
 
     }
   }
+  activeBanners(ind: any) {
+    this.imagesData[ind].isactive = true;
+    this.homeService.activeDeavctiveBanners(this.imagesData[ind]).subscribe((req) => {
+    })
+  }
+  deactiveBanners(ind: any) {
+    this.imagesData[ind].isactive = false;
+    this.homeService.activeDeavctiveBanners(this.imagesData[ind]).subscribe((req) => {
+    })
+  }
+  removeBannersImages(id: any) {
+    this.homeService.removeBannersImagesById(id).subscribe((res: any) => {
+      this.imagesData = res;
+      this.getImagesDataById();
+    })
+  }
+
 }
