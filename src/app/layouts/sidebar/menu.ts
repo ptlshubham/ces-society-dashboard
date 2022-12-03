@@ -67,11 +67,23 @@ export const MENU: MenuItem[] = [
         link: '/home/blog',
     },
     {
-        id: 10,
+        id: 13,
+        label: 'Donner List',
+        icon: 'list',
+        link: '/home/donation',
+    },
+    {
+        id: 14,
+        label: 'Rahotkarsh Fee Fund',
+        icon: 'list',
+        link: '/home/rahotkarsh',
+    },
+    {
+        id: 12,
         label: 'College List',
         icon: 'list',
         link: '/home/college-list',
-    }
+    },
     // {
     //     id: 3,
     //     label: 'MENUITEMS.APPS.TEXT',

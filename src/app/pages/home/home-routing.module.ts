@@ -3,10 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 import { BlogComponent } from './blog/blog.component';
 import { CollegeListComponent } from './college-list/college-list.component';
 import { DepartmentComponent } from './department/department.component';
+import { DonationComponent } from './donation/donation.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { NewsComponent } from './news/news.component';
 import { OthersComponent } from './others/others.component';
+import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkarsh-bulk-upload.component';
+import { RahotkarshComponent } from './rahotkarsh/rahotkarsh.component';
 import { StaffDetailsComponent } from './staff-details/staff-details.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentResultComponent } from './student-result/student-result.component';
@@ -51,6 +54,18 @@ const routes: Routes = [
   {
     path: 'department',
     component: DepartmentComponent
+  },
+  {
+    path: 'donation',
+    component: DonationComponent
+  },
+  {
+    path: 'rahotkarsh',
+    component: RahotkarshComponent
+  },
+  {
+    path: 'rahotkarsh-bulk',
+    component: RahotkarshBulkUploadComponent
   },
  
 ];

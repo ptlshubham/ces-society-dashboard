@@ -16,6 +16,9 @@ import { CollegeListComponent } from './college-list/college-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentComponent } from './department/department.component';
 import { NgbAccordionModule, NgbAlertModule, NgbCarouselModule, NgbCollapseModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule, NgbPopoverModule, NgbProgressbarModule, NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { DonationComponent } from './donation/donation.component';
+import { RahotkarshComponent } from './rahotkarsh/rahotkarsh.component';
+import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkarsh-bulk-upload.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -37,6 +40,9 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     BlogComponent,
     CollegeListComponent,
     DepartmentComponent,
+    DonationComponent,
+    RahotkarshComponent,
+    RahotkarshBulkUploadComponent,
   ],
   imports: [
     CommonModule,
