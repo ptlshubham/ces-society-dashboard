@@ -53,50 +53,15 @@ export class HomeService {
 
         return this.http.post(ApiService.updateDepartmentListURL, data);
     }
-    // saveSellerTradeRequest(data: any) {
-    //      
-    //     return this.http.post(ApiService.saveSellerTradeRequestURL, data);
-    // }
-
-
-
-    // newTradeReqForSeller() {
-    //     let data = {
-    //         mat_qlty: localStorage.getItem('material_quality')
-    //     };
-    //     return this.http.post(ApiService.getNewTradingReqForSellerURL, data);
-    // }
-    // comissionPaymentForBuyer(data: any) {
-    //     return this.http.post(ApiService.newComissionPaymentForBuyerURL, data);
-
-    // }
-    // comissionPaymentForSeller(data: any) {
-    //     return this.http.post(ApiService.newComissionPaymentForSellerURL, data);
-
-    // }
-    // uploadWeightSlipImage(img: any): Observable<any> {
-    //     return this.http.post<any>(ApiService.uploadWeightSlipImageURL, img);
-
-    // }
-
-    // uploadDeliveryRecieptImage(img: any): Observable<any> {
-    //     return this.http.post<any>(ApiService.uploadDeliveryRecieptImageURL, img);
-
-    // }
-    // saveTransporterDetails(data: any) {
-
-    //     return this.http.post(ApiService.saveTransporterDetailsURL, data);
-    // }
-    // getTransporterDetailsbyIdForSeller(id: any) {
-    //     let data = {
-    //         tradeId: id
-    //     };
-    //     return this.http.post(ApiService.getTransporterDetailsbyIdForSellerURL, data);
-    // }
-    // SaveDeliveryRecieptData(data: any) {
-
-    //     return this.http.post(ApiService.saveDileveryRecieptDataURL, data);
-    // }
-
+    uploadBlogImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadBlogImagesURL, img);
+    }
+    saveBlogDetails(data: any) {
+        return this.http.post(ApiService.saveBlogDetailsURL, data);
+    }
+    getBlogsById(id: any) {
+        debugger
+        return this.http.get(ApiService.getBlogsDetailsByIdURL + id);
+    }
 
 }

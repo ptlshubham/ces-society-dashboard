@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
   selector: 'app-blog',
@@ -8,16 +9,23 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 })
 export class BlogComponent implements OnInit {
   public Editor = ClassicEditor;
+  blogsData: any = [];
 
   @ViewChild('fileInput') el!: ElementRef;
   imageUrl: any = "assets/images/file-upload-image.jpg";
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  materialImage: any;
-  constructor() { }
+  blogImages: any;
+  blogModel: any = {};
+
+  constructor(
+    private homeService: HomeService
+  ) { }
 
   ngOnInit(): void {
+    this.getBlogDetails();
+    
   }
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
@@ -34,16 +42,31 @@ export class BlogComponent implements OnInit {
         formdata.append('file', file);
 
 
-        // this.sellerTradeService.uploadMaterialImage(formdata).subscribe((response) => {
-        //   this.materialImage = response;
+        this.homeService.uploadBlogImage(formdata).subscribe((response) => {
+          this.blogImages = response;
 
-        //   this.editFile = false;
-        //   this.removeUpload = true;
-        // })
+          this.editFile = false;
+          this.removeUpload = true;
+        })
       }
       // ChangeDetectorRef since file is loading outside the zone
       // this.cd.markForCheck();
 
     }
+  }
+  saveBlogData() {
+    this.blogModel.institute_id = localStorage.getItem('InstituteId')
+    this.blogModel.blogImage = this.blogImages;
+    debugger
+    this.homeService.saveBlogDetails(this.blogModel).subscribe((res) => {
+      this.blogsData = res;
+      this.getBlogDetails();
+    })
+  }
+  getBlogDetails() {
+    this.homeService.getBlogsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.blogsData = res;
+      debugger
+    })
   }
 }
