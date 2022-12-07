@@ -67,5 +67,11 @@ export class HomeService {
     getImfraDetails(id: any) {
         return this.http.get(ApiService.getInfraDetailsByIdURL + id);
     }
+    getAlumniList() {
+        return this.http.get(ApiService.GetAlumniDetailsURL);
+    }
+    getContactUsDetails(id: any) {
+        return this.http.get(ApiService.getContactUsDetailsByIdURL + id);
+    }
 
 }

@@ -84,6 +84,18 @@ export const MENU: MenuItem[] = [
         icon: 'list',
         link: '/home/college-list',
     },
+    {
+        id: 15,
+        label: 'Alumni List',
+        icon: 'list',
+        link: '/home/alumni-list',
+    },
+    {
+        id: 16,
+        label: 'Contact US List',
+        icon: 'list',
+        link: '/home/contact-list',
+    },
     // {
     //     id: 3,
     //     label: 'MENUITEMS.APPS.TEXT',

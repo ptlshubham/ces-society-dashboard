@@ -20,6 +20,8 @@ import { DonationComponent } from './donation/donation.component';
 import { RahotkarshComponent } from './rahotkarsh/rahotkarsh.component';
 import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkarsh-bulk-upload.component';
 import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bulk-upload.component';
+import { AlumniListComponent } from './alumni-list/alumni-list.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -45,6 +47,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     RahotkarshComponent,
     RahotkarshBulkUploadComponent,
     DonationBulkUploadComponent,
+    AlumniListComponent,
+    ContactListComponent,
   ],
   imports: [
     CommonModule,

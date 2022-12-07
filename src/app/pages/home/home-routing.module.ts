@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
+import { AlumniListComponent } from './alumni-list/alumni-list.component';
 import { BlogComponent } from './blog/blog.component';
 import { CollegeListComponent } from './college-list/college-list.component';
+import { ContactListComponent } from './contact-list/contact-list.component';
 import { DepartmentComponent } from './department/department.component';
 import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bulk-upload.component';
 import { DonationComponent } from './donation/donation.component';
@@ -71,6 +73,14 @@ const routes: Routes = [
   {
     path: 'donation-bulk',
     component: DonationBulkUploadComponent
+  },
+  {
+    path: 'alumni-list',
+    component: AlumniListComponent
+  },
+  {
+    path: 'contact-list',
+    component: ContactListComponent
   },
  
 ];
