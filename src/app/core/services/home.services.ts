@@ -12,13 +12,10 @@ export class HomeService {
     saveInstituteData(data: any) {
         return this.http.post(ApiService.saveInsituteDetailsURL, data);
     }
-
     getAllInstituteData() {
         return this.http.get(ApiService.getAllInstituteDetailsURL);
     }
-
     saveBannersImagesData(data: any) {
-
         return this.http.post(ApiService.saveGalleryImagesURL, data);
     }
     uploadBannersImage(img: any): Observable<any> {
@@ -40,7 +37,6 @@ export class HomeService {
         return this.http.post(ApiService.removeImagesByIdDetailsURL, data);
     }
     saveDepartmentListData(data: any) {
-
         return this.http.post(ApiService.saveDepartmentListURL, data);
     }
     getDepartmentDataById(institute_id: any) {
@@ -50,7 +46,6 @@ export class HomeService {
         return this.http.get(ApiService.removeDepartmentByIdDetailsURL + institute_id);
     }
     updateDepartmentListData(data: any) {
-
         return this.http.post(ApiService.updateDepartmentListURL, data);
     }
     uploadBlogImage(img: any): Observable<any> {
@@ -60,8 +55,17 @@ export class HomeService {
         return this.http.post(ApiService.saveBlogDetailsURL, data);
     }
     getBlogsById(id: any) {
-        debugger
         return this.http.get(ApiService.getBlogsDetailsByIdURL + id);
+    }
+    uploadOInfraImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadInfraImageURL, img);
+    }
+    saveInfrastructureDetails(data: any) {
+        debugger
+        return this.http.post(ApiService.saveInfrastructureDetailsURL, data);
+    }
+    getImfraDetails(id: any) {
+        return this.http.get(ApiService.getInfraDetailsByIdURL + id);
     }
 
 }

@@ -48,7 +48,9 @@ export class ApiService {
   public static saveBlogDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBlogDetails';
   public static getBlogsDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetBlogsDetailsById/'
   public static uploadBlogImagesURL: string = ApiService.HOST_URL + '/admin/uploadBlogImages';
-
+  public static uploadInfraImageURL: string = ApiService.HOST_URL + '/admin/UploadInfraImage';
+  public static saveInfrastructureDetailsURL: string = ApiService.HOST_URL + '/admin/SaveInfrastructureDetails';
+  public static getInfraDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetInfraDetailsById/';
 
 
 

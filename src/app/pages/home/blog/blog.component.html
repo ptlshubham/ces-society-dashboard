@@ -20,7 +20,7 @@
                             <div class="col-xl-4 col-md-6">
 
                                 <div class="form-group mb-3">
-                                    <label for="example-date-input" class="form-label">Date</label>
+                                    <label for="example-date-input" class="form-label">Blog Date</label>
                                     <input class="form-control" type="date" placeholder="Select Date"
                                         id="example-date-input" [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="blogModel.blogDate">
@@ -51,7 +51,7 @@
                         </div>
                         <div class="row">
                             <div class="form-group mb-3">
-
+                                <label>Blog Details</label>
                                 <ckeditor [editor]="Editor" data="" [ngModelOptions]="{standalone: true}"
                                     [(ngModel)]="blogModel.blogDetails"></ckeditor>
                             </div>

@@ -80,7 +80,7 @@ export const MENU: MenuItem[] = [
     },
     {
         id: 12,
-        label: 'College List',
+        label: 'Institute List',
         icon: 'list',
         link: '/home/college-list',
     },
