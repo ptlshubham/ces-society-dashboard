@@ -108,12 +108,12 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('InstituteId', res[0].id);
           localStorage.setItem('InstituteName', res[0].name);
           localStorage.setItem('token', res[0].token);
-          this.apiService.show('Login Successfully', { classname: 'bg-success text-center text-white', delay: 10000 });
+          this.apiService.showNotification('top', 'right', 'Login Successfully', 'success');
           this.router.navigate(['/']);
         } else if (res == 1) {
-          this.apiService.show('Incorrect Email !....please check your Email', { classname: 'bg-danger text-center text-white', delay: 10000 });
+          this.apiService.showNotification('top', 'right', 'Incorrect Email !....please check your Email', 'danger');
         } else {
-          this.apiService.show('Incorrect Password !....please check your Password', { classname: 'bg-danger text-center text-white', delay: 10000 });
+          this.apiService.showNotification('top', 'right', 'Incorrect Password !....please check your Password', 'danger');
         }
       })
     }

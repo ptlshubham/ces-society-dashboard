@@ -112,7 +112,27 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Beneficiary Student List</h5>
+                <div class="row">
+                    <div class="col">
+
+                        <h5 class="card-title">Beneficiary Student List</h5>
+                    </div>
+                    <div class="col text-end">
+                        <label for="drop">Select Year</label><br>
+                        <div ngbDropdown class="d-inline-block">
+                            <button type="button" class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>
+                                {{selectedYear}}
+                            </button>
+                            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+                                <button ngbDropdownItem disabled>Select Year</button>
+                                <div *ngFor="let y of yearData">
+                                    <button ngbDropdownItem on-click="selectYear(y.year)">{{y.year}}</button>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -129,27 +149,32 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let d of beneficiaryData;let i=index">
-                                <td class="text-left">{{i+1}}</td>
+                            <tr *ngFor="let d of paginateData;let i=index">
+                                <td class="text-left">{{d.index}}</td>
                                 <td class="text-center">{{d.year}}</td>
                                 <td class="text-center">{{d.studentName}}</td>
                                 <td class="text-center">{{d.instituteName}}</td>
                                 <td class="text-center">{{d.course}}</td>
-                                <td class="text-center">{{d.refundAmount}} ₹</td>
+                                <td class="text-center">{{d.refundAmount}}</td>
 
                                 <td class="text-end">
-                                    <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept" ><i
-                                            class="bx bx-edit font-size-16 align-middle"></i></button>
-                                    <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept" (click)="removeBeneficiaryDetails(d.id)"><i
-                                            class="bx bx-trash-alt font-size-16 align-middle"></i></button>
+                                    <button type="button" class="btn btn-soft-primary waves-effect waves-light"><i
+                                            class="bx bx-edit "></i></button>
+                                    <button type="button" class="btn btn-soft-danger waves-effect waves-light" d
+                                        (click)="removeBeneficiaryDetails(d.id)"><i
+                                            class="bx bx-trash-alt "></i></button>
 
                                 </td>
 
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="row mt-4">
+                    <ngb-pagination [collectionSize]="collectionSize" [pageSize]="50" [(page)]="page" [maxSize]="50"
+                        [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
+                        aria-label="Default pagination"
+                        class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
                 </div>
 
             </div>

@@ -26,8 +26,8 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
   url: 'https://httpbin.org/post',
-  maxFilesize: 50,
-  acceptedFiles: 'image/*'
+  maxFilesize: 5000000,
+  acceptedFiles: 'pdf*'
 };
 
 

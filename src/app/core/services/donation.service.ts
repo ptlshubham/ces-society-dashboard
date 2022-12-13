@@ -37,6 +37,9 @@ export class DonationService {
          
         return this.http.get(ApiService.removeBeneficiaryDetailsByIdURL + id);
     }
+    getAllBeneficiaryYear() {
+        return this.http.get(ApiService.getBeneficiaryYearURL);
+    }
     saveBulkBeneficiaryDetails(data: any) {
         debugger
         return this.http.post(ApiService.saveBulkBeneficiaryDetailsURL, data);

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ApiService } from 'src/app/core/services/api.service';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -13,7 +14,8 @@ export class DepartmentComponent implements OnInit {
   departmentData: any = [];
   constructor(
     private homeService: HomeService,
-    private modalService: NgbModal
+    private modalService: NgbModal,
+    private apiService: ApiService
   ) { }
 
   ngOnInit(): void {
@@ -23,6 +25,7 @@ export class DepartmentComponent implements OnInit {
   saveDepartmentList() {
     this.departmentModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveDepartmentListData(this.departmentModel).subscribe((res: any) => {
+      this.apiService.showNotification('top', 'right', 'Department added Successfully', 'success');
       this.getDepartmentDetails();
     })
   }
@@ -40,7 +43,7 @@ export class DepartmentComponent implements OnInit {
   }
   updateDepartmentDetails() {
     this.homeService.updateDepartmentListData(this.updateDepartmentModel).subscribe((res: any) => {
-      if(res=='success'){
+      if (res == 'success') {
         location.reload();
       }
     })

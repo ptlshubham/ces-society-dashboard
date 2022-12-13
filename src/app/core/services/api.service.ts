@@ -40,6 +40,7 @@ export class ApiService {
   public static saveDonnerListDetailsURL: string = ApiService.HOST_URL + '/admin/SaveDonnerListDetails';
   public static getAllDonnerListURL: string = ApiService.HOST_URL + '/admin/GetAllDonnerList';
   public static removeDonnerDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveDonnerDetailsById/';
+  public static getBeneficiaryYearURL: string = ApiService.HOST_URL + '/admin/GetBeneficiaryYear';
   public static saveBeneficiaryDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBeneficiaryDetails';
   public static getAllBeneficiaryListURL: string = ApiService.HOST_URL + '/admin/GetAllBeneficiaryList';
   public static removeBeneficiaryDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveBeneficiaryDetailsById/';
@@ -54,9 +55,13 @@ export class ApiService {
   public static SaveAlumniDetailsURL: string = ApiService.HOST_URL + '/admin/SaveAlumniDetails';
   public static GetAlumniDetailsURL: string = ApiService.HOST_URL + '/admin/GetAlumniDetails';
   public static getContactUsDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetContactUsDetailsById/';
+  public static saveResultDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResultDetails';
+  public static getResultDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetResultDetailsById/';
+  public static uploadPDFURL: string = ApiService.HOST_URL + '/admin/UploadPDF';
 
-
-
+  public static saveNewsDataListURL: string = ApiService.HOST_URL + '/admin/SaveNewsDataList';
+  public static getNewsByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetNewsByIdDetails/';
+  public static removeNewsByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveNewsByIdDetails/';
 
 
 
@@ -108,12 +113,22 @@ export class ApiService {
 
 
 
-  show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
+  showNotification(from: any, align: any, msg: any, color: any) {
 
-    this.toasts.push({ textOrTpl, ...options });
-  }
 
-  remove(toast: any) {
-    this.toasts = this.toasts.filter(t => t !== toast);
+    var color = color;
+
+    $.notify({
+      icon: "",
+      message: msg
+    }, {
+      type: color,
+      timer: 2000,
+      placement: {
+        from: from,
+        align: align
+      },
+      template: '<div data-notify="container" class="col-11 col-md-4 alert alert-{0} alert-with-icon" role="alert"><button type="button" aria-hidden="true" class="close" data-notify="dismiss"><i class="fa fa-times"></i></button> <span data-notify="title">{1}</span> <span data-notify="message">{2}</span><div class="progress" data-notify="progressbar"><div class="progress-bar progress-bar-{0}" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;"></div></div><a href="{3}" target="{4}" data-notify="url"></a></div>'
+    });
   }
 }

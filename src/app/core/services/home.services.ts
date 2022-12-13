@@ -73,5 +73,23 @@ export class HomeService {
     getContactUsDetails(id: any) {
         return this.http.get(ApiService.getContactUsDetailsByIdURL + id);
     }
-
+    saveResultData(data: any) {
+        return this.http.post(ApiService.saveResultDetailsURL, data);
+    }
+    getResultDetailsById(id: any) {
+        return this.http.get(ApiService.getResultDetailsByIdURL + id);
+    }
+    savePdfData(data: any) {
+        return this.http.post(ApiService.uploadPDFURL, data);
+    }
+    saveNewsListData(data: any) {
+        return this.http.post(ApiService.saveNewsDataListURL, data);
+    }
+    getNewsDataById(institute_id: any) {
+        return this.http.get(ApiService.getNewsByIdDetailsURL + institute_id);
+    }
+    removeNewsDataById(id: any) {
+        debugger
+        return this.http.get(ApiService.removeNewsByIdDetailsURL + id);
+    }
 }
