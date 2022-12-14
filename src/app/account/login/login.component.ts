@@ -1,15 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { first } from 'rxjs/operators';
-
 import { AuthenticationService } from '../../core/services/auth.service';
-import { AuthfakeauthenticationService } from '../../core/services/authfake.service';
-import { environment } from '../../../environments/environment';
 import { LAYOUT_MODE } from '../../layouts/layouts.model';
 import { HomeService } from 'src/app/core/services/home.services';
-import { ApiService } from 'src/app/core/services/api.service';
 import { UserProfileService } from 'src/app/core/services/user.service';
+import { ToastrService } from 'ngx-toastr';
 
 @Component({
   selector: 'app-login',
@@ -39,8 +35,7 @@ export class LoginComponent implements OnInit {
     private route: ActivatedRoute,
     private router: Router,
     private authenticationService: AuthenticationService,
-    private authFackservice: AuthfakeauthenticationService,
-    private apiService: ApiService,
+    public toastr: ToastrService,
     private userService: UserProfileService,
     private homeService: HomeService
   ) {
@@ -84,36 +79,24 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     } else {
-      // if (environment.defaultauth === 'firebase') {
-      //   this.authenticationService.login(this.f.email.value, this.f.password.value).then((res: any) => {
-      //     this.router.navigate(['/']);
-      //   })
-      //     .catch(error => {
-      //       this.error = error ? error : '';
-      //     });
-      // } else {
-      //   this.authFackservice.login(this.f.email.value, this.f.password.value)
-      //     .pipe(first())
-      //     .subscribe(
-      //       data => {
-      //         this.router.navigate(['/']);
-      //       },
-      //       error => {
-      //         this.error = error ? error : '';
-      //       });
-      // }
       this.userService.userLogin(this.f.email.value, this.f.password.value, this.institute).subscribe((res: any) => {
 
         if (res.length > 0) {
           localStorage.setItem('InstituteId', res[0].id);
           localStorage.setItem('InstituteName', res[0].name);
           localStorage.setItem('token', res[0].token);
-          this.apiService.showNotification('top', 'right', 'Login Successfully', 'success');
+          this.toastr.success('Login Successfully', 'success', {
+            timeOut: 3000,
+          });
           this.router.navigate(['/']);
         } else if (res == 1) {
-          this.apiService.showNotification('top', 'right', 'Incorrect Email !....please check your Email', 'danger');
+          this.toastr.error('Incorrect Email !....please check your Email', 'wrong email', {
+            timeOut: 3000,
+          });
         } else {
-          this.apiService.showNotification('top', 'right', 'Incorrect Password !....please check your Password', 'danger');
+          this.toastr.error('Incorrect Password !....please check your Password', 'wrong password', {
+            timeOut: 3000,
+          });
         }
       })
     }

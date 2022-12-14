@@ -22,6 +22,9 @@ import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkar
 import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bulk-upload.component';
 import { AlumniListComponent } from './alumni-list/alumni-list.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
+import { ToastrModule } from 'ngx-toastr';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { BrowserModule } from '@angular/platform-browser';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -69,6 +72,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgbTooltipModule,
     NgbPaginationModule,
     NgbToastModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     {

@@ -73,7 +73,6 @@ export class StaffDetailsComponent implements OnInit {
   saveStaffDetails() {
     this.staffModel.institute_id = localStorage.getItem('InstituteId');
     this.staffModel.profile = this.staffProfileImage;
-    debugger
     this.staffService.saveStaffDetails(this.staffModel).subscribe((res: any) => {
       this.staffData = res;
       this.getStaffDetails();

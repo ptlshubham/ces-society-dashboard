@@ -17,6 +17,7 @@ import { ExtrapagesModule } from './extrapages/extrapages.module';
 
 import { FakeBackendInterceptor } from './core/helpers/fake-backend';
 import { AuthInterceptor } from './core/guards/auth-http-interceptor';
+import { ToastrModule } from 'ngx-toastr';
 
 if (environment.defaultauth === 'firebase') {
   initFirebaseBackend(environment.firebaseConfig);
@@ -50,7 +51,8 @@ export function createTranslateLoader(http: HttpClient): any {
     NgbTooltipModule,
     NgbPopoverModule,
     NgbNavModule,
-    ExtrapagesModule
+    ExtrapagesModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     // { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },

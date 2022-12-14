@@ -1,6 +1,5 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ApiService } from 'src/app/core/services/api.service';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -15,8 +14,7 @@ export class NewsComponent implements OnInit {
   pdfResponse: any = '';
   constructor(
     private homeService: HomeService,
-    private apiService: ApiService,
-    private http: HttpClient
+    public toastr: ToastrService
   ) { }
 
 
@@ -51,7 +49,9 @@ export class NewsComponent implements OnInit {
     debugger
     this.newsModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveNewsListData(this.newsModel).subscribe((res: any) => {
-      this.apiService.showNotification('top', 'right', 'News added Successfully', 'success');
+      this.toastr.success('Neww added Successfully', 'success', {
+        timeOut: 3000,
+      });
       this.getNewsDetails();
     })
   }

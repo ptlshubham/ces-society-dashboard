@@ -1,4 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { DomSanitizer } from '@angular/platform-browser';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -18,14 +19,15 @@ export class BlogComponent implements OnInit {
   cardImageBase64: any;
   blogImages: any;
   blogModel: any = {};
-
+  fileUrl: any;
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private sanitizer: DomSanitizer
   ) { }
 
   ngOnInit(): void {
     this.getBlogDetails();
-    
+
   }
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
@@ -55,6 +57,12 @@ export class BlogComponent implements OnInit {
     }
   }
   saveBlogData() {
+    const data = this.blogModel.blogDetails
+    debugger
+    const blob = new Blob([data], { type: 'application/octet-stream' });
+
+    this.fileUrl = this.sanitizer.bypassSecurityTrustResourceUrl(window.URL.createObjectURL(blob));
+
     this.blogModel.institute_id = localStorage.getItem('InstituteId')
     this.blogModel.blogImage = this.blogImages;
     debugger

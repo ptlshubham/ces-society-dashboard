@@ -92,4 +92,10 @@ export class HomeService {
         debugger
         return this.http.get(ApiService.removeNewsByIdDetailsURL + id);
     }
+    saveOthersListData(data: any) {
+        return this.http.post(ApiService.saveOthersDataListURL, data);
+    }
+    getothersDataById(institute_id: any) {
+        return this.http.get(ApiService.getOthersByIdDetailsURL + institute_id);
+    }   
 }

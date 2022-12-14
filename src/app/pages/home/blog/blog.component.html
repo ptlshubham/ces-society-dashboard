@@ -12,6 +12,13 @@
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
+                                    <label>Author Name</label>
+                                    <input type="text" class="form-control" id="title" placeholder="Enter Author Name"
+                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="blogModel.authorName">
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
                                     <label>Blog Title</label>
                                     <input type="text" class="form-control" id="title" placeholder="Enter Blog Title"
                                         [ngModelOptions]="{standalone: true}" [(ngModel)]="blogModel.blogTitle">
@@ -58,6 +65,7 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" (click)="saveBlogData()">Submit</button>
+                            <a [href]="fileUrl" download="file.txt">DownloadFile</a>
                         </div>
                     </form>
                 </div>
@@ -80,6 +88,7 @@
                                 <th class="text-center">Image</th>
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Blog Title</th>
+                                <th class="text-center">Author Name</th>
                                 <th class="text-center">Blog Details</th>
                                 <th class="text-end">Action</th>
                             </tr>
@@ -92,7 +101,8 @@
                                 </td>
                                 <td class="text-center">{{c.blogDate|date}}</td>
                                 <td class="text-center">{{c.blogTitle}}</td>
-                                <td class="text-center">{{c.blogDetails}}</td>
+                                <th class="text-center">{{c.authorName}}</th>
+                                <td class="text-center" [innerHtml]='c.blogDetails'></td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i

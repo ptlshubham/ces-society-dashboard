@@ -64,7 +64,7 @@ export class SweetalertComponent implements OnInit {
       confirmButtonColor: '#34c38f',
       cancelButtonColor: '#f46a6a',
       confirmButtonText: 'Yes, delete it!'
-    }).then(result => {
+    }).then((result: any) => {
       if (result.value) {
         Swal.fire('Deleted!', 'Your file has been deleted.', 'success');
       }
@@ -93,7 +93,7 @@ export class SweetalertComponent implements OnInit {
         cancelButtonText: 'No, cancel!',
         showCancelButton: true
       })
-      .then(result => {
+      .then((result: any) => {
         if (result.value) {
           swalWithBootstrapButtons.fire(
             'Deleted!',
@@ -139,7 +139,7 @@ export class SweetalertComponent implements OnInit {
       timer: 2000,
       timerProgressBar: true,
       didOpen: () => {
-        Swal.showLoading();
+        Swal.showLoading(null);
         timerInterval = setInterval(() => {
           const content = Swal.getHtmlContainer();
           if (content) {
@@ -153,7 +153,7 @@ export class SweetalertComponent implements OnInit {
       willClose: () => {
         clearInterval(timerInterval);
       },
-    }).then((result) => {
+    }).then((result: any) => {
       /* Read more about handling dismissals below */
       if (result.dismiss === Swal.DismissReason.timer) {
         console.log('I was closed by the timer');
@@ -224,7 +224,7 @@ export class SweetalertComponent implements OnInit {
       showLoaderOnConfirm: true,
       confirmButtonColor: '#556ee6',
       cancelButtonColor: '#f46a6a',
-      preConfirm: (email) => {
+      preConfirm: (email: any) => {
         // eslint-disable-next-line no-unused-vars
         return new Promise<void>((resolve, reject) => {
           setTimeout(() => {
@@ -237,7 +237,7 @@ export class SweetalertComponent implements OnInit {
         });
       },
       allowOutsideClick: false,
-    }).then((email) => {
+    }).then((email: any) => {
       Swal.fire({
         icon: 'success',
         title: 'Ajax request finished!',

@@ -13,7 +13,8 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label class="form-label">Select Purpose</label>
-                                    <select required class="form-control form-select">
+                                    <select required class="form-control form-select"
+                                        [ngModelOptions]="{standalone: true}" [(ngModel)]="othersModel.purpose">
                                         <option value>Select</option>
                                         <option value="forms">Forms</option>
                                         <option value="syllabus">Syllabus</option>
@@ -25,19 +26,20 @@
                                 <div class="form-group mb-3">
                                     <label>Enter Title</label>
                                     <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
-                                        placeholder="Enter Title"></textarea>
+                                        placeholder="Enter Title" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="othersModel.title"></textarea>
                                 </div>
                             </div>
 
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>PDF Uploader (Optional)</label>
-                                    <dropzone class="dropzone"></dropzone>
+                                    <input class="form-control" type="file" id="formFile" (change)="uploadFile($event)">
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="saveFormsDetails()">Submit</button>
                         </div>
                     </form>
                 </div>
@@ -60,28 +62,29 @@
                                 <th class="text-center">Module</th>
                                 <th class="text-center">Title</th>
                                 <th class="text-center">File (PDF)</th>
-                                <th class="text-right">Action</th>
+                                <th class="text-end">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td class="text-left">1</td>
-                                <td class="text-center">Forms</td>
+                            <tr *ngFor="let n of othersData;let i=index">
+                                <td class="text-left">{{i+1}}</td>
+                                <td class="text-center">{{n.purpose}}</td>
                                 <td class="text-center">
-                                    Hello CES Team
+                                    {{n.title}}
                                 </td>
                                 <td class="text-center">
-                                    PDF 
+                                    <button type="button" class="btn btn-primary waves-effect btn-label waves-light"
+                                        (click)="viewDownloadPdf(n.files)">
+                                        <i class="fas fa-file-download label-icon"></i>Download
+                                    </button>
                                 </td>
-                                <td class="text-right">
-                                    <div class="d-flex flex-wrap gap-2">
-                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
-                                                class="bx bx-edit font-size-16 align-middle"></i></button>
-                                        <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
-                                                class="bx bx-trash-alt font-size-16 align-middle"></i></button>
-                                    </div>
+                                <td class="text-end">
+                                    <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
+                                            class="bx bx-edit font-size-16 align-middle"></i></button>
+                                    <button type="button" class="btn btn-soft-danger waves-effect waves-light"
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
+                                            class="bx bx-trash-alt font-size-16 align-middle"></i></button>
                                 </td>
 
                             </tr>

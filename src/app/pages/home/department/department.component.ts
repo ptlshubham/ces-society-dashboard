@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { ToastrService } from 'ngx-toastr';
 import { ApiService } from 'src/app/core/services/api.service';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -15,7 +16,7 @@ export class DepartmentComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private modalService: NgbModal,
-    private apiService: ApiService
+    public toastr: ToastrService
   ) { }
 
   ngOnInit(): void {
@@ -25,7 +26,9 @@ export class DepartmentComponent implements OnInit {
   saveDepartmentList() {
     this.departmentModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveDepartmentListData(this.departmentModel).subscribe((res: any) => {
-      this.apiService.showNotification('top', 'right', 'Department added Successfully', 'success');
+      this.toastr.success('Department added Successfully', 'success', {
+        timeOut: 3000,
+      });
       this.getDepartmentDetails();
     })
   }
@@ -44,6 +47,9 @@ export class DepartmentComponent implements OnInit {
   updateDepartmentDetails() {
     this.homeService.updateDepartmentListData(this.updateDepartmentModel).subscribe((res: any) => {
       if (res == 'success') {
+        this.toastr.success('Department Updated Successfully', 'success', {
+          timeOut: 3000,
+        });
         location.reload();
       }
     })
@@ -51,6 +57,9 @@ export class DepartmentComponent implements OnInit {
   removeDepartmentdata(id: any) {
     this.homeService.removeDepartmentDataById(id).subscribe((res: any) => {
       this.departmentData = res;
+      this.toastr.success('Department removed Successfully', 'success', {
+        timeOut: 3000,
+      });
       this.getDepartmentDetails();
     })
   }
