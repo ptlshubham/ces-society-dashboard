@@ -30,6 +30,10 @@ export class DonationService {
          debugger
         return this.http.post(ApiService.saveBeneficiaryDetailsURL, data);
     }
+    updateBeneficiaryDetails(data:any){
+        debugger
+        return this.http.post(ApiService.updateBeneficiaryDetailsURL, data);
+    }
     getAllBeneficiaryDetailsData() {
         return this.http.get(ApiService.getAllBeneficiaryListURL);
     }

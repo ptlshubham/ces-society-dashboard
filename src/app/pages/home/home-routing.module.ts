@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AlumniListComponent } from './alumni-list/alumni-list.component';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { BlogComponent } from './blog/blog.component';
 import { CollegeListComponent } from './college-list/college-list.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
@@ -8,6 +9,7 @@ import { DepartmentComponent } from './department/department.component';
 import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bulk-upload.component';
 import { DonationComponent } from './donation/donation.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
+import { InfraDetailsComponent } from './infra-details/infra-details.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { NewsComponent } from './news/news.component';
 import { OthersComponent } from './others/others.component';
@@ -82,7 +84,14 @@ const routes: Routes = [
     path: 'contact-list',
     component: ContactListComponent
   },
- 
+  {
+    path: 'details/:id',
+    component: BlogDetailsComponent
+  },
+  {
+    path: 'infra-details/:id',
+    component: InfraDetailsComponent
+  },
 ];
 
 @NgModule({

@@ -15,6 +15,7 @@ export class NewsComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService
+
   ) { }
 
 
@@ -35,6 +36,9 @@ export class NewsComponent implements OnInit {
 
         this.homeService.savePdfData(formdata).subscribe((response) => {
           this.pdfResponse = response;
+          this.toastr.success('Image uploaded successfully', 'Uploaded', {
+            timeOut: 3000,
+          });
           debugger
 
         })
@@ -49,7 +53,7 @@ export class NewsComponent implements OnInit {
     debugger
     this.newsModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveNewsListData(this.newsModel).subscribe((res: any) => {
-      this.toastr.success('Neww added Successfully', 'success', {
+      this.toastr.success('News added successfully', 'Success', {
         timeOut: 3000,
       });
       this.getNewsDetails();
@@ -63,6 +67,9 @@ export class NewsComponent implements OnInit {
   removeNewsById(id: any) {
     this.homeService.removeNewsDataById(id).subscribe((res: any) => {
       this.newsData = res;
+      this.toastr.success('News deleted successfully', 'Deleted', {
+        timeOut: 3000,
+      });
       this.getNewsDetails();
     })
   }

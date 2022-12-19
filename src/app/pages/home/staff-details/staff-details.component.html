@@ -89,6 +89,9 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Upload Image</label>
+                                    <p style="text-align: center;color: red;">
+                                        Please Upload only 472 X 472px image.
+                                    </p>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
@@ -108,11 +111,12 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" (click)="saveStaffDetails()" *ngIf="isUpdate==false">Submit</button>
-                            <button type="submit" class="btn btn-primary" (click)="updateStaffDetails()" *ngIf="isUpdate==true">Update</button>
+                            <button type="submit" class="btn btn-primary" (click)="saveStaffDetails()"
+                                *ngIf="isUpdate==false">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="updateStaffDetails()"
+                                *ngIf="isUpdate==true">Update</button>
 
                         </div>
                     </form>
@@ -171,8 +175,9 @@
                                 <td class="text-center">{{s.joining_date |date}} </td>
                                 <td class="text-end">
                                     <div class="d-flex flex-wrap gap-2 text-end">
-                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"><i
-                                                class="bx bx-edit font-size-16 align-middle" (click)="openUpdateStaff(s)"></i></button>
+                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                            (click)="openUpdateStaff(s)"><i
+                                                class="bx bx-edit font-size-16 align-middle"></i></button>
                                         <button type="button" class="btn btn-soft-danger waves-effect waves-light"
                                             (click)="removeStaffDetails(s.id)"><i
                                                 class="bx bx-trash-alt font-size-16 align-middle"></i></button>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -13,11 +14,13 @@ export class StudentResultComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   resultImage: any;
-
+  isUpdate: boolean = false;
   resultModel: any = {};
   resultData: any = [];
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    public toastr: ToastrService,
+
   ) { }
 
   ngOnInit(): void {
@@ -40,7 +43,7 @@ export class StudentResultComponent implements OnInit {
 
         this.homeService.uploadBannersImage(formdata).subscribe((response) => {
           this.resultImage = response;
-
+          this.toastr.success('Student Result Image Uploaded Successfully.', 'Uploaded', { timeOut: 3000, });
           this.editFile = false;
           this.removeUpload = true;
         })
@@ -56,6 +59,8 @@ export class StudentResultComponent implements OnInit {
 
     this.homeService.saveResultData(this.resultModel).subscribe((res: any) => {
       this.resultData = res;
+      this.toastr.success('Student Result Details Successfully Saved.', 'Success', { timeOut: 3000, });
+
       this.getResultDataById();
 
     })
@@ -64,6 +69,33 @@ export class StudentResultComponent implements OnInit {
     this.homeService.getResultDetailsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.resultData = res;
       debugger
+    })
+  }
+  openEditResult(data: any) {
+    this.isUpdate = true;
+    this.resultModel = data;
+    this.imageUrl = 'http://localhost:9000' + data.image
+    this.resultModel.image = data.image;
+
+  }
+  updateResultDetails() {
+    if (this.resultImage != null || undefined) {
+      this.resultModel.profile = this.resultImage;
+    }
+    debugger
+    this.homeService.updateResultDetails(this.resultModel).subscribe((res: any) => {
+      this.resultData = res;
+      this.toastr.success('Result Details Successfully Updated.', 'Updated', { timeOut: 3000, });
+
+      this.getResultDataById();
+    })
+  }
+  removeResult(id:any){
+    this.homeService.removeResultDetailsById(id).subscribe((res:any)=>{
+      this.resultData = res;
+      this.toastr.success('Result Details Removed Successfully.', 'Deleted', { timeOut: 3000, });
+
+      this.getResultDataById();
     })
   }
 }

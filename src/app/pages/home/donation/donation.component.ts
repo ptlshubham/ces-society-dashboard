@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DonationService } from 'src/app/core/services/donation.service';
 
 @Component({
@@ -12,7 +13,9 @@ export class DonationComponent implements OnInit {
   donnerData: any = [];
   constructor(
     private donationService: DonationService,
-    private router: Router
+    private router: Router,
+    public toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -24,6 +27,9 @@ export class DonationComponent implements OnInit {
   saveDonnerDetails() {
     this.donationService.saveDonnerDetails(this.donataionModel).subscribe((res: any) => {
       this.donnerData = res;
+      this.toastr.success('Donner Data save Successfully', 'Success', {
+        timeOut: 3000,
+      });
       this.getAllDonnerDetails();
     })
   }
@@ -34,6 +40,9 @@ export class DonationComponent implements OnInit {
   }
   removeDonnerDetails(id: any) {
     this.donationService.removeDonnerDetailsById(id).subscribe((res: any) => {
+      this.toastr.success('Donner details removed Successfully', 'Removed', {
+        timeOut: 3000,
+      });
       this.getAllDonnerDetails();
     })
   }

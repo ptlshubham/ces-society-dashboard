@@ -25,6 +25,14 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Upload Image</label>
+                                    <p *ngIf="imageModel.purpose=='slider'" style="text-align: center;color: red;">
+                                        Please Upload only 1902 X 502px image.
+                                    </p>
+
+                                    <p *ngIf="imageModel.purpose=='image'" style="text-align: center;color: red;">
+                                        Please Upload only 500 X 500px image.
+                                    </p>
+
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
@@ -80,15 +88,18 @@
                                     <img src="http://localhost:9000{{c.image}}" alt="" class="rounded avatar-lg">
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn btn-success waves-effect btn-label waves-light" *ngIf="c.isactive" (click)="deactiveBanners(i)"><i
+                                    <button type="button" class="btn btn-success waves-effect btn-label waves-light"
+                                        *ngIf="c.isactive" (click)="deactiveBanners(i)"><i
                                             class="bx bx-check-double label-icon"></i> Active</button>
-                                    <button type="button" class="btn btn-danger waves-effect btn-label waves-light" *ngIf="!c.isactive" (click)="activeBanners(i)"><i
+                                    <button type="button" class="btn btn-danger waves-effect btn-label waves-light"
+                                        *ngIf="!c.isactive" (click)="activeBanners(i)"><i
                                             class="bx bx-block label-icon"></i> Deactive</button>
                                 </td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                    data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept" (click)="removeBannersImages(c.id)"><i
-                                        class="bx bx-trash-alt font-size-16 align-middle"></i></button>
+                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"
+                                        (click)="removeBannersImages(c.id)"><i
+                                            class="bx bx-trash-alt font-size-16 align-middle"></i></button>
                                     <!-- <div class="d-flex flex-wrap gap-2 text-end">
                                         <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                             data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i

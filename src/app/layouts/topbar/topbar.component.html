@@ -5,19 +5,21 @@
             <div class="navbar-brand-box">
                 <a routerLink="/" class="logo logo-dark">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.svg" alt="" height="24">
+                        <img src="assets/images/logo-sm.svg" alt="" height="40">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="assets/images/logo-sm.svg" alt="" height="40"> <span class="logo-txt">CES
+                            SOCIETY</span>
                     </span>
                 </a>
 
                 <a routerLink="/" class="logo logo-light">
                     <span class="logo-sm">
-                        <img src="assets/images/logo-sm.svg" alt="" height="24">
+                        <img src="assets/images/logo-sm.svg" alt="" height="40">
                     </span>
                     <span class="logo-lg">
-                        <img src="assets/images/logo-sm.svg" alt="" height="24"> <span class="logo-txt">Minia</span>
+                        <img src="assets/images/logo-sm.svg" alt="" height="40"> <span class="logo-txt">CES
+                            SOCIETY</span>
                     </span>
                 </a>
             </div>
@@ -59,7 +61,7 @@
                 </div>
             </div>
 
-            <div class="dropdown d-none d-sm-inline-block" ngbDropdown>
+            <!-- <div class="dropdown d-none d-sm-inline-block" ngbDropdown>
                 <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" ngbDropdownToggle>
                     <img *ngIf="flagvalue !== undefined" src="{{flagvalue}}" alt="Header Language" height="16">
@@ -73,7 +75,7 @@
                             class="align-middle">{{item.text}}</span>
                     </a>
                 </div>
-            </div>
+            </div> -->
 
             <div class="dropdown d-none d-sm-inline-block">
                 <button type="button" class="btn header-item" id="mode-setting-btn">
@@ -86,7 +88,7 @@
                 </button>
             </div>
 
-            <div class="dropdown d-none d-lg-inline-block ms-1" ngbDropdown>
+            <!-- <div class="dropdown d-none d-lg-inline-block ms-1" ngbDropdown>
                 <button type="button" class="btn header-item" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" ngbDropdownToggle>
                     <i-feather name="grid" class="icon-lg"></i-feather>
@@ -136,9 +138,9 @@
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="dropdown d-inline-block" ngbDropdown>
+            <!-- <div class="dropdown d-inline-block" ngbDropdown>
                 <button type="button" class="btn header-item noti-icon position-relative"
                     id="page-header-notifications-dropdown" data-bs-toggle="dropdown" aria-haspopup="true"
                     aria-expanded="false" ngbDropdownToggle>
@@ -238,30 +240,30 @@
                         </a>
                     </div>
                 </div>
-            </div>
+            </div> -->
 
-            <div class="dropdown d-inline-block">
+            <!-- <div class="dropdown d-inline-block">
                 <button type="button" class="btn header-item right-bar-toggle me-2" (click)="toggleRightSidebar()">
                     <i-feather name="settings" class="icon-lg"></i-feather>
                 </button>
-            </div>
+            </div> -->
 
             <div class="dropdown d-inline-block" ngbDropdown>
                 <button type="button" class="btn header-item bg-soft-light border-start border-end"
                     id="page-header-user-dropdown" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
                     ngbDropdownToggle>
-                    <img class="rounded-circle header-profile-user" src="assets/images/users/avatar-1.jpg"
+                    <img class="rounded-circle header-profile-user" src="assets/images/users/inst.jpg"
                         alt="Header Avatar">
-                    <span class="d-none d-xl-inline-block ms-1 fw-medium">Shawn L.</span>
+                    <span class="d-none d-xl-inline-block ms-1 fw-medium">{{collegeName}}</span>
                     <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
                 </button>
                 <div class="dropdown-menu dropdown-menu-end" ngbDropdownMenu>
                     <!-- item-->
-                    <a class="dropdown-item" routerLink="/apps/profile"><i
+                    <!-- <a class="dropdown-item" routerLink="/apps/profile"><i
                             class="mdi mdi-face-profile font-size-16 align-middle me-1"></i> Profile</a>
                     <a class="dropdown-item" routerLink="/account/lock-screen"><i
-                            class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a>
-                    <div class="dropdown-divider"></div>
+                            class="mdi mdi-lock font-size-16 align-middle me-1"></i> Lock screen</a> -->
+                    <!-- <div class="dropdown-divider"></div> -->
                     <a class="dropdown-item" href="javascript: void(0);" (click)="logout()"><i
                             class="mdi mdi-logout text-muted font-size-16 align-middle me-1"></i> <span
                             class="align-middle" key="t-logout">{{ 'MENUITEMS.AUTHENTICATION.LIST.LOGOUT' |

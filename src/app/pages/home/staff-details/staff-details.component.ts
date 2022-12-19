@@ -1,4 +1,6 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 import { StaffService } from 'src/app/core/services/staff.services';
 
@@ -23,7 +25,10 @@ export class StaffDetailsComponent implements OnInit {
 
   constructor(
     private homeService: HomeService,
-    private staffService: StaffService
+    private staffService: StaffService,
+    private datepipe: DatePipe,
+    public toastr: ToastrService,
+
   ) { }
 
   ngOnInit(): void {
@@ -33,9 +38,11 @@ export class StaffDetailsComponent implements OnInit {
   }
   openAddStaff() {
     this.isOpen = true;
+    this.isUpdate = false;
   }
   backToTable() {
     this.isOpen = false;
+    this.isUpdate = false;
 
   }
   getDepartmentDetails() {
@@ -60,6 +67,7 @@ export class StaffDetailsComponent implements OnInit {
 
         this.staffService.saveStaffProfileImages(formdata).subscribe((response) => {
           this.staffProfileImage = response;
+          this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
 
           this.editFile = false;
           this.removeUpload = true;
@@ -75,28 +83,45 @@ export class StaffDetailsComponent implements OnInit {
     this.staffModel.profile = this.staffProfileImage;
     this.staffService.saveStaffDetails(this.staffModel).subscribe((res: any) => {
       this.staffData = res;
+      this.toastr.success('Staff Details Successfully Saved.', 'Success', { timeOut: 3000, });
+
       this.getStaffDetails();
+      this.isOpen = false;
     })
   }
   getStaffDetails() {
     this.staffService.getAllStaffDetailsData(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.staffDataTable = res;
-      debugger
     })
   }
   openUpdateStaff(data: any) {
-    this.imageUrl='http://localhost:9000'+data.profile_image
+    this.staffModel.birthday_date = this.datepipe.transform(data.birthday_date, 'yyyy-MM-dd');
+    this.staffModel.joining_date = this.datepipe.transform(data.joining_date, 'yyyy-MM-dd');
+    this.imageUrl = 'http://localhost:9000' + data.profile_image
     this.staffModel = data;
+    this.staffModel.profile = data.profile_image;
     this.isOpen = true;
     this.isUpdate = true;
   }
   updateStaffDetails() {
+    if (this.staffProfileImage != null || undefined) {
+      this.staffModel.profile = this.staffProfileImage;
+    }
 
+    debugger
+    this.staffService.updaetStaffDetails(this.staffModel).subscribe((res: any) => {
+      this.staffData = res;
+      this.toastr.success('Update Staff Details Successfully.', 'Updated', { timeOut: 3000, });
+
+      this.getStaffDetails();
+      this.isOpen = false;
+    })
   }
   removeStaffDetails(id: any) {
-    debugger
     this.staffService.removeStaffDetailsById(id).subscribe((res: any) => {
       this.staffDataTable = res;
+      this.toastr.success('Staff Details Removed Successfully.', 'Removed', { timeOut: 3000, });
+
       this.getStaffDetails();
     })
   }

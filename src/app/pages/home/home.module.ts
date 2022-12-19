@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { FormModule } from '../form/form.module';
@@ -25,6 +25,8 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { BrowserModule } from '@angular/platform-browser';
+import { BlogDetailsComponent } from './blog-details/blog-details.component';
+import { InfraDetailsComponent } from './infra-details/infra-details.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -52,6 +54,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     DonationBulkUploadComponent,
     AlumniListComponent,
     ContactListComponent,
+    BlogDetailsComponent,
+    InfraDetailsComponent,
   ],
   imports: [
     CommonModule,
@@ -75,6 +79,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ToastrModule.forRoot()
   ],
   providers: [
+    DatePipe,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG

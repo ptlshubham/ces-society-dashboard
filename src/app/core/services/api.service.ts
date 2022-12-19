@@ -23,6 +23,8 @@ export class ApiService {
   // admin
 
   public static saveInsituteDetailsURL: string = ApiService.HOST_URL + '/admin/SaveInsituteDetails';
+  public static removeInstituteDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveInstituteDetailsById/';
+  public static updateInstituteDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateInstituteDetails';
   public static getAllInstituteDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllInstituteDetails';
   public static saveGalleryImagesURL: string = ApiService.HOST_URL + '/admin/SaveGalleryImages';
   public static uploadGalleryImagesURL: string = ApiService.HOST_URL + '/admin/UploadGalleryImages';
@@ -35,6 +37,7 @@ export class ApiService {
   public static updateDepartmentListURL: string = ApiService.HOST_URL + '/admin/UpdateDepartmentList';
   public static saveStaffProfileImagesURL: string = ApiService.HOST_URL + '/admin/SaveStaffProfileImages';
   public static saveStaffDetailsListURL: string = ApiService.HOST_URL + '/admin/SaveStaffDetailsList';
+  public static updateStaffDetailsByIdURL: string = ApiService.HOST_URL + '/admin/UpdateStaffDetailsById';
   public static getAllStaffDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllStaffDetails/';
   public static removeStaffDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveStaffDetailsById/';
   public static saveDonnerListDetailsURL: string = ApiService.HOST_URL + '/admin/SaveDonnerListDetails';
@@ -42,6 +45,7 @@ export class ApiService {
   public static removeDonnerDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveDonnerDetailsById/';
   public static getBeneficiaryYearURL: string = ApiService.HOST_URL + '/admin/GetBeneficiaryYear';
   public static saveBeneficiaryDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBeneficiaryDetails';
+  public static updateBeneficiaryDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateBeneficiaryDetails';
   public static getAllBeneficiaryListURL: string = ApiService.HOST_URL + '/admin/GetAllBeneficiaryList';
   public static removeBeneficiaryDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveBeneficiaryDetailsById/';
   public static saveBulkBeneficiaryDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBulkBeneficiaryDetails';
@@ -56,6 +60,9 @@ export class ApiService {
   public static GetAlumniDetailsURL: string = ApiService.HOST_URL + '/admin/GetAlumniDetails';
   public static getContactUsDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetContactUsDetailsById/';
   public static saveResultDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResultDetails';
+  public static updateResultDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateResultDetails';
+  public static removeResultDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveResultDetailsById/';
+
   public static getResultDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetResultDetailsById/';
   public static uploadPDFURL: string = ApiService.HOST_URL + '/admin/UploadPDF';
 
@@ -63,6 +70,7 @@ export class ApiService {
   public static getNewsByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetNewsByIdDetails/';
   public static removeNewsByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveNewsByIdDetails/';
   public static saveOthersDataListURL: string = ApiService.HOST_URL + '/admin/SaveOthersDataList';
+  public static removeOtherDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveOtherDetailsById/'
   public static getOthersByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetOthersByIdDetails/';
 
 

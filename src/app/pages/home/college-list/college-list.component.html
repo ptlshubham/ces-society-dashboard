@@ -72,8 +72,10 @@
 
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"
+                            <button type="submit" class="btn btn-primary" *ngIf="!isupdate"
                                 (click)="saveInstituteDetails()">Submit</button>
+                            <button type="submit" class="btn btn-primary" *ngIf="isupdate"
+                                (click)="updateInstituteDetails()">Update</button>
                         </div>
                     </form>
                 </div>
@@ -122,12 +124,12 @@
                                 </td>
                                 <td class="text-right">
                                     <div class="d-flex flex-wrap gap-2">
-                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
-                                                class="bx bx-edit font-size-16 align-middle"></i></button>
-                                        <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
-                                                class="bx bx-trash-alt font-size-16 align-middle"></i></button>
+                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"><i
+                                                class="bx bx-edit font-size-16 align-middle"
+                                                (click)="editInstituteDetails(c)"></i></button>
+                                        <button type="button" class="btn btn-soft-danger waves-effect waves-light"><i
+                                                class="bx bx-trash-alt font-size-16 align-middle"
+                                                (click)="removeInstituteDetail(c.id)"></i></button>
                                     </div>
                                 </td>
 

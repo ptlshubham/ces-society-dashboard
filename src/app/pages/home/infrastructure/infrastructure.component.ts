@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { HomeService } from 'src/app/core/services/home.services';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-infrastructure',
@@ -20,7 +21,8 @@ export class InfrastructureComponent implements OnInit {
   infraModel: any = {};
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private router:Router
   ) { }
 
   ngOnInit(): void {
@@ -57,15 +59,17 @@ export class InfrastructureComponent implements OnInit {
   saveInfraDetails() {
     this.infraModel.institute_id = localStorage.getItem('InstituteId');
     this.infraModel.infraImage = this.infraImages
-    debugger
     this.homeService.saveInfrastructureDetails(this.infraModel).subscribe((res: any) => {
       this.infraData = res;
       this.getInfraDataById();
     })
   }
-  getInfraDataById(){
-    this.homeService.getImfraDetails(localStorage.getItem('InstituteId')).subscribe((res:any)=>{
+  getInfraDataById() {
+    this.homeService.getImfraDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.infraData = res;
     })
+  }
+  viewInfraDetails(id: any) {
+    this.router.navigate(['/home/infra-details', id]);
   }
 }

@@ -27,36 +27,36 @@
                                     <select required class="form-control form-select"
                                         [ngModelOptions]="{standalone: true}" [(ngModel)]="beneficiaryModel.year">
                                         <option value>Select Year</option>
-                                        <option value="2010-2011">2010-2011 Year</option>
-                                        <option value="2011-2012">2011-2012 Year</option>
-                                        <option value="2012-2013">2012-2013 Year</option>
-                                        <option value="2013-2014">2013-2014 Year</option>
-                                        <option value="2014-2015">2014-2015 Year</option>
-                                        <option value="2015-2016">2015-2016 Year</option>
-                                        <option value="2016-2017">2016-2017 Year</option>
-                                        <option value="2017-2018">2017-2018 Year</option>
-                                        <option value="2018-2019">2018-2019 Year</option>
-                                        <option value="2019-2020">2019-2020 Year</option>
-                                        <option value="2020-2021">2020-2021 Year</option>
-                                        <option value="2021-2022">2021-2022 Year</option>
-                                        <option value="2022-2023">2022-2023 Year</option>
-                                        <option value="2023-2024">2023-2024 Year</option>
-                                        <option value="2024-2025">2024-2025 Year</option>
-                                        <option value="2025-2026">2025-2026 Year</option>
-                                        <option value="2026-2027">2026-2027 Year</option>
-                                        <option value="2027-2028">2027-2028 Year</option>
-                                        <option value="2028-2029">2028-2029 Year</option>
-                                        <option value="2029-2030">2029-2030 Year</option>
-                                        <option value="2030-2031">2030-2031 Year</option>
-                                        <option value="2031-2032">2031-2032 Year</option>
-                                        <option value="2032-2033">2032-2033 Year</option>
-                                        <option value="2033-2034">2033-2034 Year</option>
-                                        <option value="2034-2035">2034-2035 Year</option>
-                                        <option value="2035-2036">2035-2036 Year</option>
-                                        <option value="2036-2037">2036-2037 Year</option>
-                                        <option value="2037-2038">2037-2038 Year</option>
-                                        <option value="2038-2039">2038-2039 Year</option>
-                                        <option value="2039-2040">2039-2040 Year</option>
+                                        <option value="2010-2011">2010-2011</option>
+                                        <option value="2011-2012">2011-2012</option>
+                                        <option value="2012-2013">2012-2013</option>
+                                        <option value="2013-2014">2013-2014</option>
+                                        <option value="2014-2015">2014-2015</option>
+                                        <option value="2015-2016">2015-2016</option>
+                                        <option value="2016-2017">2016-2017</option>
+                                        <option value="2017-2018">2017-2018</option>
+                                        <option value="2018-2019">2018-2019</option>
+                                        <option value="2019-2020">2019-2020</option>
+                                        <option value="2020-2021">2020-2021</option>
+                                        <option value="2021-2022">2021-2022</option>
+                                        <option value="2022-2023">2022-2023</option>
+                                        <option value="2023-2024">2023-2024</option>
+                                        <option value="2024-2025">2024-2025</option>
+                                        <option value="2025-2026">2025-2026</option>
+                                        <option value="2026-2027">2026-2027</option>
+                                        <option value="2027-2028">2027-2028</option>
+                                        <option value="2028-2029">2028-2029</option>
+                                        <option value="2029-2030">2029-2030</option>
+                                        <option value="2030-2031">2030-2031</option>
+                                        <option value="2031-2032">2031-2032</option>
+                                        <option value="2032-2033">2032-2033</option>
+                                        <option value="2033-2034">2033-2034</option>
+                                        <option value="2034-2035">2034-2035</option>
+                                        <option value="2035-2036">2035-2036</option>
+                                        <option value="2036-2037">2036-2037</option>
+                                        <option value="2037-2038">2037-2038</option>
+                                        <option value="2038-2039">2038-2039</option>
+                                        <option value="2039-2040">2039-2040</option>
                                     </select>
                                 </div>
                             </div>
@@ -74,10 +74,9 @@
                                     <select required class="form-control form-select"
                                         [ngModelOptions]="{standalone: true}"
                                         [(ngModel)]="beneficiaryModel.instituteName">
-                                        <option value>Select School/College Year</option>
+                                        <option value>Select School/College</option>
                                         <option value="{{c.name}}" *ngFor="let c of collegeList">
-                                            {{c.name}}
-                                            Year</option>
+                                            {{c.name}} </option>
                                     </select>
                                 </div>
                             </div>
@@ -98,8 +97,10 @@
                                 </div>
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-primary"
+                                <button type="submit" class="btn btn-primary" *ngIf="!isUpdate"
                                     (click)="saveBeneficiaryDetails()">Submit</button>
+                                <button type="submit" class="btn btn-primary" *ngIf="isUpdate"
+                                    (click)="updateBenficiary()">Update</button>
                             </div>
                         </div>
                     </form>
@@ -159,7 +160,7 @@
 
                                 <td class="text-end">
                                     <button type="button" class="btn btn-soft-primary waves-effect waves-light"><i
-                                            class="bx bx-edit "></i></button>
+                                            class="bx bx-edit " (click)="editBeneficiary(d)"></i></button>
                                     <button type="button" class="btn btn-soft-danger waves-effect waves-light" d
                                         (click)="removeBeneficiaryDetails(d.id)"><i
                                             class="bx bx-trash-alt "></i></button>

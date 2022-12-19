@@ -56,12 +56,15 @@ export class OthersComponent implements OnInit {
       this.othersData = res;
     })
   }
-  // removeNewsById(id: any) {
-  //   this.homeService.removeothersDataById(id).subscribe((res: any) => {
-  //     this.othersData = res;
-  //     this.getNewsDetails();
-  //   })
-  // }
+  removeOtherDetails(id: any) {
+    this.homeService.removeOtherList(id).subscribe((res: any) => {
+      this.othersData = res;
+      this.toastr.success('Deleted Successfully', 'Removed', {
+        timeOut: 3000,
+      });
+      this.getFormsDetails();
+    })
+  }
   viewDownloadPdf(data: any) {
     var path
     path = 'http://localhost:9000' + data

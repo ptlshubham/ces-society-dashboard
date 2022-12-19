@@ -12,6 +12,12 @@ export class HomeService {
     saveInstituteData(data: any) {
         return this.http.post(ApiService.saveInsituteDetailsURL, data);
     }
+    removeInstituteList(id: any) {
+        return this.http.get(ApiService.removeInstituteDetailsByIdURL + id);
+    }
+    updateInstituteDetails(data: any) {
+        return this.http.post(ApiService.updateInstituteDetailsURL, data);
+    }
     getAllInstituteData() {
         return this.http.get(ApiService.getAllInstituteDetailsURL);
     }
@@ -61,7 +67,6 @@ export class HomeService {
         return this.http.post<any>(ApiService.uploadInfraImageURL, img);
     }
     saveInfrastructureDetails(data: any) {
-        debugger
         return this.http.post(ApiService.saveInfrastructureDetailsURL, data);
     }
     getImfraDetails(id: any) {
@@ -76,6 +81,12 @@ export class HomeService {
     saveResultData(data: any) {
         return this.http.post(ApiService.saveResultDetailsURL, data);
     }
+    updateResultDetails(data: any) {
+        return this.http.post(ApiService.updateResultDetailsURL, data);
+    }
+    removeResultDetailsById(id: any) {
+        return this.http.get(ApiService.removeResultDetailsByIdURL + id);
+    }
     getResultDetailsById(id: any) {
         return this.http.get(ApiService.getResultDetailsByIdURL + id);
     }
@@ -89,13 +100,15 @@ export class HomeService {
         return this.http.get(ApiService.getNewsByIdDetailsURL + institute_id);
     }
     removeNewsDataById(id: any) {
-        debugger
         return this.http.get(ApiService.removeNewsByIdDetailsURL + id);
     }
     saveOthersListData(data: any) {
         return this.http.post(ApiService.saveOthersDataListURL, data);
     }
+    removeOtherList(id: any) {
+        return this.http.get(ApiService.removeOtherDetailsByIdURL + id);
+    }
     getothersDataById(institute_id: any) {
         return this.http.get(ApiService.getOthersByIdDetailsURL + institute_id);
-    }   
+    }
 }

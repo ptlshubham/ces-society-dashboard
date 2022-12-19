@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DonationService } from 'src/app/core/services/donation.service';
 import * as XLSX from 'xlsx';
 type AOA = any[][];
@@ -20,7 +21,9 @@ export class RahotkarshBulkUploadComponent implements OnInit {
 
   constructor(
     private donationService: DonationService,
-    private router: Router
+    private router: Router,
+    public toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -47,6 +50,9 @@ export class RahotkarshBulkUploadComponent implements OnInit {
       this.data = <AOA>(XLSX.utils.sheet_to_json(ws, { header: 1 }));
       console.log("data:", this.data);
       this.uploadedData = this.data;
+      this.toastr.success('File Uploaded Successfully', 'Uploaded', {
+        timeOut: 3000,
+      });
       this.saveBulkUploadData();
       this.data.map(res => {
         if (res[0] === "no") {
@@ -77,6 +83,9 @@ export class RahotkarshBulkUploadComponent implements OnInit {
     this.bulkUploadedData
     debugger
     this.donationService.saveBulkBeneficiaryDetails(this.bulkUploadedData).subscribe((res: any) => {
+      this.toastr.success('File data save Successfully', 'Saved', {
+        timeOut: 3000,
+      });
       this.beneficiaryData = res;
     })
   }

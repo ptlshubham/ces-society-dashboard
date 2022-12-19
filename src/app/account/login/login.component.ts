@@ -85,9 +85,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('InstituteId', res[0].id);
           localStorage.setItem('InstituteName', res[0].name);
           localStorage.setItem('token', res[0].token);
-          this.toastr.success('Login Successfully', 'success', {
-            timeOut: 3000,
-          });
+          this.toastr.success('Login Successfully', 'success', { timeOut: 3000, });
           this.router.navigate(['/']);
         } else if (res == 1) {
           this.toastr.error('Incorrect Email !....please check your Email', 'wrong email', {

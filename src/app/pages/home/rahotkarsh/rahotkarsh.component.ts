@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { DonationService } from 'src/app/core/services/donation.service';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -19,11 +20,14 @@ export class RahotkarshComponent implements OnInit {
   page = 1;
   pageSize = 50;
   collectionSize = 0;
+  isUpdate: boolean = false;
 
   constructor(
     private donationService: DonationService,
     private homeService: HomeService,
-    private router: Router
+    private router: Router,
+    public toastr: ToastrService
+
   ) {
     this.getAllBeneficiaryYearList();
   }
@@ -46,6 +50,9 @@ export class RahotkarshComponent implements OnInit {
   saveBeneficiaryDetails() {
     this.donationService.saveBeneficiaryDetails(this.beneficiaryModel).subscribe((res: any) => {
       this.beneficiaryData = res;
+      this.toastr.success('Beneficiary Details added Successfully', 'success', {
+        timeOut: 3000,
+      });
       this.getAllBeneficiaryDetails();
     })
   }
@@ -63,6 +70,9 @@ export class RahotkarshComponent implements OnInit {
   }
   removeBeneficiaryDetails(id: any) {
     this.donationService.removeBeneficiaryDetailsById(id).subscribe((res: any) => {
+      this.toastr.success('Beneficiary Details removed Successfully', 'Removed', {
+        timeOut: 3000,
+      });
       this.getAllBeneficiaryDetails();
     })
   }
@@ -89,6 +99,20 @@ export class RahotkarshComponent implements OnInit {
     this.paginateData = this.beneficiaryData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
 
+  }
+  editBeneficiary(data: any) {
+    this.beneficiaryModel = data;
+    this.isUpdate = true;
+  }
+  updateBenficiary() {
+    debugger
+    this.donationService.updateBeneficiaryDetails(this.beneficiaryModel).subscribe((res: any) => {
+      this.beneficiaryData = res;
+      this.toastr.success('Beneficiary Details updated Successfully', 'Updated', {
+        timeOut: 3000,
+      });
+      this.getAllBeneficiaryDetails();
+    })
   }
 
 

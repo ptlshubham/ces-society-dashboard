@@ -1,5 +1,6 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -22,7 +23,9 @@ export class ImageUploadComponent implements OnInit {
 
   constructor(
     public formBuilder: UntypedFormBuilder,
-    private homeService: HomeService
+    private homeService: HomeService,
+    public toastr: ToastrService
+
   ) { }
 
   ngOnInit(): void {
@@ -33,6 +36,9 @@ export class ImageUploadComponent implements OnInit {
     this.imageModel.institute_id = localStorage.getItem('InstituteId');
 
     this.homeService.saveBannersImagesData(this.imageModel).subscribe((res: any) => {
+      this.toastr.success('Images Data added Successfully', 'success', {
+        timeOut: 3000,
+      });
       this.getImagesDataById();
     })
   }
@@ -59,7 +65,9 @@ export class ImageUploadComponent implements OnInit {
 
         this.homeService.uploadBannersImage(formdata).subscribe((response) => {
           this.bannersImage = response;
-
+          this.toastr.success('Image Upload Successfully', 'Uploaded', {
+            timeOut: 3000,
+          });
           this.editFile = false;
           this.removeUpload = true;
         })
@@ -82,6 +90,9 @@ export class ImageUploadComponent implements OnInit {
   removeBannersImages(id: any) {
     this.homeService.removeBannersImagesById(id).subscribe((res: any) => {
       this.imagesData = res;
+      this.toastr.success('Image Delete Successfully', 'Deleted', {
+        timeOut: 3000,
+      });
       this.getImagesDataById();
     })
   }

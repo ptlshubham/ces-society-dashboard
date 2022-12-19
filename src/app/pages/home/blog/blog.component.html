@@ -36,6 +36,9 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Upload Image</label>
+                                    <p style="text-align: center;color: red;">
+                                        Please Upload only 600 X 400px image.
+                                    </p>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
@@ -65,7 +68,6 @@
                         </div>
                         <div class="form-group">
                             <button type="submit" class="btn btn-primary" (click)="saveBlogData()">Submit</button>
-                            <a [href]="fileUrl" download="file.txt">DownloadFile</a>
                         </div>
                     </form>
                 </div>
@@ -89,7 +91,7 @@
                                 <th class="text-center">Date</th>
                                 <th class="text-center">Blog Title</th>
                                 <th class="text-center">Author Name</th>
-                                <th class="text-center">Blog Details</th>
+                                <!-- <th class="text-center">Blog Details</th> -->
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
@@ -101,16 +103,17 @@
                                 </td>
                                 <td class="text-center">{{c.blogDate|date}}</td>
                                 <td class="text-center">{{c.blogTitle}}</td>
-                                <th class="text-center">{{c.authorName}}</th>
-                                <td class="text-center" [innerHtml]='c.blogDetails'></td>
+                                <td class="text-center">{{c.authorName}}</td>
+                                <!-- <td class="text-center" [innerHtml]='c.blogDetails'></td> -->
                                 <td class="text-end">
                                     <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
+                                        (click)="viewBlogDetails(c.id)"><i
+                                            class="fa fa-eye font-size-16 align-middle"></i></button>
+                                    <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                        (click)="editBlogDetails(c)"><i
                                             class="bx bx-edit font-size-16 align-middle"></i></button>
-                                    <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
+                                    <button type="button" class="btn btn-soft-danger waves-effect waves-light"><i
                                             class="bx bx-trash-alt font-size-16 align-middle"></i></button>
-
                                 </td>
                             </tr>
                         </tbody>

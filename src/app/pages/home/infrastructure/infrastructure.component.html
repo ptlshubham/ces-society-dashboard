@@ -21,6 +21,9 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Upload Infrastructure Image</label>
+                                    <p style="text-align: center;color: red;">
+                                        Please Upload only 500 X 500px image.
+                                    </p>
                                     <div class="avatar-upload">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
@@ -70,7 +73,7 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">Title</th>
-                                <th class="text-center">Details</th>
+                                <!-- <th class="text-center">Details</th> -->
                                 <th class="text-center">Image</th>
                                 <th class="text-end">Action</th>
                             </tr>
@@ -79,13 +82,14 @@
                             <tr *ngFor="let c of infraData;let i=index">
                                 <td class="text-left">{{i+1}}</td>
                                 <td class="text-center">{{c.infraTitle}}</td>
-                                <td class="text-center" [innerHtml]='c.infraDetails'>
-
-                                </td>
+                                <!-- <td class="text-center" [innerHtml]='c.infraDetails'> </td> -->
                                 <td class="text-center">
                                     <img src="http://localhost:9000{{c.infraImage}}" alt="" class="rounded avatar-lg">
                                 </td>
                                 <td class="text-end">
+                                    <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                        (click)="viewInfraDetails(c.id)"><i
+                                            class="fa fa-eye font-size-16 align-middle"></i></button>
                                     <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                         data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
                                             class="bx bx-edit font-size-16 align-middle"></i></button>

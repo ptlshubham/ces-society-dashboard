@@ -28,7 +28,7 @@ export class TopbarComponent implements OnInit {
   cookieValue: any;
   countryName: any;
   valueset: any;
-
+  collegeName: any;
   constructor(
     private router: Router,
     private authService: AuthenticationService,
@@ -56,6 +56,7 @@ export class TopbarComponent implements OnInit {
   layoutMode!: string;
 
   ngOnInit(): void {
+    this.collegeName = localStorage.getItem('InstituteName');
     this.layoutMode = LAYOUT_MODE;
 
     this.element = document.documentElement;
