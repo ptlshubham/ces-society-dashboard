@@ -19,6 +19,8 @@ export class ApiService {
   //authenticate
 
   public static userLoginURL: string = ApiService.HOST_URL + '/authenticate/UserLogin';
+  public static adminLoginURL: string = ApiService.HOST_URL + '/authenticate/AdminLogin';
+
 
   // admin
 
@@ -77,7 +79,7 @@ export class ApiService {
 
 
 
-  public static adminLoginURL: string = ApiService.HOST_URL + '/authenticate/adminLogin';
+  // public static adminLoginURL: string = ApiService.HOST_URL + '/authenticate/adminLogin';
   // public static getBuyerListURL: string = ApiService.HOST_URL + '/admin/getAllBuyer';
   // public static getAllUserListURL: string = ApiService.HOST_URL + '/admin/getAllUser';
   // public static getSellerListURL: string = ApiService.HOST_URL + '/admin/getAllSeller';

@@ -213,7 +213,7 @@ export const MENU: MenuItem[] = [
     //         {
     //             id: 17,
     //             label: 'MENUITEMS.AUTHENTICATION.LIST.LOGIN',
-    //             link: '/account/login1',
+    //             link: '/account/admin-login',
     //             parentId: 16
     //         },
     //         {

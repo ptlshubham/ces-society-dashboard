@@ -12,7 +12,7 @@ import { TwostepverificationComponent } from './twostepverification/twostepverif
 
 const routes: Routes = [
   {
-    path: 'login1',
+    path: 'admin-login',
     component: LoginComponent,
   },
   {

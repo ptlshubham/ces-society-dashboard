@@ -1,7 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 import { OwlOptions } from 'ngx-owl-carousel-o';
+import { ToastrService } from 'ngx-toastr';
+import { UserProfileService } from 'src/app/core/services/user.service';
 
 @Component({
   selector: 'app-login',
@@ -24,7 +27,12 @@ export class LoginComponent implements OnInit {
   showNavigationArrows: any;
   fieldTextType!: boolean;
 
-  constructor(private formBuilder: UntypedFormBuilder) { }
+  constructor(
+    private formBuilder: UntypedFormBuilder,
+    public toastr: ToastrService,
+    private router: Router,
+    private userService: UserProfileService
+  ) { }
 
   ngOnInit(): void {
     /**
@@ -50,6 +58,25 @@ export class LoginComponent implements OnInit {
     if (this.loginForm.invalid) {
       return;
     }
+    else {
+      this.userService.adminLogin(this.f.email.value, this.f.password.value).subscribe((res: any) => {
+        debugger
+        if (res.length > 0) {
+          localStorage.setItem('Name', res[0].name);
+          localStorage.setItem('token', res[0].token);
+          this.toastr.success('Login Successfully', 'success', { timeOut: 3000, });
+          this.router.navigate(['/']);
+        } else if (res == 1) {
+          this.toastr.error('Incorrect Email !....please check your Email', 'wrong email', {
+            timeOut: 3000,
+          });
+        } else {
+          this.toastr.error('Incorrect Password !....please check your Password', 'wrong password', {
+            timeOut: 3000,
+          });
+        }
+      })
+    }
   }
 
   /**
@@ -71,7 +98,7 @@ export class LoginComponent implements OnInit {
   /**
    * Password Hide/Show
    */
-   toggleFieldTextType() {
+  toggleFieldTextType() {
     this.fieldTextType = !this.fieldTextType;
   }
 

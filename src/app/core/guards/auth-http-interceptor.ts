@@ -29,7 +29,7 @@ export class AuthInterceptor implements HttpInterceptor {
         //     headers: request.headers.set('rejectUnauthorized', 'false').set('requestCert', 'false')
         //         .set('insecure', 'true')
         // })
-        if (localStorage.getItem('role') == 'Admin') {
+        if (localStorage.getItem('role') == 'admin') {
             if (request.url != ApiService.adminLoginURL) {
 
                 if (adminToken == null || adminToken == undefined) {

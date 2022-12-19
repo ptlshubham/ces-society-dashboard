@@ -28,4 +28,12 @@ export class UserProfileService {
         };
         return this.http.post(ApiService.userLoginURL, data);
     }
+
+    adminLogin(email: any, pass: any) {
+        let data = {
+            email: email,
+            pass: pass,
+        };
+        return this.http.post(ApiService.adminLoginURL, data);
+    }
 }
