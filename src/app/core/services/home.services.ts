@@ -60,6 +60,12 @@ export class HomeService {
     saveBlogDetails(data: any) {
         return this.http.post(ApiService.saveBlogDetailsURL, data);
     }
+    updateBlogDetails(data: any) {
+        return this.http.post(ApiService.updateBlogDetailsURL, data);
+    }
+    removeBlog(id: any) {
+        return this.http.get(ApiService.removeBlogDetailsURL + id);
+    }
     getBlogsById(id: any) {
         return this.http.get(ApiService.getBlogsDetailsByIdURL + id);
     }

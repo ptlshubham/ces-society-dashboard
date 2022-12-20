@@ -69,7 +69,7 @@ export class RahotkarshBulkUploadComponent implements OnInit {
 
     this.bulkUploadedData = [];
     this.uploadedData
-    debugger
+     
     for (let i = 1; i < this.uploadedData.length; i++) {
       let data = {
         year: this.uploadedData[i][0],
@@ -81,7 +81,7 @@ export class RahotkarshBulkUploadComponent implements OnInit {
       this.bulkUploadedData.push(data);
     }
     this.bulkUploadedData
-    debugger
+     
     this.donationService.saveBulkBeneficiaryDetails(this.bulkUploadedData).subscribe((res: any) => {
       this.toastr.success('File data save Successfully', 'Saved', {
         timeOut: 3000,

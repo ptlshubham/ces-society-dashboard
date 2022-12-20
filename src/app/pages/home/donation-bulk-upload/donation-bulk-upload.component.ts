@@ -32,7 +32,7 @@ export class DonationBulkUploadComponent implements OnInit {
 
   }
   onFileChange(evt: any) {
-    debugger
+     
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
@@ -69,7 +69,7 @@ export class DonationBulkUploadComponent implements OnInit {
 
     this.bulkUploadedData = [];
     this.uploadedData
-    debugger
+     
     for (let i = 1; i < this.uploadedData.length; i++) {
       let data = {
         donationDate: this.uploadedData[i][0],
@@ -80,7 +80,7 @@ export class DonationBulkUploadComponent implements OnInit {
       this.bulkUploadedData.push(data);
     }
     this.bulkUploadedData
-    debugger
+     
     this.donationService.saveBulkDonnersDetails(this.bulkUploadedData).subscribe((res: any) => {
       this.toastr.success('Bulk uploaded Successfully', 'Success', {
         timeOut: 3000,

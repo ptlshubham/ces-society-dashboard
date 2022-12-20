@@ -107,8 +107,6 @@ export class StaffDetailsComponent implements OnInit {
     if (this.staffProfileImage != null || undefined) {
       this.staffModel.profile = this.staffProfileImage;
     }
-
-    debugger
     this.staffService.updaetStaffDetails(this.staffModel).subscribe((res: any) => {
       this.staffData = res;
       this.toastr.success('Update Staff Details Successfully.', 'Updated', { timeOut: 3000, });

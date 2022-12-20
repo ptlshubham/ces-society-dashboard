@@ -39,7 +39,7 @@ export class NewsComponent implements OnInit {
           this.toastr.success('Image uploaded successfully', 'Uploaded', {
             timeOut: 3000,
           });
-          debugger
+           
 
         })
       }
@@ -50,7 +50,7 @@ export class NewsComponent implements OnInit {
   }
   saveNewsDetails() {
     this.newsModel.files = this.pdfResponse;
-    debugger
+     
     this.newsModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveNewsListData(this.newsModel).subscribe((res: any) => {
       this.toastr.success('News added successfully', 'Success', {
@@ -76,7 +76,7 @@ export class NewsComponent implements OnInit {
   viewDownloadPdf(data: any) {
     var path
     path = 'http://localhost:9000' + data
-    debugger
+     
     window.open(path, '_blank');
   }
 }

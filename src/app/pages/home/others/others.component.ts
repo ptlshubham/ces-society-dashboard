@@ -42,7 +42,7 @@ export class OthersComponent implements OnInit {
   }
   saveFormsDetails() {
     this.othersModel.files = this.pdfResponse;
-    debugger
+     
     this.othersModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveOthersListData(this.othersModel).subscribe((res: any) => {
       this.toastr.success('News added Successfully', 'success', {
@@ -68,7 +68,7 @@ export class OthersComponent implements OnInit {
   viewDownloadPdf(data: any) {
     var path
     path = 'http://localhost:9000' + data
-    debugger
+     
     window.open(path, '_blank');
   }
 

@@ -105,7 +105,7 @@ export class RahotkarshComponent implements OnInit {
     this.isUpdate = true;
   }
   updateBenficiary() {
-    debugger
+     
     this.donationService.updateBeneficiaryDetails(this.beneficiaryModel).subscribe((res: any) => {
       this.beneficiaryData = res;
       this.toastr.success('Beneficiary Details updated Successfully', 'Updated', {

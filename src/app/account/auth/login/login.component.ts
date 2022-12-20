@@ -60,7 +60,7 @@ export class LoginComponent implements OnInit {
     }
     else {
       this.userService.adminLogin(this.f.email.value, this.f.password.value).subscribe((res: any) => {
-        debugger
+         
         if (res.length > 0) {
           localStorage.setItem('Name', res[0].name);
           localStorage.setItem('token', res[0].token);

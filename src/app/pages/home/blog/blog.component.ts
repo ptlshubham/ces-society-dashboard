@@ -1,7 +1,8 @@
+import { DatePipe } from '@angular/common';
 import { Component, ElementRef, Input, OnInit, ViewChild } from '@angular/core';
-import { DomSanitizer } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -11,6 +12,9 @@ import { HomeService } from 'src/app/core/services/home.services';
 })
 export class BlogComponent implements OnInit {
   @Input() fileContent: any;
+
+  isopen: boolean = false;
+  isUpdate: boolean = false;
 
   public Editor = ClassicEditor;
   blogsData: any = [];
@@ -25,11 +29,21 @@ export class BlogComponent implements OnInit {
   fileUrl: any;
   constructor(
     private homeService: HomeService,
-    private router: Router
+    private router: Router,
+    private datepipe: DatePipe,
+    public toastr: ToastrService,
+
   ) { }
 
   ngOnInit(): void {
     this.getBlogDetails();
+  }
+  openAddBlog() {
+    this.isopen = true;
+  }
+  closeAddBlog() {
+    this.isopen = false;
+
   }
   uploadFile(event: any) {
     let reader = new FileReader();
@@ -46,6 +60,7 @@ export class BlogComponent implements OnInit {
 
         this.homeService.uploadBlogImage(formdata).subscribe((response) => {
           this.blogImages = response;
+          this.toastr.success('Blog image uploaded Successfully.', 'Uploaded', { timeOut: 3000, });
 
           this.editFile = false;
           this.removeUpload = true;
@@ -54,55 +69,53 @@ export class BlogComponent implements OnInit {
     }
   }
   saveBlogData() {
-    this.createTextFile(this.blogModel.blogDetails, 'Blog' + '.txt', 'text/plain');
+    // this.createTextFile(this.blogModel.blogDetails, 'Blog' + '.txt', 'text/plain');
 
     this.blogModel.institute_id = localStorage.getItem('InstituteId')
     this.blogModel.blogImage = this.blogImages;
-    debugger
-    // this.homeService.saveBlogDetails(this.blogModel).subscribe((res) => {
-    //   this.blogsData = res;
-    //   this.getBlogDetails();
-    // })
+
+    this.homeService.saveBlogDetails(this.blogModel).subscribe((res) => {
+      this.blogsData = res;
+      this.toastr.success('Blog saved Successfully.', 'Saved', { timeOut: 3000, });
+      this.getBlogDetails();
+      this.isopen = false;
+    })
   }
-  createTextFile(content: any, fileName: any, contentType: any) {
-    var a = document.createElement('a');
-    var file = new Blob([content], { type: contentType });
-    debugger
-    a.href = URL.createObjectURL(file);
-    a.download = fileName;
-    a.click();
+  editBlogDetails(data: any) {
+    this.blogModel = data;
+    this.blogModel.blogDate = this.datepipe.transform(data.blogDate, 'yyyy-MM-dd');
+    this.imageUrl = 'http://localhost:9000' + data.blogImage
+    this.isopen = true;
+    this.isUpdate = true;
+
   }
-  uploadPdfFile(event: any) {
-    let reader = new FileReader(); // HTML5 FileReader API
-    let file = event.target.files[0];
-    debugger
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
-      reader.onload = () => {
-        const formdata = new FormData();
-        formdata.append('file', file);
-
-        // this.homeService.savePdfData(formdata).subscribe((response) => {
-        //   this.pdfResponse = response;
-        // })
-      }
-
-
+  updateBlog() {
+    if (this.blogImages != null || undefined) {
+      this.blogModel.blogImage = this.blogImages;
     }
+    this.homeService.updateBlogDetails(this.blogModel).subscribe((res: any) => {
+      this.blogsData = res;
+      this.toastr.success('Blog Details Updated Successfully.', 'Updated', { timeOut: 3000, });
+      this.getBlogDetails();
+      this.isopen = false;
+      this.isUpdate = false;
+    })
   }
+
   getBlogDetails() {
     this.homeService.getBlogsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.blogsData = res;
-      debugger
+
     })
   }
   viewBlogDetails(id: any) {
     this.router.navigate(['/home/details', id]);
   }
-  editBlogDetails(data: any) {
-    this.blogModel = data;
-
+  removeBlogById(id: any) {
+    this.homeService.removeBlog(id).subscribe((res: any) => {
+      this.blogsData = res;
+      this.toastr.success('Blog Successfully deleted.', 'Removed', { timeOut: 3000, });
+      this.getBlogDetails();
+    })
   }
 }

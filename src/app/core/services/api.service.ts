@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient,  HttpHeaders } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  // public static HOST_URL: string = "http://localhost:9000";
-  public static HOST_URL: string = "http://31.220.111.153:5555";
+  public static HOST_URL: string = "http://localhost:9000";
+  // public static HOST_URL: string = "http://31.220.111.153:5555";
 
   toasts: any[] = [];
   constructor(
@@ -54,7 +54,9 @@ export class ApiService {
   public static saveBulkBeneficiaryDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBulkBeneficiaryDetails';
   public static saveBulkDonnersDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBulkDonnersDetails';
   public static saveBlogDetailsURL: string = ApiService.HOST_URL + '/admin/SaveBlogDetails';
+  public static updateBlogDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateBlogDetails';
   public static getBlogsDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetBlogsDetailsById/'
+  public static removeBlogDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveBlogDetails/';
   public static uploadBlogImagesURL: string = ApiService.HOST_URL + '/admin/uploadBlogImages';
   public static uploadInfraImageURL: string = ApiService.HOST_URL + '/admin/UploadInfraImage';
   public static saveInfrastructureDetailsURL: string = ApiService.HOST_URL + '/admin/SaveInfrastructureDetails';

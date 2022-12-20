@@ -19,7 +19,7 @@ export class AlumniListComponent implements OnInit {
   getAlumniDetails() {
     this.homeService.getAlumniList().subscribe((res: any) => {
       this.alumniData = res;
-      debugger
+       
     })
   }
 

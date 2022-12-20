@@ -68,7 +68,7 @@ export class StudentResultComponent implements OnInit {
   getResultDataById() {
     this.homeService.getResultDetailsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.resultData = res;
-      debugger
+       
     })
   }
   openEditResult(data: any) {
@@ -82,7 +82,7 @@ export class StudentResultComponent implements OnInit {
     if (this.resultImage != null || undefined) {
       this.resultModel.profile = this.resultImage;
     }
-    debugger
+     
     this.homeService.updateResultDetails(this.resultModel).subscribe((res: any) => {
       this.resultData = res;
       this.toastr.success('Result Details Successfully Updated.', 'Updated', { timeOut: 3000, });
