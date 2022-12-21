@@ -31,6 +31,7 @@ export class ApiService {
   public static getAllInstituteDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllInstituteDetails';
   public static saveGalleryImagesURL: string = ApiService.HOST_URL + '/admin/SaveGalleryImages';
   public static uploadGalleryImagesURL: string = ApiService.HOST_URL + '/admin/UploadGalleryImages';
+  public static uploadGalleryVideoURL: string = ApiService.HOST_URL + '/admin/UploadGalleryVideo';
   public static getImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetImagesByIdDetails';
   public static updateActiveDeactiveBannersURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveBanners';
   public static removeImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveImagesByIdDetails';
@@ -69,16 +70,20 @@ export class ApiService {
   public static saveResultDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResultDetails';
   public static updateResultDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateResultDetails';
   public static removeResultDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveResultDetailsById/';
-
   public static getResultDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetResultDetailsById/';
   public static uploadPDFURL: string = ApiService.HOST_URL + '/admin/UploadPDF';
-
   public static saveNewsDataListURL: string = ApiService.HOST_URL + '/admin/SaveNewsDataList';
   public static getNewsByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetNewsByIdDetails/';
   public static removeNewsByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveNewsByIdDetails/';
   public static saveOthersDataListURL: string = ApiService.HOST_URL + '/admin/SaveOthersDataList';
   public static removeOtherDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveOtherDetailsById/'
   public static getOthersByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetOthersByIdDetails/';
+  
+  public static saveStudentListDataURL: string = ApiService.HOST_URL + '/admin/SaveStudentListData';
+  public static updateStudentListDataURL: string = ApiService.HOST_URL + '/admin/UpdateStudentListData';
+  public static removeStudentListDataURL: string = ApiService.HOST_URL + '/admin/RemoveStudentListData/';
+  public static getStudentListDataURL: string = ApiService.HOST_URL + '/admin/GetStudentListData/';
+
 
 
 

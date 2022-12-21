@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { CommonModule, DatePipe } from '@angular/common';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { HomeRoutingModule } from './home-routing.module';
-import { FormModule } from '../form/form.module';
 import { NewsComponent } from './news/news.component';
 import { DropzoneConfigInterface, DropzoneModule, DROPZONE_CONFIG } from 'ngx-dropzone-wrapper';
 import { StaffDetailsComponent } from './staff-details/staff-details.component';
@@ -23,8 +22,6 @@ import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bul
 import { AlumniListComponent } from './alumni-list/alumni-list.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
 import { ToastrModule } from 'ngx-toastr';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { BrowserModule } from '@angular/platform-browser';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { InfraDetailsComponent } from './infra-details/infra-details.component';
 
@@ -60,7 +57,6 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   imports: [
     CommonModule,
     HomeRoutingModule,
-    FormModule,
     FormsModule,
     ReactiveFormsModule,
     CKEditorModule,

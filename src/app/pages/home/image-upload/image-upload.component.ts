@@ -65,7 +65,7 @@ export class ImageUploadComponent implements OnInit {
 
         this.homeService.uploadBannersImage(formdata).subscribe((response) => {
           this.bannersImage = response;
-          this.toastr.success('Image Upload Successfully', 'Uploaded', {
+          this.toastr.success('Image Uploaded Successfully', 'Uploaded', {
             timeOut: 3000,
           });
           this.editFile = false;
@@ -76,6 +76,19 @@ export class ImageUploadComponent implements OnInit {
       // this.cd.markForCheck();
 
     }
+  }
+  uploadVideoFile(event: any) {
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append('video', file);
+
+    this.homeService.uploadVideoImage(formData).subscribe((response) => {
+      this.bannersImage = response;
+      this.toastr.success('Video Uploaded Successfully', 'Uploaded', {
+        timeOut: 3000,
+      });
+    })
+
   }
   activeBanners(ind: any) {
     this.imagesData[ind].isactive = true;

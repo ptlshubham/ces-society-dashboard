@@ -33,7 +33,8 @@
                                         Please Upload only 500 X 500px image.
                                     </p>
 
-                                    <div class="avatar-upload">
+                                    <div class="avatar-upload"
+                                        *ngIf="imageModel.purpose=='image'||imageModel.purpose=='slider'">
                                         <div class="avatar-edit">
                                             <input type='file' id="imageUpload" accept=".png, .jpg, .jpeg" #fileInput
                                                 (change)="uploadFile($event)" />
@@ -50,6 +51,9 @@
                                                 Image</button>
                                         </div>
                                     </div>
+                                    <input class="form-control" type="file" id="formFile"
+                                        *ngIf="imageModel.purpose=='video'" (change)="uploadVideoFile($event)">
+                                   
                                 </div>
                             </div>
                         </div>

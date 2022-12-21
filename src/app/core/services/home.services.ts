@@ -27,6 +27,10 @@ export class HomeService {
     uploadBannersImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadGalleryImagesURL, img);
     }
+    uploadVideoImage(data: any): Observable<any> {
+        debugger
+        return this.http.post<any>(ApiService.uploadGalleryVideoURL, data);
+    }
     getBannersImagesById(id: any) {
         let data = {
             institute_id: id
@@ -122,5 +126,17 @@ export class HomeService {
     }
     getothersDataById(institute_id: any) {
         return this.http.get(ApiService.getOthersByIdDetailsURL + institute_id);
+    }
+    saveStudentDetails(data: any) {
+        return this.http.post(ApiService.saveStudentListDataURL, data);
+    }
+    updateStudentDetails(data: any) {
+        return this.http.post(ApiService.updateStudentListDataURL, data);
+    }
+    getStudentList(id: any) {
+        return this.http.get(ApiService.getStudentListDataURL + id);
+    }
+    removeStudentList(id: any) {
+        return this.http.get(ApiService.removeStudentListDataURL + id);
     }
 }

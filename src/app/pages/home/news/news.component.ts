@@ -1,6 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-news',
@@ -11,6 +12,8 @@ export class NewsComponent implements OnInit {
   @ViewChild('fileInput') el!: ElementRef;
   newsModel: any = {};
   newsData: any = [];
+  public Editor = ClassicEditor;
+
   pdfResponse: any = '';
   constructor(
     private homeService: HomeService,

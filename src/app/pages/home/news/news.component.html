@@ -19,12 +19,14 @@
                                         [(ngModel)]="newsModel.date">
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-md-6">
+                            <div class="col-xl-8 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Enter News</label>
-                                    <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
+                                    <!-- <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
                                         placeholder="Enter Message" [ngModelOptions]="{standalone: true}"
-                                        [(ngModel)]="newsModel.message"></textarea>
+                                        [(ngModel)]="newsModel.message"></textarea> -->
+                                    <ckeditor [editor]="Editor" data="" [ngModelOptions]="{standalone: true}"
+                                        [(ngModel)]="newsModel.message"></ckeditor>
                                 </div>
                             </div>
 
@@ -66,8 +68,7 @@
                             <tr *ngFor="let n of newsData;let i=index">
                                 <td class="text-left">{{i+1}}</td>
                                 <td class="text-center">{{n.date|date}}</td>
-                                <td class="text-center">
-                                    {{n.message}}
+                                <td class="text-center" [innerHTML]="n.message">
                                 </td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-primary waves-effect btn-label waves-light"
