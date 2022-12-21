@@ -1,9 +1,26 @@
-<div class="row">
+<div class="row" *ngIf="isOpen">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Infrastructure</h5>
-                <p class="card-title-desc">Enter Latest News</p>
+                <div class="row">
+                    <div class="col-11">
+                        <div *ngIf="!isUpdate">
+                            <h5 class="card-title">Infrastructure</h5>
+                            <p class="card-title-desc">Enter Infrastructure Details With Image</p>
+                        </div>
+                        <div *ngIf="isUpdate">
+                            <h5 class="card-title">Update Infrastructure</h5>
+                            <p class="card-title-desc">Update Infrastructure Details With Image</p>
+                        </div>
+                    </div>
+                    <div class="col-1">
+                        <button type="submit" class="btn btn-danger  waves-effect waves-light"
+                            (click)="closeAddInfra()">
+                            <i class="bx bx-arrow-back  "></i>
+                            Back</button>
+                    </div>
+                </div>
+
             </div>
             <div class="card-body">
                 <div>
@@ -52,7 +69,11 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" (click)="saveInfraDetails()">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="saveInfraDetails()"
+                                *ngIf="!isUpdate">Submit</button>
+                            <button type="submit" class="btn btn-primary" (click)="updateInfraDetails()"
+                                *ngIf="isUpdate">Update</button>
+
                         </div>
                     </form>
                 </div>
@@ -60,11 +81,20 @@
         </div>
     </div>
 </div>
-<div class="row">
+<div class="row" *ngIf="!isOpen">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Infrastructure List</h5>
+                <div class="row">
+                    <div class="col-10">
+                        <h5 class="card-title">Infrastructure List</h5>
+                    </div>
+                    <div class="col-2">
+                        <button type="submit" class="btn btn-primary waves-effect waves-light" (click)="openAddInfra()">
+                            <i class="bx bx-buildings"></i>
+                            Add Infrastructure</button>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -91,10 +121,10 @@
                                         (click)="viewInfraDetails(c.id)"><i
                                             class="fa fa-eye font-size-16 align-middle"></i></button>
                                     <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
+                                        (click)="editInfraDetails(c)"><i
                                             class="bx bx-edit font-size-16 align-middle"></i></button>
                                     <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                        data-bs-toggle="tooltip" data-bs-placement="top" title="View & Accept"><i
+                                        (click)="removeInfraDetails(c.id)"><i
                                             class="bx bx-trash-alt font-size-16 align-middle"></i></button>
                                 </td>
 

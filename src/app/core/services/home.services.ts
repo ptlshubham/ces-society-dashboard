@@ -75,6 +75,12 @@ export class HomeService {
     saveInfrastructureDetails(data: any) {
         return this.http.post(ApiService.saveInfrastructureDetailsURL, data);
     }
+    updateInfraDetails(data: any) {
+        return this.http.post(ApiService.updateInfraDetailsURL, data);
+    }
+    removeInfraById(id: any) {
+        return this.http.get(ApiService.removeInfraDetailsURL + id);
+    }
     getImfraDetails(id: any) {
         return this.http.get(ApiService.getInfraDetailsByIdURL + id);
     }
