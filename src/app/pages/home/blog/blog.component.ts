@@ -27,6 +27,11 @@ export class BlogComponent implements OnInit {
   blogImages: any;
   blogModel: any = {};
   fileUrl: any;
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
   constructor(
     private homeService: HomeService,
     private router: Router,
@@ -105,8 +110,16 @@ export class BlogComponent implements OnInit {
   getBlogDetails() {
     this.homeService.getBlogsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.blogsData = res;
-
+      for (let i = 0; i < this.blogsData.length; i++) {
+        this.blogsData[i].index = i + 1;
+      }
+      this.collectionSize = this.blogsData.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.blogsData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   viewBlogDetails(id: any) {
     this.router.navigate(['/home/details', id]);

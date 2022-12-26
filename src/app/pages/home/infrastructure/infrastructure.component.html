@@ -109,8 +109,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let c of infraData;let i=index">
-                                <td class="text-left">{{i+1}}</td>
+                            <tr *ngFor="let c of paginateData;let i=index">
+                                <td class="text-left">{{c.index}}</td>
                                 <td class="text-center">{{c.infraTitle}}</td>
                                 <!-- <td class="text-center" [innerHtml]='c.infraDetails'> </td> -->
                                 <td class="text-center">
@@ -132,7 +132,10 @@
                         </tbody>
                     </table>
                 </div>
-
+                <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
+                    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
+                    aria-label="Default pagination"
+                    class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
             </div>
             <!-- end card body -->
         </div>

@@ -23,6 +23,11 @@ export class StaffDetailsComponent implements OnInit {
   isOpen: boolean = false;
   isUpdate: boolean = false;
 
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
+
   constructor(
     private homeService: HomeService,
     private staffService: StaffService,
@@ -92,7 +97,18 @@ export class StaffDetailsComponent implements OnInit {
   getStaffDetails() {
     this.staffService.getAllStaffDetailsData(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.staffDataTable = res;
+      debugger
+      for (let i = 0; i < this.staffDataTable.length; i++) {
+        this.staffDataTable[i].index = i + 1;
+      }
+      this.collectionSize = this.staffDataTable.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.staffDataTable
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+
   }
   openUpdateStaff(data: any) {
     this.staffModel.birthday_date = this.datepipe.transform(data.birthday_date, 'yyyy-MM-dd');

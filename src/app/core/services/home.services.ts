@@ -40,6 +40,9 @@ export class HomeService {
     activeDeavctiveBanners(data: any): Observable<any> {
         return this.http.post<any>(ApiService.updateActiveDeactiveBannersURL, data);
     }
+    activeDeavctiveNews(data: any): Observable<any> {
+        return this.http.post<any>(ApiService.updateActiveDeactiveNewsURL, data);
+    }
     removeBannersImagesById(id: any) {
         let data = {
             id: id
@@ -138,5 +141,18 @@ export class HomeService {
     }
     removeStudentList(id: any) {
         return this.http.get(ApiService.removeStudentListDataURL + id);
+    }
+
+    saveMagazineDetails(data: any) {
+        return this.http.post(ApiService.saveMagazineListURL, data);
+    }
+    getMagazineList() {
+        return this.http.get(ApiService.getMagazineListURL);
+    }
+    removeMagazineList(id: any) {
+        return this.http.get(ApiService.removeMagazineListURL + id);
+    }
+    getCounselingList() {
+        return this.http.get(ApiService.getCounselingDataURL);
     }
 }

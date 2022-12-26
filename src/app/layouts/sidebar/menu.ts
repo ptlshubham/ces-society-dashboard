@@ -49,6 +49,12 @@ export const MENU: MenuItem[] = [
         link: '/home/others',
     },
     {
+        id: 17,
+        label: 'Magazine',
+        icon: 'book',
+        link: '/home/magazine',
+    },
+    {
         id: 8,
         label: 'Student Result',
         icon: 'file-text',
@@ -95,6 +101,12 @@ export const MENU: MenuItem[] = [
         label: 'Contact US List',
         icon: 'list',
         link: '/home/contact-list',
+    },
+    {
+        id: 18,
+        label: 'Counseling List',
+        icon: 'calendar',
+        link: '/home/counseling',
     },
     // {
     //     id: 3,

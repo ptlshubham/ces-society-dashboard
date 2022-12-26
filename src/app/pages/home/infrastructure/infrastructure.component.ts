@@ -24,6 +24,10 @@ export class InfrastructureComponent implements OnInit {
   isOpen: boolean = false;
   isUpdate: boolean = false;
 
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
   constructor(
     private homeService: HomeService,
     private router: Router,
@@ -112,7 +116,16 @@ export class InfrastructureComponent implements OnInit {
   getInfraDataById() {
     this.homeService.getImfraDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.infraData = res;
+      for (let i = 0; i < this.infraData.length; i++) {
+        this.infraData[i].index = i + 1;
+      }
+      this.collectionSize = this.infraData.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.infraData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   viewInfraDetails(id: any) {
     this.router.navigate(['/home/infra-details', id]);

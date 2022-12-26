@@ -11,6 +11,11 @@ export class OthersComponent implements OnInit {
   othersModel: any = {};
   othersData: any = [];
   pdfResponse: any = '';
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService
@@ -36,13 +41,18 @@ export class OthersComponent implements OnInit {
           this.pdfResponse = response;
         })
       }
-      
+
 
     }
   }
   saveFormsDetails() {
-    this.othersModel.files = this.pdfResponse;
-     
+    if (this.pdfResponse != "") {
+      this.othersModel.files = this.pdfResponse;
+    }
+    else {
+      this.othersModel.files = null;
+    }
+
     this.othersModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveOthersListData(this.othersModel).subscribe((res: any) => {
       this.toastr.success('News added Successfully', 'success', {
@@ -54,7 +64,16 @@ export class OthersComponent implements OnInit {
   getFormsDetails() {
     this.homeService.getothersDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.othersData = res;
+      for (let i = 0; i < this.othersData.length; i++) {
+        this.othersData[i].index = i + 1;
+      }
+      this.collectionSize = this.othersData.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.othersData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   removeOtherDetails(id: any) {
     this.homeService.removeOtherList(id).subscribe((res: any) => {
@@ -68,7 +87,7 @@ export class OthersComponent implements OnInit {
   viewDownloadPdf(data: any) {
     var path
     path = 'http://localhost:9000' + data
-     
+
     window.open(path, '_blank');
   }
 

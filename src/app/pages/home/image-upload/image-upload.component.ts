@@ -21,6 +21,11 @@ export class ImageUploadComponent implements OnInit {
   public imageModel: any = {};
   imagesData: any = [];
 
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
+
   constructor(
     public formBuilder: UntypedFormBuilder,
     private homeService: HomeService,
@@ -45,9 +50,18 @@ export class ImageUploadComponent implements OnInit {
   getImagesDataById() {
     this.homeService.getBannersImagesById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.imagesData = res;
+      for (let i = 0; i < this.imagesData.length; i++) {
+        this.imagesData[i].index = i + 1;
+      }
+      this.collectionSize = this.imagesData.length;
+      this.getPagintaion();
     })
   }
+  getPagintaion() {
+    this.paginateData = this.imagesData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
 
+  }
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
@@ -93,17 +107,23 @@ export class ImageUploadComponent implements OnInit {
   activeBanners(ind: any) {
     this.imagesData[ind].isactive = true;
     this.homeService.activeDeavctiveBanners(this.imagesData[ind]).subscribe((req) => {
+      this.toastr.success('Images activated Successfully.', 'Activated', {
+        timeOut: 3000,
+      });
     })
   }
   deactiveBanners(ind: any) {
     this.imagesData[ind].isactive = false;
     this.homeService.activeDeavctiveBanners(this.imagesData[ind]).subscribe((req) => {
+      this.toastr.error('Images deactivated Successfully.', 'Deactivated', {
+        timeOut: 3000,
+      });
     })
   }
   removeBannersImages(id: any) {
     this.homeService.removeBannersImagesById(id).subscribe((res: any) => {
       this.imagesData = res;
-      this.toastr.success('Image Delete Successfully', 'Deleted', {
+      this.toastr.success('Image Delete Successfully.', 'Deleted', {
         timeOut: 3000,
       });
       this.getImagesDataById();

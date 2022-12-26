@@ -11,6 +11,11 @@ import { DonationService } from 'src/app/core/services/donation.service';
 export class DonationComponent implements OnInit {
   donataionModel: any = {};
   donnerData: any = [];
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
   constructor(
     private donationService: DonationService,
     private router: Router,
@@ -36,7 +41,16 @@ export class DonationComponent implements OnInit {
   getAllDonnerDetails() {
     this.donationService.getAllDonnerDetailsData().subscribe((res: any) => {
       this.donnerData = res;
+      for (let i = 0; i < this.donnerData.length; i++) {
+        this.donnerData[i].index = i + 1;
+      }
+      this.collectionSize = this.donnerData.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.donnerData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   removeDonnerDetails(id: any) {
     this.donationService.removeDonnerDetailsById(id).subscribe((res: any) => {

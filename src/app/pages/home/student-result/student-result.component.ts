@@ -17,6 +17,11 @@ export class StudentResultComponent implements OnInit {
   isUpdate: boolean = false;
   resultModel: any = {};
   resultData: any = [];
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
@@ -68,8 +73,17 @@ export class StudentResultComponent implements OnInit {
   getResultDataById() {
     this.homeService.getResultDetailsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.resultData = res;
-       
+      for (let i = 0; i < this.resultData.length; i++) {
+        this.resultData[i].index = i + 1;
+      }
+      this.collectionSize = this.resultData.length;
+      this.getPagintaion();
+
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.resultData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   openEditResult(data: any) {
     this.isUpdate = true;
@@ -82,7 +96,7 @@ export class StudentResultComponent implements OnInit {
     if (this.resultImage != null || undefined) {
       this.resultModel.profile = this.resultImage;
     }
-     
+
     this.homeService.updateResultDetails(this.resultModel).subscribe((res: any) => {
       this.resultData = res;
       this.toastr.success('Result Details Successfully Updated.', 'Updated', { timeOut: 3000, });
@@ -90,8 +104,8 @@ export class StudentResultComponent implements OnInit {
       this.getResultDataById();
     })
   }
-  removeResult(id:any){
-    this.homeService.removeResultDetailsById(id).subscribe((res:any)=>{
+  removeResult(id: any) {
+    this.homeService.removeResultDetailsById(id).subscribe((res: any) => {
       this.resultData = res;
       this.toastr.success('Result Details Removed Successfully.', 'Deleted', { timeOut: 3000, });
 

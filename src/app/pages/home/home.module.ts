@@ -24,6 +24,8 @@ import { ContactListComponent } from './contact-list/contact-list.component';
 import { ToastrModule } from 'ngx-toastr';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { InfraDetailsComponent } from './infra-details/infra-details.component';
+import { MagazineComponent } from './magazine/magazine.component';
+import { CounselingComponent } from './counseling/counseling.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -53,6 +55,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     ContactListComponent,
     BlogDetailsComponent,
     InfraDetailsComponent,
+    MagazineComponent,
+    CounselingComponent,
   ],
   imports: [
     CommonModule,

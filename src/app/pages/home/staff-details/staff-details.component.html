@@ -130,13 +130,13 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div class="col-md-11">
+                    <div class="col-10">
                         <h5 class="card-title">Staff Details List</h5>
                     </div>
-                    <div class="col-md-1">
-                        <button type="submit" class="btn btn-primary  waves-effect waves-light"
-                            (click)="openAddStaff()"> <i class="bx bx-user-plus font-size-16 align-middle"></i>
-                            ADD</button>
+                    <div class="col-2">
+                        <button type="button" class="btn btn-primary waves-effect btn-label waves-light"
+                             (click)="openAddStaff()"><i class="bx bx-user-plus label-icon"></i>
+                             Add New Staff</button>
                     </div>
                 </div>
             </div>
@@ -159,9 +159,9 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let s of staffDataTable;let i=index">
+                            <tr *ngFor="let s of paginateData;let i=index">
                                 <td class="text-left">{{i+1}}</td>
-                                <td class="text-center">{{s.department}} </td>
+                                <td class="text-center">{{s.departmentName}} </td>
                                 <td class="text-center">
                                     <img src="http://localhost:9000{{s.profile_image}}" alt=""
                                         class="rounded avatar-lg">
@@ -179,7 +179,7 @@
                                             (click)="openUpdateStaff(s)"><i
                                                 class="bx bx-edit font-size-16 align-middle"></i></button>
                                         <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            (click)="removeStaffDetails(s.id)"><i
+                                            (click)="removeStaffDetails(s.staffId)"><i
                                                 class="bx bx-trash-alt font-size-16 align-middle"></i></button>
 
                                     </div>
@@ -189,7 +189,12 @@
                         </tbody>
                     </table>
                 </div>
-
+                <div class="row mt-4">
+                    <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page"
+                        [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                        (pageChange)="getPagintaion();" aria-label="Default pagination"
+                        class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
+                </div>
             </div>
             <!-- end card body -->
         </div>

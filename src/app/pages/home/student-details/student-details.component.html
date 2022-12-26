@@ -75,8 +75,8 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let n of studentList;let i=index">
-                                <td class="text-left">{{i+1}}</td>
+                            <tr *ngFor="let n of paginateData;let i=index">
+                                <td class="text-left">{{n.index}}</td>
                                 <td class="text-center">{{n.title}}</td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-primary waves-effect btn-label waves-light"
@@ -95,6 +95,12 @@
                             </tr>
                         </tbody>
                     </table>
+                </div>
+                <div class="row mt-4">
+                    <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page"
+                        [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                        (pageChange)="getPagintaion();" aria-label="Default pagination"
+                        class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
                 </div>
             </div>
             <!-- end card body -->

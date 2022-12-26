@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
-import { ApiService } from 'src/app/core/services/api.service';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -13,6 +12,12 @@ export class DepartmentComponent implements OnInit {
   departmentModel: any = {};
   updateDepartmentModel: any = {};
   departmentData: any = [];
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
+
   constructor(
     private homeService: HomeService,
     private modalService: NgbModal,
@@ -35,9 +40,19 @@ export class DepartmentComponent implements OnInit {
   getDepartmentDetails() {
     this.homeService.getDepartmentDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.departmentData = res;
+
+      for (let i = 0; i < this.departmentData.length; i++) {
+        this.departmentData[i].index = i + 1;
+      }
+      this.collectionSize = this.departmentData.length;
+      this.getPagintaion();
     })
   }
+  getPagintaion() {
+    this.paginateData = this.departmentData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
 
+  }
   editDepartmentDetails(smallDataModal: any, data: any) {
     this.modalService.open(smallDataModal, { size: 'sm', windowClass: 'modal-holder', centered: true });
     this.updateDepartmentModel = data;

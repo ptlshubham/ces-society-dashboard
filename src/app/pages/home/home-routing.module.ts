@@ -5,12 +5,14 @@ import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { BlogComponent } from './blog/blog.component';
 import { CollegeListComponent } from './college-list/college-list.component';
 import { ContactListComponent } from './contact-list/contact-list.component';
+import { CounselingComponent } from './counseling/counseling.component';
 import { DepartmentComponent } from './department/department.component';
 import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bulk-upload.component';
 import { DonationComponent } from './donation/donation.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { InfraDetailsComponent } from './infra-details/infra-details.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
+import { MagazineComponent } from './magazine/magazine.component';
 import { NewsComponent } from './news/news.component';
 import { OthersComponent } from './others/others.component';
 import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkarsh-bulk-upload.component';
@@ -92,6 +94,15 @@ const routes: Routes = [
     path: 'infra-details/:id',
     component: InfraDetailsComponent
   },
+  {
+    path: 'magazine',
+    component: MagazineComponent
+  },
+  {
+    path:'counseling',
+    component:CounselingComponent
+  }
+
 ];
 
 @NgModule({

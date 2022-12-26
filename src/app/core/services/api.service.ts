@@ -34,6 +34,7 @@ export class ApiService {
   public static uploadGalleryVideoURL: string = ApiService.HOST_URL + '/admin/UploadGalleryVideo';
   public static getImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetImagesByIdDetails';
   public static updateActiveDeactiveBannersURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveBanners';
+  public static updateActiveDeactiveNewsURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveNews'
   public static removeImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveImagesByIdDetails';
   public static saveDepartmentListURL: string = ApiService.HOST_URL + '/admin/SaveDepartmentList';
   public static getDepartmentByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetDepartmentByIdDetails/';
@@ -78,50 +79,17 @@ export class ApiService {
   public static saveOthersDataListURL: string = ApiService.HOST_URL + '/admin/SaveOthersDataList';
   public static removeOtherDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveOtherDetailsById/'
   public static getOthersByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetOthersByIdDetails/';
-  
+
   public static saveStudentListDataURL: string = ApiService.HOST_URL + '/admin/SaveStudentListData';
   public static updateStudentListDataURL: string = ApiService.HOST_URL + '/admin/UpdateStudentListData';
   public static removeStudentListDataURL: string = ApiService.HOST_URL + '/admin/RemoveStudentListData/';
   public static getStudentListDataURL: string = ApiService.HOST_URL + '/admin/GetStudentListData/';
 
+  public static saveMagazineListURL: string = ApiService.HOST_URL + '/admin/SaveMagazineList';
+  public static removeMagazineListURL: string = ApiService.HOST_URL + '/admin/RemoveMagazineList/';
+  public static getMagazineListURL: string = ApiService.HOST_URL + '/admin/GetMagazineList';
+  public static getCounselingDataURL: string = ApiService.HOST_URL + '/admin/GetCounselingData';
 
-
-
-
-
-  // public static adminLoginURL: string = ApiService.HOST_URL + '/authenticate/adminLogin';
-  // public static getBuyerListURL: string = ApiService.HOST_URL + '/admin/getAllBuyer';
-  // public static getAllUserListURL: string = ApiService.HOST_URL + '/admin/getAllUser';
-  // public static getSellerListURL: string = ApiService.HOST_URL + '/admin/getAllSeller';
-  // public static getKycPendingListURL: string = ApiService.HOST_URL + '/admin/getAllKYCPendingUser';
-  // public static updateKYCURL: string = ApiService.HOST_URL + '/admin/updateKYCUser';
-  // public static uploadMaterialImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialImage';
-  // public static uploadMaterialMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadMaterialMultiImage';
-  // public static completeProfileURL: string = ApiService.HOST_URL + '/admin/completeProfile';
-  // public static getUserDetailById: string = ApiService.HOST_URL + '/admin/getUserDetailById/'
-  // public static uploadCancelCheckImageURL: string = ApiService.HOST_URL + '/admin/UploadCancelCheckImage';
-
-  //trading
-
-
-
-
-
-
-  // public static getAllTradingDatabyIdForSellerURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyIdForSeller';
-  // public static getAllTradingDatabyIdURL: string = ApiService.HOST_URL + '/trading/getAllTradingDatabyId';
-  // public static getNewTradingReqForSellerURL: string = ApiService.HOST_URL + '/trading/getNewTradingReqForSeller';
-  // public static saveSellerTradeRequestURL: string = ApiService.HOST_URL + '/trading/saveSellerTradeRequest';
-  // public static newComissionPaymentForBuyerURL: string = ApiService.HOST_URL + '/trading/NewComissionPaymentForBuyer';
-  // public static newComissionPaymentForSellerURL: string = ApiService.HOST_URL + '/trading/NewComissionPaymentForSeller';
-  // public static uploadWeightSlipImageURL: string = ApiService.HOST_URL + '/trading/UploadWeightSlipImage';
-  // public static uploadDeliveryRecieptImageURL: string = ApiService.HOST_URL + '/trading/UploadDeliveryRecieptImage';
-  // public static saveTransporterDetailsURL: string = ApiService.HOST_URL + '/trading/SaveTransporterDetails';
-  // public static getTransporterDetailsbyIdForSellerURL: string = ApiService.HOST_URL + '/trading/GetTransporterDetailsbyIdForSeller';
-  // public static uploadPaymentSlipImageURL: string = ApiService.HOST_URL + '/trading/UploadPaymentSlipImage';
-  // public static saveBuyerPaymentDetailsURL: string = ApiService.HOST_URL + '/trading/SaveBuyerPaymentDetails';
-  // public static invoiceRecieptImageUploadURL: string = ApiService.HOST_URL + '/trading/InvoiceRecieptImageUpload';
-  // public static saveDileveryRecieptDataURL: string = ApiService.HOST_URL + '/trading/SaveDeliveryRecieptData';
 
 
 

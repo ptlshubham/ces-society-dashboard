@@ -18,6 +18,11 @@ export class StudentDetailsComponent implements OnInit {
   isUpdate: boolean = false;
   isOpenDetails: boolean = false;
 
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
+
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService
@@ -44,7 +49,16 @@ export class StudentDetailsComponent implements OnInit {
   getStudentListDetails() {
     this.homeService.getStudentList(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.studentList = res;
+      for (let i = 0; i < this.studentList.length; i++) {
+        this.studentList[i].index = i + 1;
+      }
+      this.collectionSize = this.studentList.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.studentList
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   saveStudentDetails() {
 

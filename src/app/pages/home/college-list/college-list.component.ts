@@ -11,6 +11,11 @@ export class CollegeListComponent implements OnInit {
   public instituteModel: any = {};
   collegeList: any = [];
   isupdate: boolean = false;
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService
@@ -34,7 +39,16 @@ export class CollegeListComponent implements OnInit {
   getAllInstituteDetails() {
     this.homeService.getAllInstituteData().subscribe((res: any) => {
       this.collegeList = res;
+      for (let i = 0; i < this.collegeList.length; i++) {
+        this.collegeList[i].index = i + 1;
+      }
+      this.collectionSize = this.collegeList.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.collegeList
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   editInstituteDetails(data: any) {
     this.isupdate = true;

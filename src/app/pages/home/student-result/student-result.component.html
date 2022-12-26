@@ -72,16 +72,16 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let c of resultData;let i=index">
-                                <td class="text-left">{{i+1}}</td>
+                            <tr *ngFor="let c of paginateData;let i=index">
+                                <td class="text-left">{{c.index}}</td>
                                 <td class="text-center">{{c.title}}</td>
                                 <td class="text-center">
                                     <img src="http://localhost:9000{{c.image}}" alt="" class="rounded avatar-lg">
                                 </td>
                                 <td class="text-end">
-                                    <button type="button" class="btn btn-soft-primary waves-effect waves-light"
+                                    <!-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                         (click)="openEditResult(c)"><i
-                                            class="bx bx-edit font-size-16 align-middle"></i></button>
+                                            class="bx bx-edit font-size-16 align-middle"></i></button> -->
                                     <button type="button" class="btn btn-soft-danger waves-effect waves-light"
                                         (click)="removeResult(c.id)"><i
                                             class="bx bx-trash-alt font-size-16 align-middle"></i></button>
@@ -91,7 +91,10 @@
                         </tbody>
                     </table>
                 </div>
-
+                <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
+                [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
+                aria-label="Default pagination"
+                class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
             </div>
             <!-- end card body -->
         </div>

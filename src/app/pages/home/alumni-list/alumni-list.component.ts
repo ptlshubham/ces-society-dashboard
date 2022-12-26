@@ -8,6 +8,12 @@ import { HomeService } from 'src/app/core/services/home.services';
 })
 export class AlumniListComponent implements OnInit {
   alumniData: any = [];
+
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
+  paginateData: any = [];
+
   constructor(
     private homeService: HomeService
   ) {
@@ -19,8 +25,16 @@ export class AlumniListComponent implements OnInit {
   getAlumniDetails() {
     this.homeService.getAlumniList().subscribe((res: any) => {
       this.alumniData = res;
-       
+      for (let i = 0; i < this.alumniData.length; i++) {
+        this.alumniData[i].index = i + 1;
+      }
+      this.collectionSize = this.alumniData.length;
+      this.getPagintaion();
     })
+  }
+  getPagintaion() {
+    this.paginateData = this.alumniData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
 }
