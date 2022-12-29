@@ -82,6 +82,27 @@ export class HomeService {
     saveInfrastructureDetails(data: any) {
         return this.http.post(ApiService.saveInfrastructureDetailsURL, data);
     }
+    uploadMoreImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadMoreImageURL, img);
+    }
+    saveScholarshipDetails(data: any) {
+        return this.http.post(ApiService.saveScholarshipDetailsURL, data);
+    }
+    getScholarshipData(id: any) {
+        return this.http.get(ApiService.getScholarshipDetailsURL + id);
+    }
+    removeScholarshipData(id: any) {
+        return this.http.get(ApiService.removeScholarshipDetailsURL + id);
+    }
+    saveQuestionDetails(data: any) {
+        return this.http.post(ApiService.saveQuestionPapersDetailsURL, data);
+    }
+    getQuestionData(id: any) {
+        return this.http.get(ApiService.getQuestionPapersDetailsURL + id);
+    }
+    removeQuestionDetails(id: any) {
+        return this.http.get(ApiService.removeQuestionPapersDetailsURL + id);
+    }
     updateInfraDetails(data: any) {
         return this.http.post(ApiService.updateInfraDetailsURL, data);
     }

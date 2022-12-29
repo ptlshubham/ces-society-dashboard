@@ -108,6 +108,18 @@ export const MENU: MenuItem[] = [
         icon: 'calendar',
         link: '/home/counseling',
     },
+    {
+        id: 19,
+        label: 'Scholarship & Calendar',
+        icon: 'calendar',
+        link: '/home/more',
+    },
+    {
+        id: 20,
+        label: 'Old Question Papers',
+        icon: 'file-text',
+        link: '/home/papers',
+    },
     // {
     //     id: 3,
     //     label: 'MENUITEMS.APPS.TEXT',

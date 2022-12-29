@@ -90,6 +90,17 @@ export class ApiService {
   public static getMagazineListURL: string = ApiService.HOST_URL + '/admin/GetMagazineList';
   public static getCounselingDataURL: string = ApiService.HOST_URL + '/admin/GetCounselingData';
 
+  public static uploadMoreImageURL: string = ApiService.HOST_URL + '/admin/UploadMoreImage';
+  public static saveScholarshipDetailsURL: string = ApiService.HOST_URL + '/admin/SaveScholarshipDetails';
+  public static getScholarshipDetailsURL: string = ApiService.HOST_URL + '/admin/GetScholarshipDetails/';
+  public static removeScholarshipDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveScholarshipDetails/';
+
+  public static saveQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/SaveQuestionPapersDetails';
+  public static getQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/GetQuestionPapersDetails/';
+  public static removeQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveQuestionPapersDetails/';
+
+
+
 
 
 

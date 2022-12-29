@@ -13,8 +13,11 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { InfraDetailsComponent } from './infra-details/infra-details.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { MagazineComponent } from './magazine/magazine.component';
+import { MoreDetailsComponent } from './more-details/more-details.component';
+import { MoreComponent } from './more/more.component';
 import { NewsComponent } from './news/news.component';
 import { OthersComponent } from './others/others.component';
+import { QuestionPapersComponent } from './question-papers/question-papers.component';
 import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkarsh-bulk-upload.component';
 import { RahotkarshComponent } from './rahotkarsh/rahotkarsh.component';
 import { StaffDetailsComponent } from './staff-details/staff-details.component';
@@ -99,8 +102,20 @@ const routes: Routes = [
     component: MagazineComponent
   },
   {
-    path:'counseling',
-    component:CounselingComponent
+    path: 'counseling',
+    component: CounselingComponent
+  },
+  {
+    path: 'more',
+    component: MoreComponent
+  },
+  {
+    path: 'more-details/:id',
+    component: MoreDetailsComponent
+  },
+  {
+    path: 'papers',
+    component: QuestionPapersComponent
   }
 
 ];
