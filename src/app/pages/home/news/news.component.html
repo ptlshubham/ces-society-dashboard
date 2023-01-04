@@ -97,10 +97,10 @@
                                 </td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-success waves-effect btn-label waves-light"
-                                        *ngIf="n.isactive" (click)="deactiveNews(i)"><i
+                                        *ngIf="n.isactive" (click)="deactiveNews(n.index)"><i
                                             class="bx bx-check-double label-icon"></i> Active</button>
                                     <button type="button" class="btn btn-danger waves-effect btn-label waves-light"
-                                        *ngIf="!n.isactive" (click)="activeNews(i)"><i
+                                        *ngIf="!n.isactive" (click)="activeNews(n.index)"><i
                                             class="bx bx-block label-icon"></i> Deactive</button>
                                 </td>
                                 <td class="text-end">

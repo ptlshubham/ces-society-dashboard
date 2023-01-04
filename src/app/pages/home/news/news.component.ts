@@ -51,7 +51,7 @@ export class NewsComponent implements OnInit {
 
         this.homeService.savePdfData(formdata).subscribe((response) => {
           this.pdfResponse = response;
-           
+
           this.toastr.success('Image uploaded successfully', 'Uploaded', {
             timeOut: 3000,
           });
@@ -88,7 +88,7 @@ export class NewsComponent implements OnInit {
         this.newsData[i].index = i + 1;
       }
       this.collectionSize = this.newsData.length;
-      this.getPagintaion();       
+      this.getPagintaion();
     })
   }
   getPagintaion() {
@@ -97,16 +97,18 @@ export class NewsComponent implements OnInit {
 
   }
   activeNews(ind: any) {
-    this.newsData[ind].isactive = true;
-    this.homeService.activeDeavctiveNews(this.newsData[ind]).subscribe((req) => {
+    let inde = ind - 1;
+    this.newsData[inde].isactive = true;
+    this.homeService.activeDeavctiveNews(this.newsData[inde]).subscribe((req) => {
       this.toastr.success('News/Event activated Successfully.', 'Activated', {
         timeOut: 3000,
       });
     })
   }
   deactiveNews(ind: any) {
-    this.newsData[ind].isactive = false;
-    this.homeService.activeDeavctiveNews(this.newsData[ind]).subscribe((req) => {
+    let inde = ind - 1;
+    this.newsData[inde].isactive = false;
+    this.homeService.activeDeavctiveNews(this.newsData[inde]).subscribe((req) => {
       this.toastr.error('News/Event deactivated Successfully.', 'Deactivated', {
         timeOut: 3000,
       });

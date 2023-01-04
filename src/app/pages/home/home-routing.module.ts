@@ -9,6 +9,7 @@ import { CounselingComponent } from './counseling/counseling.component';
 import { DepartmentComponent } from './department/department.component';
 import { DonationBulkUploadComponent } from './donation-bulk-upload/donation-bulk-upload.component';
 import { DonationComponent } from './donation/donation.component';
+import { GatePassComponent } from './gate-pass/gate-pass.component';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { InfraDetailsComponent } from './infra-details/infra-details.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
@@ -116,6 +117,10 @@ const routes: Routes = [
   {
     path: 'papers',
     component: QuestionPapersComponent
+  },
+  {
+    path: 'gate-pass',
+    component: GatePassComponent
   }
 
 ];

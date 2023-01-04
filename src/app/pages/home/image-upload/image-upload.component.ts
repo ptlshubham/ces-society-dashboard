@@ -105,16 +105,18 @@ export class ImageUploadComponent implements OnInit {
 
   }
   activeBanners(ind: any) {
-    this.imagesData[ind].isactive = true;
-    this.homeService.activeDeavctiveBanners(this.imagesData[ind]).subscribe((req) => {
+    let inde = ind - 1;
+    this.imagesData[inde].isactive = true;
+    this.homeService.activeDeavctiveBanners(this.imagesData[inde]).subscribe((req) => {
       this.toastr.success('Images activated Successfully.', 'Activated', {
         timeOut: 3000,
       });
     })
   }
   deactiveBanners(ind: any) {
-    this.imagesData[ind].isactive = false;
-    this.homeService.activeDeavctiveBanners(this.imagesData[ind]).subscribe((req) => {
+    let inde = ind - 1;
+    this.imagesData[inde].isactive = false;
+    this.homeService.activeDeavctiveBanners(this.imagesData[inde]).subscribe((req) => {
       this.toastr.error('Images deactivated Successfully.', 'Deactivated', {
         timeOut: 3000,
       });

@@ -33,6 +33,7 @@ export class ApiService {
   public static uploadGalleryImagesURL: string = ApiService.HOST_URL + '/admin/UploadGalleryImages';
   public static uploadGalleryVideoURL: string = ApiService.HOST_URL + '/admin/UploadGalleryVideo';
   public static getImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetImagesByIdDetails';
+  public static getALLImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetALLImagesByIdDetails';
   public static updateActiveDeactiveBannersURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveBanners';
   public static updateActiveDeactiveNewsURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveNews'
   public static removeImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveImagesByIdDetails';
@@ -98,6 +99,9 @@ export class ApiService {
   public static saveQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/SaveQuestionPapersDetails';
   public static getQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/GetQuestionPapersDetails/';
   public static removeQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveQuestionPapersDetails/';
+
+  public static saveGatePassUserListURL: string = ApiService.HOST_URL + '/admin/SaveGatePassUserList';
+  public static getGatePassUserListURL: string = ApiService.HOST_URL + '/admin/GetGatePassUserList';
 
 
 

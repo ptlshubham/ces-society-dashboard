@@ -35,7 +35,7 @@ export class HomeService {
         let data = {
             institute_id: id
         };
-        return this.http.post(ApiService.getImagesByIdDetailsURL, data);
+        return this.http.post(ApiService.getALLImagesByIdDetailsURL, data);
     }
     activeDeavctiveBanners(data: any): Observable<any> {
         return this.http.post<any>(ApiService.updateActiveDeactiveBannersURL, data);
@@ -117,6 +117,9 @@ export class HomeService {
     }
     getContactUsDetails(id: any) {
         return this.http.get(ApiService.getContactUsDetailsByIdURL + id);
+    }
+    getGatePassData() {
+        return this.http.get(ApiService.getGatePassUserListURL);
     }
     saveResultData(data: any) {
         return this.http.post(ApiService.saveResultDetailsURL, data);
