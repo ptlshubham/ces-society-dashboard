@@ -18,7 +18,7 @@ export class RahotkarshComponent implements OnInit {
   selectedYear: any = '';
   yearData: any = [];
   page = 1;
-  pageSize = 50;
+  pageSize = 10;
   collectionSize = 0;
   isUpdate: boolean = false;
 

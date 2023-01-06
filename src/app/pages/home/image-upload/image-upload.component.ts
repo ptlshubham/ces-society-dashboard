@@ -20,12 +20,12 @@ export class ImageUploadComponent implements OnInit {
   bannersImage: any;
   public imageModel: any = {};
   imagesData: any = [];
-
+  role: any;
   page = 1;
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
-
+  filterdata: any = [];
   constructor(
     public formBuilder: UntypedFormBuilder,
     private homeService: HomeService,
@@ -36,6 +36,27 @@ export class ImageUploadComponent implements OnInit {
   ngOnInit(): void {
     this.getImagesDataById();
   }
+  onChange(val: any) {
+    debugger
+    this.role = val.target.value
+    if (this.role != 'All') {
+      this.imagesData = [];
+      this.filterdata.forEach((element: any) => {
+        if (element.purpose == this.role) {
+          this.imagesData.push(element);
+        }
+      });
+    }
+    else {
+      this.getImagesDataById();
+    }
+    for (let i = 0; i < this.imagesData.length; i++) {
+      this.imagesData[i].index = i + 1;
+    }
+    this.collectionSize = this.imagesData.length;
+    this.getPagintaion();
+  }
+
   saveGalleryDetails() {
     this.imageModel.image = this.bannersImage;
     this.imageModel.institute_id = localStorage.getItem('InstituteId');
@@ -50,6 +71,7 @@ export class ImageUploadComponent implements OnInit {
   getImagesDataById() {
     this.homeService.getBannersImagesById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.imagesData = res;
+      this.filterdata = res;
       for (let i = 0; i < this.imagesData.length; i++) {
         this.imagesData[i].index = i + 1;
       }

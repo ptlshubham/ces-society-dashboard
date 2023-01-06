@@ -16,6 +16,8 @@ export class OthersComponent implements OnInit {
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
+  role: any;
+  filterdata: any = [];
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService
@@ -61,9 +63,30 @@ export class OthersComponent implements OnInit {
       this.getFormsDetails();
     })
   }
+  onChange(val: any) {
+    debugger
+    this.role = val.target.value
+    if (this.role != 'All') {
+      this.othersData = [];
+      this.filterdata.forEach((element: any) => {
+        if (element.purpose == this.role) {
+          this.othersData.push(element);
+        }
+      });
+    }
+    else {
+      this.getFormsDetails();
+    }
+    for (let i = 0; i < this.othersData.length; i++) {
+      this.othersData[i].index = i + 1;
+    }
+    this.collectionSize = this.othersData.length;
+    this.getPagintaion();
+  }
   getFormsDetails() {
     this.homeService.getothersDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.othersData = res;
+      this.filterdata = res;
       for (let i = 0; i < this.othersData.length; i++) {
         this.othersData[i].index = i + 1;
       }

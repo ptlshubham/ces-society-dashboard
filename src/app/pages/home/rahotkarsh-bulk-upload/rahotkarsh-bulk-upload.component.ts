@@ -69,7 +69,7 @@ export class RahotkarshBulkUploadComponent implements OnInit {
 
     this.bulkUploadedData = [];
     this.uploadedData
-     
+
     for (let i = 1; i < this.uploadedData.length; i++) {
       let data = {
         year: this.uploadedData[i][0],
@@ -81,13 +81,47 @@ export class RahotkarshBulkUploadComponent implements OnInit {
       this.bulkUploadedData.push(data);
     }
     this.bulkUploadedData
-     
-    this.donationService.saveBulkBeneficiaryDetails(this.bulkUploadedData).subscribe((res: any) => {
-      this.toastr.success('File data save Successfully', 'Saved', {
-        timeOut: 3000,
-      });
-      this.beneficiaryData = res;
-    })
+    let tempArray: any = [];
+    for (let i = 0; i <= (this.bulkUploadedData.length / 300); i++) {
+      tempArray = [];
+      let lnth = (this.bulkUploadedData.length / 300);
+      debugger
+      if (i == 0) {
+        tempArray = [];
+        tempArray = this.bulkUploadedData.slice(0, 300);
+        debugger
+        this.donationService.saveBulkBeneficiaryDetails(tempArray).subscribe((res: any) => {
+         
+        })
+      } else if (i != (this.bulkUploadedData.length / 300)) {
+        tempArray = [];
+        let start = i * 300;
+        let end = start + 300;
+        tempArray = this.bulkUploadedData.slice(start, end);
+        debugger
+        this.donationService.saveBulkBeneficiaryDetails(tempArray).subscribe((res: any) => {
+         
+        })
+      }
+      else {
+        tempArray = [];
+        let start = (i - 1) * 300;
+        let end = this.bulkUploadedData.length - start;
+        tempArray = this.bulkUploadedData.slice(start, end);
+        debugger
+        this.donationService.saveBulkBeneficiaryDetails(tempArray).subscribe((res: any) => {
+        
+        })
+      }
+
+    }
+
+    // this.donationService.saveBulkBeneficiaryDetails(this.bulkUploadedData).subscribe((res: any) => {
+    //   this.toastr.success('File data save Successfully', 'Saved', {
+    //     timeOut: 3000,
+    //   });
+    //   this.beneficiaryData = res;
+    // })
   }
 
   export(): void {

@@ -84,6 +84,8 @@ export class LoginComponent implements OnInit {
         if (res.length > 0) {
           localStorage.setItem('InstituteId', res[0].id);
           localStorage.setItem('InstituteName', res[0].name);
+          localStorage.setItem('InstituteURL', res[0].url);
+          localStorage.setItem('Role', 'Institute');
           localStorage.setItem('token', res[0].token);
           this.toastr.success('Login Successfully', 'success', { timeOut: 3000, });
           this.router.navigate(['/']);

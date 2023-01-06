@@ -16,7 +16,7 @@ export class DonationBulkUploadComponent implements OnInit {
   fileName: string = 'SheetJS.xlsx';
   uploadedData: any = [];
   bulkUploadedData: any = [];
-   donnersData: any = [];
+  donnersData: any = [];
 
   constructor(
     private donationService: DonationService,
@@ -32,7 +32,7 @@ export class DonationBulkUploadComponent implements OnInit {
 
   }
   onFileChange(evt: any) {
-     
+
     /* wire up file reader */
     const target: DataTransfer = <DataTransfer>(evt.target);
     if (target.files.length !== 1) throw new Error('Cannot use multiple files');
@@ -69,7 +69,7 @@ export class DonationBulkUploadComponent implements OnInit {
 
     this.bulkUploadedData = [];
     this.uploadedData
-     
+
     for (let i = 1; i < this.uploadedData.length; i++) {
       let data = {
         donationDate: this.uploadedData[i][0],
@@ -80,12 +80,46 @@ export class DonationBulkUploadComponent implements OnInit {
       this.bulkUploadedData.push(data);
     }
     this.bulkUploadedData
-     
-    this.donationService.saveBulkDonnersDetails(this.bulkUploadedData).subscribe((res: any) => {
-      this.toastr.success('Bulk uploaded Successfully', 'Success', {
-        timeOut: 3000,
-      });
-      this. donnersData = res;
-    })
+    
+    let tempArray: any = [];
+    for (let i = 0; i <= (this.bulkUploadedData.length / 300); i++) {
+      tempArray = [];
+      let lnth = (this.bulkUploadedData.length / 300);
+      debugger
+      if (i == 0) {
+        tempArray = [];
+        tempArray = this.bulkUploadedData.slice(0, 300);
+        debugger
+        this.donationService.saveBulkDonnersDetails(tempArray).subscribe((res: any) => {
+
+        })
+      } else if (i != (this.bulkUploadedData.length / 300)) {
+        tempArray = [];
+        let start = i * 300;
+        let end = start + 300;
+        tempArray = this.bulkUploadedData.slice(start, end);
+        debugger
+        this.donationService.saveBulkDonnersDetails(tempArray).subscribe((res: any) => {
+
+        })
+      }
+      else {
+        tempArray = [];
+        let start = (i - 1) * 300;
+        let end = this.bulkUploadedData.length - start;
+        tempArray = this.bulkUploadedData.slice(start, end);
+        debugger
+        this.donationService.saveBulkDonnersDetails(tempArray).subscribe((res: any) => {
+
+        })
+      }
+
+    }
+    // this.donationService.saveBulkDonnersDetails(this.bulkUploadedData).subscribe((res: any) => {
+    //   this.toastr.success('Bulk uploaded Successfully', 'Success', {
+    //     timeOut: 3000,
+    //   });
+    //   this. donnersData = res;
+    // })
   }
 }

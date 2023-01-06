@@ -24,6 +24,8 @@ export class MoreComponent implements OnInit {
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
+  role: any;
+  filterdata: any = [];
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
@@ -34,6 +36,7 @@ export class MoreComponent implements OnInit {
   ngOnInit(): void {
     this.getScholarshipData();
   }
+
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
@@ -70,9 +73,30 @@ export class MoreComponent implements OnInit {
       this.getScholarshipData();
     })
   }
+  onChange(val: any) {
+    debugger
+    this.role = val.target.value
+    if (this.role != 'All') {
+      this.moreData = [];
+      this.filterdata.forEach((element: any) => {
+        if (element.purpose == this.role) {
+          this.moreData.push(element);
+        }
+      });
+    }
+    else {
+      this.getScholarshipData();
+    }
+    for (let i = 0; i < this.moreData.length; i++) {
+      this.moreData[i].index = i + 1;
+    }
+    this.collectionSize = this.moreData.length;
+    this.getPagintaion();
+  }
   getScholarshipData() {
     this.homeService.getScholarshipData(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.moreData = res;
+      this.filterdata = res;
       debugger
       for (let i = 0; i < this.moreData.length; i++) {
         this.moreData[i].index = i + 1;

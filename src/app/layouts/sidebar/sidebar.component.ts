@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import MetisMenu from 'metismenujs';
 import { Router, NavigationEnd } from '@angular/router';
-import { MENU } from './menu';
+import { CES, MENU, superAdmin } from './menu';
 import { MenuItem } from './menu.model';
 
 import { TranslateService } from '@ngx-translate/core';
@@ -19,6 +19,7 @@ export class SidebarComponent implements OnInit {
 
   @ViewChild('sideMenu') sideMenu!: ElementRef;
   menu: any;
+  allItems: MenuItem[] = [];
   menuItems: MenuItem[] = [];
 
   constructor(private router: Router, public translate: TranslateService) {
@@ -31,14 +32,35 @@ export class SidebarComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.menuItems = MENU;
+    if (localStorage.getItem('InstituteURL') == 'www.cesociety.in' && localStorage.getItem('Role') == 'Institute') {
+      this.menuItems = CES;
+    }
+    else if (localStorage.getItem('InstituteURL') != 'www.cesociety.in' && localStorage.getItem('Role') == 'Institute') {
+      this.menuItems = MENU;
+    }
+    else if (localStorage.getItem('Role') == 'superAdmin') {
+      this.menuItems = superAdmin;
+    }
+    // this.allItems.forEach((element) => {
+    //   if (element.role == 'Institute') {
+    //     this.menuItems.push(element);
+    //   }
+    // });
   }
 
   /**
    * Initialize
    */
   initialize(): void {
-    this.menuItems = MENU;
+    if (localStorage.getItem('InstituteURL') == 'www.cesociety.in' && localStorage.getItem('Role') == 'Institute') {
+      this.menuItems = CES;
+    }
+    else if (localStorage.getItem('InstituteURL') != 'www.cesociety.in' && localStorage.getItem('Role') == 'Institute') {
+      this.menuItems = MENU;
+    }
+    else if (localStorage.getItem('Role') == 'superAdmin') {
+      this.menuItems = superAdmin;
+    }
   }
 
   /***

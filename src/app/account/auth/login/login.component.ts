@@ -64,6 +64,7 @@ export class LoginComponent implements OnInit {
         if (res.length > 0) {
           localStorage.setItem('Name', res[0].name);
           localStorage.setItem('token', res[0].token);
+          localStorage.setItem('Role', 'superAdmin');
           this.toastr.success('Login Successfully', 'success', { timeOut: 3000, });
           this.router.navigate(['/']);
         } else if (res == 1) {
