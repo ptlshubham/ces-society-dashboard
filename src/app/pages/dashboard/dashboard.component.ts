@@ -4,6 +4,8 @@ import { circle, latLng, tileLayer } from 'leaflet';
 
 import { walletOverview, investedOverview, marketOverview, walletlineChart, tradeslineChart, investedlineChart, profitlineChart, recentActivity, News, transactionsAll, transactionsBuy, transactionsSell } from './data';
 import { ChartType } from './dashboard.model';
+import { HomeService } from 'src/app/core/services/home.services';
+import { StaffService } from 'src/app/core/services/staff.services';
 
 @Component({
   selector: 'app-dashboard',
@@ -14,63 +16,30 @@ import { ChartType } from './dashboard.model';
 /**
  *  Dashboard Component
  */
+
 export class DashboardComponent implements OnInit {
+
 
   // bread crumb items
   breadCrumbItems!: Array<{}>;
   title!: string;
-  dataSource!: Object;
-  walletOverview!: ChartType;
-  investedOverview!: ChartType;
-  marketOverview!: ChartType;
-  walletlineChart!: ChartType;
-  tradeslineChart!: ChartType;
-  investedlineChart!: ChartType;
-  profitlineChart!: ChartType;
-  recentActivity: any;
-  News: any;
-  transactionsAll: any;
-  transactionsBuy: any;
-  transactionsSell: any;
 
-  // Coin News Slider
-  timelineCarousel: OwlOptions = {
-    items: 1,
-    loop: false,
-    margin: 0,
-    nav: false,
-    navText: ["", ""],
-    dots: true,
-    responsive: {
-      680: {
-        items: 4
-      },
-    }
+  departmentData: any = [];
+  imagesData: any = [];
+  newsData: any = [];
+  staffData: any = [];
+  contactData: any = [];
+  infraData: any = [];
+  blogsData: any = [];
+  resultData:any=[];
+
+  constructor(
+    private homeService: HomeService,
+    private staffService: StaffService
+  ) {
+
   }
 
-  constructor() {
-  }
-
-  /**
-   * Sale Location Map
-   */
-  options = {
-    layers: [
-      tileLayer("https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWFwYm94IiwiYSI6ImNpejY4NXVycTA2emYycXBndHRqcmZ3N3gifQ.rJcFIG214AriISLbB6B5aw", {
-        id: "mapbox/light-v9",
-        tileSize: 512,
-        zoomOffset: -1,
-        attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
-      })
-    ],
-    zoom: 1.1,
-    center: latLng(28, 1.5)
-  };
-  layers = [
-    circle([41.9, 12.45], { color: "#435fe3", opacity: 0.5, weight: 10, fillColor: "#435fe3", fillOpacity: 1, radius: 400000, }),
-    circle([12.05, -61.75], { color: "#435fe3", opacity: 0.5, weight: 10, fillColor: "#435fe3", fillOpacity: 1, radius: 400000, }),
-    circle([1.3, 103.8], { color: "#435fe3", opacity: 0.5, weight: 10, fillColor: "#435fe3", fillOpacity: 1, radius: 400000, }),
-  ];
 
   ngOnInit(): void {
     /**
@@ -91,19 +60,54 @@ export class DashboardComponent implements OnInit {
    * Fetches the data
    */
   private fetchData() {
-    this.walletOverview = walletOverview;
-    this.investedOverview = investedOverview;
-    this.marketOverview = marketOverview;
-    this.walletlineChart = walletlineChart;
-    this.tradeslineChart = tradeslineChart;
-    this.investedlineChart = investedlineChart;
-    this.profitlineChart = profitlineChart;
-    this.recentActivity = recentActivity;
-    this.News = News;
-    this.transactionsAll = transactionsAll;
-    this.transactionsBuy = transactionsBuy;
-    this.transactionsSell = transactionsSell;
+    this.getDepartmentDetails();
+    this.getImagesDataById();
+    this.getNewsDetails();
+    this.getStaffDetails();
+    this.getContactUsDetails();
+    this.getInfraDataById();
+    this.getBlogDetails();
+    this.getResultDataById();
   }
-  
+  getDepartmentDetails() {
+    this.homeService.getDepartmentDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.departmentData = res;
+    })
+  }
+  getImagesDataById() {
+    this.homeService.getBannersImagesById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.imagesData = res;
+    })
+  }
+  getNewsDetails() {
+    this.homeService.getNewsDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.newsData = res;
+    })
+  }
+  getStaffDetails() {
+    this.staffService.getAllStaffDetailsData(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.staffData = res;
 
+    })
+  }
+  getContactUsDetails() {
+    this.homeService.getContactUsDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.contactData = res;
+    })
+  }
+  getInfraDataById() {
+    this.homeService.getImfraDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.infraData = res;
+    })
+  }
+  getBlogDetails() {
+    this.homeService.getBlogsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.blogsData = res;
+    })
+  }
+  getResultDataById() {
+    this.homeService.getResultDetailsById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.resultData = res;
+    })
+  }
 }
