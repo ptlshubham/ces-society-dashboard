@@ -14,6 +14,7 @@ import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { InfraDetailsComponent } from './infra-details/infra-details.component';
 import { InfrastructureComponent } from './infrastructure/infrastructure.component';
 import { MagazineComponent } from './magazine/magazine.component';
+import { MicroDonationComponent } from './micro-donation/micro-donation.component';
 import { MoreDetailsComponent } from './more-details/more-details.component';
 import { MoreComponent } from './more/more.component';
 import { NewsComponent } from './news/news.component';
@@ -121,6 +122,10 @@ const routes: Routes = [
   {
     path: 'gate-pass',
     component: GatePassComponent
+  },
+  {
+    path:'micro-donation',
+    component:MicroDonationComponent
   }
 
 ];

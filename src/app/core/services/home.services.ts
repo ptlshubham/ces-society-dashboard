@@ -179,4 +179,7 @@ export class HomeService {
     getCounselingList() {
         return this.http.get(ApiService.getCounselingDataURL);
     }
+    getMicroDonation(){
+        return this.http.get(ApiService.getRahatokarshDonationListURL);
+    }
 }

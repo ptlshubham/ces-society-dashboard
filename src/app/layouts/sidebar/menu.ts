@@ -168,6 +168,12 @@ export const CES: MenuItem[] = [
 
     },
     {
+        id: 22,
+        label: 'Rahatokarsh Donation',
+        icon: 'star',
+        link: '/home/micro-donation',
+    },
+    {
         id: 8,
         label: 'Forms,Syllabus & Report',
         icon: 'file-text',
