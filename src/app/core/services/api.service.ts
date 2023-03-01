@@ -103,8 +103,10 @@ export class ApiService {
   public static saveGatePassUserListURL: string = ApiService.HOST_URL + '/admin/SaveGatePassUserList';
   public static getGatePassUserListURL: string = ApiService.HOST_URL + '/admin/GetGatePassUserList';
 
-
-
+  public static updateActiveDeactiveAnswerkeyURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveAnswerkey';
+  public static saveAnswerkeyDataListURL: string = ApiService.HOST_URL + '/admin/SaveAnswerkeyDataList';
+  public static getAnswerkeyByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllAnswerkey';
+  public static removeAnswerkeyByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveAnswerkeyByIdDetails/';
 
 
 

@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { AlumniListComponent } from './alumni-list/alumni-list.component';
+import { AnswerKeyComponent } from './answer-key/answer-key.component';
 import { BlogDetailsComponent } from './blog-details/blog-details.component';
 import { BlogComponent } from './blog/blog.component';
 import { CollegeListComponent } from './college-list/college-list.component';
@@ -121,6 +122,10 @@ const routes: Routes = [
   {
     path: 'gate-pass',
     component: GatePassComponent
+  },
+  {
+    path:'answer-key',
+    component:AnswerKeyComponent
   }
 
 ];

@@ -260,6 +260,12 @@ export const CES: MenuItem[] = [
         icon: 'key',
         link: '/home/gate-pass',
     },
+    {
+        id: 22,
+        label: 'Answer-key',
+        icon: 'key',
+        link: '/home/answer-key',
+    }
 ];
 export const superAdmin: MenuItem[] = [
     {
@@ -319,5 +325,11 @@ export const superAdmin: MenuItem[] = [
         icon: 'key',
         link: '/home/gate-pass',
     },
+    {
+        id: 22,
+        label:'Answer-key',
+        icon:'key',
+        link: '/home/answer-key',
+    }
 ];
 

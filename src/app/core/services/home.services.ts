@@ -5,6 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HomeService {
+    
     constructor(
         private http: HttpClient
     ) { }
@@ -178,5 +179,18 @@ export class HomeService {
     }
     getCounselingList() {
         return this.http.get(ApiService.getCounselingDataURL);
+    }
+    activeDeavctiveAnswerkey(data: any): Observable<any> {
+        return this.http.post<any>(ApiService.updateActiveDeactiveAnswerkeyURL, data);
+    }
+    saveAnswerkeyListData(data: any) {
+        debugger
+        return this.http.post(ApiService.saveAnswerkeyDataListURL, data);
+    }
+    removeAnswerkeyDataById(id: any) {
+        return this.http.get(ApiService.removeAnswerkeyByIdDetailsURL + id);
+    }
+    getAnswerkeyDataById() {
+        return this.http.get(ApiService.getAnswerkeyByIdDetailsURL);
     }
 }
