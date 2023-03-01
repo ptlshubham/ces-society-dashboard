@@ -31,6 +31,7 @@ import { MoreDetailsComponent } from './more-details/more-details.component';
 import { QuestionPapersComponent } from './question-papers/question-papers.component';
 import { GatePassComponent } from './gate-pass/gate-pass.component';
 import { AnswerKeyComponent } from './answer-key/answer-key.component';
+import { MicroDonationComponent } from './micro-donation/micro-donation.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -67,6 +68,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     QuestionPapersComponent,
     GatePassComponent,
     AnswerKeyComponent,
+    MicroDonationComponent,
   ],
   imports: [
     CommonModule,

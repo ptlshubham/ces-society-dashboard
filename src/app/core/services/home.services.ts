@@ -193,4 +193,7 @@ export class HomeService {
     getAnswerkeyDataById() {
         return this.http.get(ApiService.getAnswerkeyByIdDetailsURL);
     }
+    getMicroDonation(){
+        return this.http.get(ApiService.getRahatokarshDonationListURL);
+    }
 }
