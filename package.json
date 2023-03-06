@@ -1,5 +1,5 @@
 {
-  "name": "minia",
+  "name": "cesociety-dashboard",
   "version": "1.0.0",
   "scripts": {
     "ng": "ng",
@@ -63,6 +63,7 @@
     "ngx-toastr": "^12.0.0",
     "ngx-ui-switch": "^12.0.1",
     "ngx-youtube-player": "^9.1.0",
+    "pdfmake": "^0.2.7",
     "rxjs": "~6.6.0",
     "simplebar-angular": "^2.3.4",
     "sweetalert2": "^11.6.15",
@@ -79,6 +80,7 @@
     "@types/jasmine": "~3.6.0",
     "@types/leaflet": "^1.7.4",
     "@types/node": "^12.11.1",
+    "@types/pdfmake": "^0.2.2",
     "jasmine-core": "~3.7.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",

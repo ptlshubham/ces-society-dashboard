@@ -26,7 +26,7 @@
             "allowedCommonJsDependencies": [
               "rxjs", "core-js", "chart.js", "chartist", "ngx-lightbox"
             ],
-            "outputPath": "dist/minia",
+            "outputPath": "dist/cesociety-dashboard",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",

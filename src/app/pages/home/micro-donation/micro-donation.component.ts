@@ -1,6 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { HomeService } from 'src/app/core/services/home.services';
+import * as pdfMake from "pdfmake/build/pdfmake";
+import * as pdfFonts from "pdfmake/build/vfs_fonts";
+import { ToastrService } from 'ngx-toastr';
+import Swal from 'sweetalert2';
 
+(<any>pdfMake).vfs = pdfFonts.pdfMake.vfs;
 @Component({
   selector: 'app-micro-donation',
   templateUrl: './micro-donation.component.html',
@@ -13,7 +18,9 @@ export class MicroDonationComponent implements OnInit {
   collectionSize = 0;
   paginateData: any = [];
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    public toastr: ToastrService
+
   ) {
     this.getRahatokarshList();
   }
@@ -33,5 +40,31 @@ export class MicroDonationComponent implements OnInit {
   getPagintaion() {
     this.paginateData = this.microDonationData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+  generatePDF() {
+    let docDefinition = {
+      header: 'C#Corner PDF Header',
+      content: 'Sample PDF generated with Angular and PDFMake for C#Corner Blog'
+    };
+
+    pdfMake.createPdf(docDefinition).open();
+  }
+  verifyAndGenerate(data: any) {
+    Swal.fire({
+      title: 'Are you sure?',
+      text: 'You won\'t be able to revert this!',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonColor: '#34c38f',
+      cancelButtonColor: '#f46a6a',
+      confirmButtonText: 'Yes, Verify it!'
+    }).then(result => {
+      if (result.value) {
+        this.homeService.generateCertificate(data).subscribe((res: any) => {
+          Swal.fire('Verified!', 'Your payment has been validated.', 'success');
+          this.getRahatokarshList();
+        })
+      }
+    });
   }
 }
