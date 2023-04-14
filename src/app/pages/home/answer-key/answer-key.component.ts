@@ -57,7 +57,7 @@ export class AnswerKeyComponent implements OnInit {
         this.homeService.savePdfData(formdata).subscribe((response) => {
           this.pdfResponse = response;
 
-          this.toastr.success('Image uploaded successfully', 'Uploaded', {
+          this.toastr.success('File uploaded successfully', 'Uploaded', {
             timeOut: 3000,
           });
 

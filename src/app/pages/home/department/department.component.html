@@ -3,24 +3,34 @@
         <div class="card">
             <div class="card-header">
                 <h5 class="card-title">Department List</h5>
-                <!-- <p class="card-title-desc">Enter Latest News</p> -->
+                <p class="card-title-desc">Enter Your Department List</p>
             </div>
             <div class="card-body">
                 <div>
-                    <form>
+                    <form [formGroup]="validationForm">
                         <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Department</label>
-                                    <input type="text" class="form-control" id="title"
-                                        placeholder="Enter Department Name" [ngModelOptions]="{standalone: true}"
-                                        [(ngModel)]="departmentModel.department">
+                                    <input type="text" class="form-control" placeholder="Enter Department Name"
+                                        [(ngModel)]="departmentModel.department"
+                                        [ngClass]="{ 'is-invalid': f.department.touched && f.department.errors }"
+                                        formControlName="department" id="department">
+                                    <div *ngIf="f.department.touched && f.department.errors" class="invalid-feedback">
+                                        <span *ngIf="f.department.errors.required">This Field is
+                                            required.</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" (click)="saveDepartmentList()">Submit</button>
+                            <div class="row justify-content-end">
+                                <div class="col-lg-1 col-xl-1 col-md-1 col-sm-2 col-xs-12">
+                                    <button type="submit" class="btn btn-primary" [disabled]="validationForm.invalid"
+                                        (click)="saveDepartmentList()">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -67,9 +77,9 @@
                     </table>
                 </div>
                 <div class="row mt-4">
-                    <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
-                        [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
-                        aria-label="Default pagination"
+                    <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page"
+                        [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
+                        (pageChange)="getPagintaion();" aria-label="Default pagination"
                         class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
                 </div>
 

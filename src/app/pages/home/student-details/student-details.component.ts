@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-student-details',
@@ -9,6 +10,9 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
   styleUrls: ['./student-details.component.scss']
 })
 export class StudentDetailsComponent implements OnInit {
+  validationForm!: FormGroup;
+  submitted = false;
+
   studentList: any = [];
   studentModel: any = {};
   studentDetails: any = {};
@@ -25,15 +29,22 @@ export class StudentDetailsComponent implements OnInit {
 
   constructor(
     private homeService: HomeService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public formBuilder: UntypedFormBuilder,
+
 
   ) { }
 
   ngOnInit(): void {
     this.getStudentListDetails();
     this.isOpen = true;
-
+    this.validationForm = this.formBuilder.group({
+      title: ['', [Validators.required]],
+      details:['', [Validators.required]],
+    });
   }
+  get f() { return this.validationForm.controls; }
+
   openDetails() {
     this.isOpen = false;
     this.isOpenDetails = false;
@@ -61,17 +72,25 @@ export class StudentDetailsComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   saveStudentDetails() {
+    this.submitted = true;
+    if (this.validationForm.invalid) {
+      return;
+    } else {
+      this.studentModel.institute_id = localStorage.getItem('InstituteId');
+      this.homeService.saveStudentDetails(this.studentModel).subscribe((res: any) => {
+        this.toastr.success('Student Details added successfully', 'Success', {
+          timeOut: 3000,
+        });
+        this.studentModel = {};
+        this.validationForm.markAsUntouched();
+        this.isOpen = true;
+        this.isOpenDetails = false;
+        this.isAdd = false;
+        this.getStudentListDetails();
+      })
+    }
 
-    this.studentModel.institute_id = localStorage.getItem('InstituteId');
-    this.homeService.saveStudentDetails(this.studentModel).subscribe((res: any) => {
-      this.toastr.success('Student Details added successfully', 'Success', {
-        timeOut: 3000,
-      });
-      this.isOpen = true;
-      this.isOpenDetails = false;
-      this.isAdd = false;
-      this.getStudentListDetails();
-    })
+
   }
   removeStudentListDetails(id: any) {
     this.homeService.removeStudentList(id).subscribe((res: any) => {

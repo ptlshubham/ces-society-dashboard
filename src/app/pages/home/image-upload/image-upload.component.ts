@@ -1,5 +1,5 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
+import { FormGroup, UntypedFormBuilder, UntypedFormGroup, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -9,6 +9,8 @@ import { HomeService } from 'src/app/core/services/home.services';
   styleUrls: ['./image-upload.component.scss']
 })
 export class ImageUploadComponent implements OnInit {
+  validationForm!: FormGroup;
+  submitted = false;
 
   @ViewChild('fileInput') el!: ElementRef;
 
@@ -17,7 +19,7 @@ export class ImageUploadComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  bannersImage: any;
+  bannersImage: any = null;
   public imageModel: any = {};
   imagesData: any = [];
   role: any;
@@ -35,9 +37,13 @@ export class ImageUploadComponent implements OnInit {
 
   ngOnInit(): void {
     this.getImagesDataById();
+    this.validationForm = this.formBuilder.group({
+      purpose: ['', [Validators.required]],
+    });
   }
+  get f() { return this.validationForm.controls; }
+
   onChange(val: any) {
-    debugger
     this.role = val.target.value
     if (this.role != 'All') {
       this.imagesData = [];
@@ -58,15 +64,22 @@ export class ImageUploadComponent implements OnInit {
   }
 
   saveGalleryDetails() {
-    this.imageModel.image = this.bannersImage;
-    this.imageModel.institute_id = localStorage.getItem('InstituteId');
+    this.submitted = true;
+    if (this.validationForm.invalid) {
+      return;
+    } else {
+      this.imageModel.image = this.bannersImage;
+      this.imageModel.institute_id = localStorage.getItem('InstituteId');
 
-    this.homeService.saveBannersImagesData(this.imageModel).subscribe((res: any) => {
-      this.toastr.success('Images Data added Successfully', 'success', {
-        timeOut: 3000,
-      });
-      this.getImagesDataById();
-    })
+      this.homeService.saveBannersImagesData(this.imageModel).subscribe((res: any) => {
+        this.toastr.success('Images Data added Successfully', 'success', {
+          timeOut: 3000,
+        });
+        this.imageModel = {};
+        this.validationForm.markAsUntouched();
+        this.getImagesDataById();
+      })
+    }
   }
   getImagesDataById() {
     this.homeService.getBannersImagesById(localStorage.getItem('InstituteId')).subscribe((res: any) => {

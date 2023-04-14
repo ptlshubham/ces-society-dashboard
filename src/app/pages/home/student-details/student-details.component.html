@@ -16,30 +16,44 @@
             </div>
             <div class="card-body">
                 <div>
-                    <form>
+                    <form [formGroup]="validationForm">
                         <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Enter Title</label>
-                                    <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
-                                        placeholder="Enter Title" [ngModelOptions]="{standalone: true}"
+                                    <textarea class="form-control" rows="2" id="title" placeholder="Enter Title"
+                                        formControlName="title"
+                                        [ngClass]="{'is-invalid': f.title.touched && f.title.errors}"
                                         [(ngModel)]="studentModel.title"></textarea>
+                                    <div *ngIf="f.title.touched && f.title.errors" class="invalid-feedback">
+                                        <span *ngIf="f.title.errors.required">This Field is
+                                            required.</span>
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-xl-12 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Enter News</label>
-                                    <ckeditor [editor]="Editor" data="" [ngModelOptions]="{standalone: true}"
+                                    <ckeditor [editor]="Editor" data="" formControlName="details" id="details"
+                                        [ngClass]="{'is-invalid': f.details.touched && f.details.errors}"
                                         [(ngModel)]="studentModel.details"></ckeditor>
+                                    <div *ngIf="f.details.touched && f.details.errors" class="invalid-feedback">
+                                        <span *ngIf="f.details.errors.required">This Field is
+                                            required.</span>
+                                    </div>
                                 </div>
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" (click)="saveStudentDetails()"
-                                *ngIf="!isUpdate">Submit</button>
-                            <button type="submit" class="btn btn-primary" (click)="updateStudentDetails()"
-                                *ngIf="isUpdate">Update Details</button>
+                            <div class="row justify-content-end">
+                                <div class="col-lg-1 col-xl-1 col-md-1 col-sm-2 col-xs-12">
+                                    <button type="submit" class="btn btn-primary" (click)="saveStudentDetails()"
+                                        *ngIf="!isUpdate" [disabled]="validationForm.invalid">Submit</button>
+                                    <button type="submit" class="btn btn-primary" (click)="updateStudentDetails()"
+                                        *ngIf="isUpdate" [disabled]="validationForm.invalid">Update</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>

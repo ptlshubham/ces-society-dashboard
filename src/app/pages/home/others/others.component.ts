@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -8,6 +9,9 @@ import { HomeService } from 'src/app/core/services/home.services';
   styleUrls: ['./others.component.scss']
 })
 export class OthersComponent implements OnInit {
+  validationForm!: FormGroup;
+  submitted = false;
+
   othersModel: any = {};
   othersData: any = [];
   pdfResponse: any = '';
@@ -20,13 +24,20 @@ export class OthersComponent implements OnInit {
   filterdata: any = [];
   constructor(
     private homeService: HomeService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public formBuilder: UntypedFormBuilder,
+  ) {
 
-  ) { }
+  }
 
   ngOnInit(): void {
     this.getFormsDetails();
+    this.validationForm = this.formBuilder.group({
+      purpose: ['', [Validators.required]],
+      title: ['', [Validators.required]],
+    });
   }
+  get f() { return this.validationForm.controls; }
 
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
@@ -38,8 +49,8 @@ export class OthersComponent implements OnInit {
       reader.onload = () => {
         const formdata = new FormData();
         formdata.append('file', file);
-
         this.homeService.savePdfData(formdata).subscribe((response) => {
+          this.toastr.success('File uploaded successfully.', 'Success', { timeOut: 3000, });
           this.pdfResponse = response;
         })
       }
@@ -48,20 +59,26 @@ export class OthersComponent implements OnInit {
     }
   }
   saveFormsDetails() {
-    if (this.pdfResponse != "") {
-      this.othersModel.files = this.pdfResponse;
+    this.submitted = true;
+    if (this.validationForm.invalid) {
+      return;
+    } else {
+      if (this.pdfResponse != "") {
+        this.othersModel.files = this.pdfResponse;
+      }
+      else {
+        this.othersModel.files = null;
+      }
+      this.othersModel.institute_id = localStorage.getItem('InstituteId');
+      this.homeService.saveOthersListData(this.othersModel).subscribe((res: any) => {
+        this.toastr.success('Data saved successfully', 'success', {
+          timeOut: 3000,
+        });
+        this.othersModel = {};
+        this.validationForm.markAsUntouched();
+        this.getFormsDetails();
+      })
     }
-    else {
-      this.othersModel.files = null;
-    }
-
-    this.othersModel.institute_id = localStorage.getItem('InstituteId');
-    this.homeService.saveOthersListData(this.othersModel).subscribe((res: any) => {
-      this.toastr.success('News added Successfully', 'success', {
-        timeOut: 3000,
-      });
-      this.getFormsDetails();
-    })
   }
   onChange(val: any) {
     debugger

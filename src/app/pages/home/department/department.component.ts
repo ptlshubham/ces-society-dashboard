@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
@@ -9,6 +10,9 @@ import { HomeService } from 'src/app/core/services/home.services';
   styleUrls: ['./department.component.scss']
 })
 export class DepartmentComponent implements OnInit {
+  validationForm!: FormGroup;
+  submitted = false;
+
   departmentModel: any = {};
   updateDepartmentModel: any = {};
   departmentData: any = [];
@@ -19,6 +23,7 @@ export class DepartmentComponent implements OnInit {
   paginateData: any = [];
 
   constructor(
+    public formBuilder: FormBuilder,
     private homeService: HomeService,
     private modalService: NgbModal,
     public toastr: ToastrService
@@ -26,16 +31,26 @@ export class DepartmentComponent implements OnInit {
 
   ngOnInit(): void {
     this.getDepartmentDetails();
-
+    this.validationForm = this.formBuilder.group({
+      department: ['', [Validators.required]],
+    });
   }
+  get f() { return this.validationForm.controls; }
   saveDepartmentList() {
-    this.departmentModel.institute_id = localStorage.getItem('InstituteId');
-    this.homeService.saveDepartmentListData(this.departmentModel).subscribe((res: any) => {
-      this.toastr.success('Department added Successfully', 'success', {
-        timeOut: 3000,
-      });
-      this.getDepartmentDetails();
-    })
+    this.submitted = true;
+    if (this.validationForm.invalid) {
+      return;
+    } else {
+      this.departmentModel.institute_id = localStorage.getItem('InstituteId');
+      this.homeService.saveDepartmentListData(this.departmentModel).subscribe((res: any) => {
+        this.toastr.success('Department added Successfully', 'success', {
+          timeOut: 3000,
+        });
+        this.departmentModel = {};
+        this.validationForm.markAsUntouched();
+        this.getDepartmentDetails();
+      })
+    }
   }
   getDepartmentDetails() {
     this.homeService.getDepartmentDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
