@@ -7,15 +7,20 @@
             </div>
             <div class="card-body">
                 <div>
-                    <form>
+                    <form [formGroup]="validationForm">
                         <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Enter Title</label>
                                     <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
-                                        placeholder="Enter Title" [ngModelOptions]="{standalone: true}"
+                                        placeholder="Enter Title" formControlName="title"
+                                        [ngClass]="{'is-invalid': f.title.touched && f.title.errors}"
                                         [(ngModel)]="resultModel.title"></textarea>
+                                    <div *ngIf="f.title.touched && f.title.errors" class="invalid-feedback">
+                                        <span *ngIf="f.title.errors.required">This Field is
+                                            required.</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -43,10 +48,16 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" (click)="saveResultDetails()"
-                                *ngIf="isUpdate==false">Submit</button>
-                            <button type="submit" class="btn btn-primary" (click)="updateResultDetails()"
-                                *ngIf="isUpdate==true">Update</button>
+                            <div class="row justify-content-end">
+                                <div class="col-lg-1 col-xl-1 col-md-1 col-sm-2 col-xs-12">
+                                    <button type="submit" class="btn btn-primary" (click)="saveResultDetails()"
+                                        *ngIf="isUpdate==false"
+                                        [disabled]="validationForm.invalid || resultImage ==null">Submit</button>
+                                    <button type="submit" class="btn btn-primary" (click)="updateResultDetails()"
+                                        *ngIf="isUpdate==true"
+                                        [disabled]="validationForm.invalid || resultImage ==null">Update</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -92,9 +103,9 @@
                     </table>
                 </div>
                 <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
-                [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
-                aria-label="Default pagination"
-                class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
+                    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
+                    aria-label="Default pagination"
+                    class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
             </div>
             <!-- end card body -->
         </div>

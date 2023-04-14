@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -9,7 +10,8 @@ import { HomeService } from 'src/app/core/services/home.services';
 })
 export class StudentResultComponent implements OnInit {
   imageUrl: any = "assets/images/file-upload-image.jpg";
-
+  validationForm!: FormGroup;
+  submitted = false;
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
@@ -25,12 +27,18 @@ export class StudentResultComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
+    public formBuilder: UntypedFormBuilder,
 
   ) { }
 
   ngOnInit(): void {
     this.getResultDataById();
+    this.validationForm = this.formBuilder.group({
+      title: ['', [Validators.required]],
+    });
   }
+  get f() { return this.validationForm.controls; }
+
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
