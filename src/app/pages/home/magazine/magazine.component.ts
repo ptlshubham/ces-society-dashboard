@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
@@ -8,9 +9,12 @@ import { HomeService } from 'src/app/core/services/home.services';
   styleUrls: ['./magazine.component.scss']
 })
 export class MagazineComponent implements OnInit {
+  validationForm!: FormGroup;
+  submitted = false;
+
   magazineModel: any = {};
   magazine: any = [];
-  pdfResponse: any = '';
+  pdfResponse: any = null;
 
   page = 1;
   pageSize = 10;
@@ -18,25 +22,37 @@ export class MagazineComponent implements OnInit {
   paginateData: any = [];
   constructor(
     private homeService: HomeService,
-    public toastr: ToastrService
+    public toastr: ToastrService,
+    public formBuilder: UntypedFormBuilder,
+
   ) { }
 
   ngOnInit(): void {
     this.getMagazineDetails();
+    this.validationForm = this.formBuilder.group({
+      title: ['', [Validators.required]],
+    });
   }
+  get f() { return this.validationForm.controls; }
+
   saveMagazineDetails() {
-    if (this.pdfResponse != "") {
-      this.magazineModel.files = this.pdfResponse;
+    this.submitted = true;
+    if (this.validationForm.invalid) {
+      return;
+    } else {
+      if (this.pdfResponse != "") {
+        this.magazineModel.files = this.pdfResponse;
+      }
+      else {
+        this.magazineModel.files = null;
+      }
+      this.homeService.saveMagazineDetails(this.magazineModel).subscribe((res: any) => {
+        this.toastr.success('Magazine added Successfully', 'Success', {
+          timeOut: 3000,
+        });
+        this.getMagazineDetails();
+      })
     }
-    else {
-      this.magazineModel.files = null;
-    }
-    this.homeService.saveMagazineDetails(this.magazineModel).subscribe((res: any) => {
-      this.toastr.success('Magazine added Successfully', 'Success', {
-        timeOut: 3000,
-      });
-      this.getMagazineDetails();
-    })
   }
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API

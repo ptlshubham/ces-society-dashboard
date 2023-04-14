@@ -7,15 +7,20 @@
             </div>
             <div class="card-body">
                 <div>
-                    <form>
+                    <form [formGroup]="validationForm">
                         <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Enter Title</label>
                                     <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
-                                        placeholder="Enter Title" [ngModelOptions]="{standalone: true}"
+                                        placeholder="Enter Title" formControlName="title"
+                                        [ngClass]="{'is-invalid': f.title.touched && f.title.errors}"
                                         [(ngModel)]="magazineModel.title"></textarea>
+                                    <div *ngIf="f.title.touched && f.title.errors" class="invalid-feedback">
+                                        <span *ngIf="f.title.errors.required">This Field is
+                                            required.</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -27,8 +32,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary"
-                                (click)="saveMagazineDetails()">Submit</button>
+                            <div class="row justify-content-end">
+                                <div class="col-lg-1 col-xl-1 col-md-1 col-sm-2 col-xs-12">
+                                    <button type="submit" class="btn btn-primary"
+                                        [disabled]="validationForm.invalid || pdfResponse ==null"
+                                        (click)="saveMagazineDetails()">Submit</button>
+                                </div>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -61,10 +71,10 @@
                                 </td>
                                 <td class="text-center">
                                     <button type="button" class="btn btn-primary waves-effect btn-label waves-light"
-                                    (click)="viewDownloadPdf(n.files)" *ngIf="n.files!='null'">
-                                    <i class="fas fa-file-download label-icon"></i>Download
-                                </button>
-                                <span class="bg-warning badge me-2" *ngIf="n.files=='null'">File Not Uploaded</span>
+                                        (click)="viewDownloadPdf(n.files)" *ngIf="n.files!='null'">
+                                        <i class="fas fa-file-download label-icon"></i>Download
+                                    </button>
+                                    <span class="bg-warning badge me-2" *ngIf="n.files=='null'">File Not Uploaded</span>
                                 </td>
                                 <td class="text-end">
                                     <button type="button" class="btn btn-soft-danger waves-effect waves-light"
