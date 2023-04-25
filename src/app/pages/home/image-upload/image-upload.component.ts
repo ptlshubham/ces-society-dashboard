@@ -97,34 +97,98 @@ export class ImageUploadComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
 
   }
+  // uploadFile(event: any) {
+  //   let reader = new FileReader();
+  //   let file = event.target.files[0];
+  //   if (event.target.files && event.target.files[0]) {
+  //     reader.readAsDataURL(file);
+  //     reader.onload = () => {
+  //       this.imageUrl = reader.result;
+  //       const imgBase64Path = reader.result;
+  //       this.cardImageBase64 = imgBase64Path;
+  //       const formdata = new FormData();
+  //       formdata.append('file', file);
+  //       this.homeService.uploadBannersImage(formdata).subscribe((response) => {
+  //         this.bannersImage = response;
+  //         this.toastr.success('Image Uploaded Successfully', 'Uploaded', {
+  //           timeOut: 3000,
+  //         });
+  //         this.editFile = false;
+  //         this.removeUpload = true;
+  //       })
+  //     }
+  //   }
+  // }
+  onPurposeChange(event: any) {
+    this.bannersImage = null;
+    this.imageUrl = "assets/images/file-upload-image.jpg"
+    console.log('Selected purpose:', event.target.value);
+    debugger
+    // perform other actions based on the selected value
+  }
   uploadFile(event: any) {
-    let reader = new FileReader(); // HTML5 FileReader API
+    let reader = new FileReader();
     let file = event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-        const imgBase64Path = reader.result;
-        this.cardImageBase64 = imgBase64Path;
-        const formdata = new FormData();
-        formdata.append('file', file);
-
-
-        this.homeService.uploadBannersImage(formdata).subscribe((response) => {
-          this.bannersImage = response;
-          this.toastr.success('Image Uploaded Successfully', 'Uploaded', {
-            timeOut: 3000,
-          });
-          this.editFile = false;
-          this.removeUpload = true;
-        })
+    const img = new Image();
+    img.src = window.URL.createObjectURL(file);
+    img.onload = () => {
+      if (this.imageModel.purpose == 'slider') {
+        debugger
+        if (img.width === 1902 && img.height === 502) {
+          if (event.target.files && event.target.files[0]) {
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+              this.imageUrl = reader.result;
+              const imgBase64Path = reader.result;
+              this.cardImageBase64 = imgBase64Path;
+              const formdata = new FormData();
+              formdata.append('file', file);
+              this.homeService.uploadBannersImage(formdata).subscribe((response) => {
+                this.bannersImage = response;
+                this.toastr.success('Image Uploaded Successfully', 'Uploaded', {
+                  timeOut: 3000,
+                });
+                this.editFile = false;
+                this.removeUpload = true;
+              })
+            }
+          }
+        } else {
+          this.toastr.error('Please upload an image with dimensions of 1902x502px', 'Invalid Dimension', { timeOut: 3000, });
+        }
       }
-      // ChangeDetectorRef since file is loading outside the zone
-      // this.cd.markForCheck();
+      else if (this.imageModel.purpose == 'image') {
+        if (img.width === 500 && img.height === 500) {
+          debugger
+          if (event.target.files && event.target.files[0]) {
+            reader.readAsDataURL(file);
+            reader.onload = () => {
+              this.imageUrl = reader.result;
+              const imgBase64Path = reader.result;
+              this.cardImageBase64 = imgBase64Path;
+              const formdata = new FormData();
+              formdata.append('file', file);
+              this.homeService.uploadBannersImage(formdata).subscribe((response) => {
+                this.bannersImage = response;
+                this.toastr.success('Image Uploaded Successfully', 'Uploaded', {
+                  timeOut: 3000,
+                });
+                this.editFile = false;
+                this.removeUpload = true;
+              })
+            }
+          }
+        } else {
+          this.toastr.error('Please upload an image with dimensions of 500x500px', 'Invalid Dimension', { timeOut: 3000, });
+        }
+      }
 
-    }
+    };
+  }
+  removeUploadedImage() {
+    this.bannersImage = null;
+    this.imageUrl = 'assets/images/file-upload-image.jpg';
+
   }
   uploadVideoFile(event: any) {
     const file = event.target.files[0];

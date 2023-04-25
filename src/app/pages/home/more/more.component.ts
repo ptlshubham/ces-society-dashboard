@@ -38,31 +38,39 @@ export class MoreComponent implements OnInit {
   }
 
   uploadFile(event: any) {
-    let reader = new FileReader(); // HTML5 FileReader API
+    let reader = new FileReader();
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
       reader.onload = () => {
-        this.imageUrl = reader.result;
-        const imgBase64Path = reader.result;
-        this.cardImageBase64 = imgBase64Path;
-        const formdata = new FormData();
-        formdata.append('file', file);
+        const image = new Image();
+        image.src = reader.result as string;
+        image.onload = () => {
+          if (image.width === 500 && image.height === 500) {
+            this.imageUrl = reader.result;
+            const imgBase64Path = reader.result;
+            this.cardImageBase64 = imgBase64Path;
+            const formdata = new FormData();
+            formdata.append('file', file);
+            this.homeService.uploadMoreImage(formdata).subscribe((response: any) => {
+              this.otherImages = response;
+              this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000 });
+              this.editFile = false;
+              this.removeUpload = true;
+            });
+          } else {
+            this.toastr.error('Please upload an image with dimensions of 500x500px', 'Invalid Dimension', { timeOut: 3000, });
 
-
-        this.homeService.uploadMoreImage(formdata).subscribe((response: any) => {
-          this.otherImages = response;
-
-          this.editFile = false;
-          this.removeUpload = true;
-        })
-      }
-      // ChangeDetectorRef since file is loading outside the zone
-      // this.cd.markForCheck();
-
+          }
+        };
+      };
     }
+  }
+
+  removeUploadedImage() {
+    this.otherImages = null;
+    this.imageUrl = 'assets/images/file-upload-image.jpg';
+
   }
   saveScholarshipDetails() {
     this.moreModel.institute_id = localStorage.getItem('InstituteId');

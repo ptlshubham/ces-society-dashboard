@@ -19,9 +19,11 @@ export class StaffDetailsComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  staffProfileImage: any=null;
+  staffProfileImage: any = null;
   departmentData: any = [];
-  staffModel: any = {};
+  staffModel: any = {
+    joining_date: null
+  };
   staffData: any = [];
   staffDataTable: any = [];
   isOpen: boolean = false;
@@ -36,7 +38,6 @@ export class StaffDetailsComponent implements OnInit {
   constructor(
     private homeService: HomeService,
     private staffService: StaffService,
-    private datepipe: DatePipe,
     public toastr: ToastrService,
     public formBuilder: UntypedFormBuilder,
 
@@ -50,10 +51,10 @@ export class StaffDetailsComponent implements OnInit {
 
     this.validationForm = this.formBuilder.group({
       department: ['', [Validators.required]],
-      position:['', [Validators.required]],
-      designation:['', [Validators.required]],
-      qualification:['', [Validators.required]],
-      name:['', [Validators.required]],
+      position: ['', [Validators.required]],
+      designation: ['', [Validators.required]],
+      qualification: ['', [Validators.required]],
+      name: ['', [Validators.required]],
       contact: ['', [Validators.required, Validators.pattern("^((\\+91-?)|0)?[0-9]{10}$")]],
       email: ['', [Validators.required, Validators.email]],
       birthday_date: ['', [Validators.required]],
@@ -77,7 +78,6 @@ export class StaffDetailsComponent implements OnInit {
   getDepartmentDetails() {
     this.homeService.getDepartmentDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.departmentData = res;
-      debugger
     })
   }
   getPositionData() {
@@ -89,25 +89,37 @@ export class StaffDetailsComponent implements OnInit {
   uploadFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
-    if (event.target.files && event.target.files[0]) {
-      reader.readAsDataURL(file);
-      // When file uploads set it to file formcontrol
-      reader.onload = () => {
-        this.imageUrl = reader.result;
-        const imgBase64Path = reader.result;
-        this.cardImageBase64 = imgBase64Path;
-        const formdata = new FormData();
-        formdata.append('file', file);
-        this.staffService.saveStaffProfileImages(formdata).subscribe((response) => {
-          this.staffProfileImage = response;
-          this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
-          this.editFile = false;
-          this.removeUpload = true;
-        })
+    const img = new Image();
+    img.src = window.URL.createObjectURL(file);
+    img.onload = () => {
+      if (img.width === 472 && img.height === 472) {
+        if (event.target.files && event.target.files[0]) {
+          reader.readAsDataURL(file);
+          reader.onload = () => {
+            this.imageUrl = reader.result;
+            const imgBase64Path = reader.result;
+            this.cardImageBase64 = imgBase64Path;
+            const formdata = new FormData();
+            formdata.append('file', file);
+            this.staffService.saveStaffProfileImages(formdata).subscribe((response) => {
+              this.staffProfileImage = response;
+              this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
+              this.editFile = false;
+              this.removeUpload = true;
+            })
+          }
+        }
+      } else {
+        this.imageUrl = 'assets/images/file-upload-image.jpg';
+        this.staffProfileImage = null;
+        this.toastr.error('Please upload an image with dimensions of 472x472px', 'Invalid Dimension', { timeOut: 3000, });
       }
-      // ChangeDetectorRef since file is loading outside the zone
-      // this.cd.markForCheck();
-    }
+    };
+  }
+  removeUploadedImage() {
+    this.staffProfileImage = null;
+    this.imageUrl = 'assets/images/file-upload-image.jpg';
+
   }
   uploadPdfFile(event: any) {
     let reader = new FileReader(); // HTML5 FileReader API
@@ -146,10 +158,11 @@ export class StaffDetailsComponent implements OnInit {
       })
     }
   }
+
   getStaffDetails() {
     this.staffService.getAllStaffDetailsData(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.staffDataTable = res;
-
+      debugger
       for (let i = 0; i < this.staffDataTable.length; i++) {
         this.staffDataTable[i].index = i + 1;
       }
@@ -162,13 +175,19 @@ export class StaffDetailsComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   openUpdateStaff(data: any) {
-    this.staffModel.birthday_date = this.datepipe.transform(data.birthday_date, 'yyyy-MM-dd');
-    this.staffModel.joining_date = this.datepipe.transform(data.joining_date, 'yyyy-MM-dd');
+    this.staffModel.joining_date = new Date(data.joining_date).toISOString().slice(0, 10);
+    debugger
+    // this.staffModel.joining_date = this.datepipe.transform(data.joining_date, 'yyyy-MM-dd');
     this.imageUrl = 'http://localhost:9000' + data.profile_image
     this.staffModel = data;
     this.staffModel.profile = data.profile_image;
     this.isOpen = true;
     this.isUpdate = true;
+  }
+  onBirthdayDateChange(value: string) {
+    debugger
+    console.log('New birthday date:', value);
+    // Do whatever you need to do with the new value here
   }
   updateStaffDetails() {
     if (this.pdfResponse != null || undefined) {
