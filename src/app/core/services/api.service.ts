@@ -62,7 +62,9 @@ export class ApiService {
   public static removeBlogDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveBlogDetails/';
   public static uploadBlogImagesURL: string = ApiService.HOST_URL + '/admin/uploadBlogImages';
   public static uploadInfraImageURL: string = ApiService.HOST_URL + '/admin/UploadInfraImage';
+  public static uploadInfraMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadInfraMultiImage';
   public static saveInfrastructureDetailsURL: string = ApiService.HOST_URL + '/admin/SaveInfrastructureDetails';
+  public static getBlogsInfraMultiImageByIdURL: string = ApiService.HOST_URL + '/admin/GetInfraMultiImagesById/';
   public static updateInfraDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateInfraDetails';
   public static removeInfraDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveInfraDetails/';
   public static getInfraDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetInfraDetailsById/';

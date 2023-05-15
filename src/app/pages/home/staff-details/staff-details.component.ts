@@ -67,6 +67,7 @@ export class StaffDetailsComponent implements OnInit {
     this.isOpen = true;
     this.isUpdate = false;
     this.staffModel = {};
+    this.staffProfileImage = null;
     this.imageUrl = 'assets/images/file-upload-image.jpg';
   }
   backToTable() {
@@ -105,6 +106,7 @@ export class StaffDetailsComponent implements OnInit {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
               this.editFile = false;
               this.removeUpload = true;
+
             })
           }
         }
@@ -189,10 +191,12 @@ export class StaffDetailsComponent implements OnInit {
     // Do whatever you need to do with the new value here
   }
   updateStaffDetails() {
+    debugger
     if (this.pdfResponse != null || undefined) {
       this.staffModel.researchPaper = this.pdfResponse;
     }
     if (this.staffProfileImage != null || undefined) {
+      debugger
       this.staffModel.profile = this.staffProfileImage;
     }
     this.staffService.updaetStaffDetails(this.staffModel).subscribe((res: any) => {

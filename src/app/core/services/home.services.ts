@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class HomeService {
-    
+
     constructor(
         private http: HttpClient
     ) { }
@@ -79,6 +79,12 @@ export class HomeService {
     }
     uploadOInfraImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadInfraImageURL, img);
+    }
+    uploadInfraMultiImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadInfraMultiImageURL, img);
+    }
+    getInfraMultiImageById(id: any) {
+        return this.http.get(ApiService.getBlogsInfraMultiImageByIdURL + id);
     }
     saveInfrastructureDetails(data: any) {
         return this.http.post(ApiService.saveInfrastructureDetailsURL, data);
@@ -186,18 +192,18 @@ export class HomeService {
     saveAnswerkeyListData(data: any) {
         return this.http.post(ApiService.saveAnswerkeyDataListURL, data);
     }
-    generateCertificate(data:any): Observable<any>{
+    generateCertificate(data: any): Observable<any> {
         debugger
         return this.http.post<any>(ApiService.generateRahatokarshCertficateURL, data);
     }
-    
+
     removeAnswerkeyDataById(id: any) {
         return this.http.get(ApiService.removeAnswerkeyByIdDetailsURL + id);
     }
     getAnswerkeyDataById() {
         return this.http.get(ApiService.getAnswerkeyByIdDetailsURL);
     }
-    getMicroDonation(){
+    getMicroDonation() {
         return this.http.get(ApiService.getRahatokarshDonationListURL);
     }
 }

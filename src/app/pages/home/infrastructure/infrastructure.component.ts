@@ -19,30 +19,37 @@ export class InfrastructureComponent implements OnInit {
   removeUpload: boolean = false;
   cardImageBase64: any;
   infraImages: any;
+  infraMultiImage: any = [];
   infraData: any = [];
   infraModel: any = {};
   isOpen: boolean = false;
   isUpdate: boolean = false;
-
+  addMultiImg: any = [];
+  val: number = 0;
   page = 1;
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
+  infraMulti: any = [];
+  multiImage: any = [];
   constructor(
     private homeService: HomeService,
     private router: Router,
-    private datepipe: DatePipe,
     public toastr: ToastrService,
 
   ) { }
 
   ngOnInit(): void {
+    this.val++;
     this.getInfraDataById();
-
   }
   openAddInfra() {
+    this.infraModel = {};
+    this.addMultiImg = [];
+    this.imageUrl = 'assets/images/file-upload-image.jpg';
     this.isOpen = true;
     this.isUpdate = false;
+
   }
   closeAddInfra() {
     this.isOpen = false;
@@ -71,7 +78,6 @@ export class InfrastructureComponent implements OnInit {
             });
           } else {
             this.toastr.error('Please upload an image with dimensions of 500x500px', 'Invalid Dimension', { timeOut: 3000, });
-
           }
         };
       };
@@ -84,7 +90,8 @@ export class InfrastructureComponent implements OnInit {
   }
   saveInfraDetails() {
     this.infraModel.institute_id = localStorage.getItem('InstituteId');
-    this.infraModel.infraImage = this.infraImages
+    this.infraModel.infraImage = this.infraImages;
+    this.infraModel.infraMultiImage = this.infraMultiImage;
     this.homeService.saveInfrastructureDetails(this.infraModel).subscribe((res: any) => {
       this.infraData = res;
       this.toastr.success('Infrastructure Details added Successfully.', 'Saved', { timeOut: 3000, });
@@ -93,15 +100,70 @@ export class InfrastructureComponent implements OnInit {
       this.getInfraDataById();
     })
   }
-
+  addServiceList() {
+    this.val++;
+    this.addMultiImg.push(
+      {
+        name: this.val,
+        multiImageUrl: 'assets/images/file-upload-image.jpg'
+      }
+    );
+  }
+  uploadMultiFile(event: any, ind: any) {
+    debugger
+    let reader = new FileReader(); // HTML5 FileReader API
+    let file = event.target.files[0];
+    if (event.target.files && event.target.files[0]) {
+      reader.readAsDataURL(file);
+      reader.onload = () => {
+        const image = new Image();
+        image.src = reader.result as string;
+        image.onload = () => {
+          if (image.width === 500 && image.height === 500) {
+            this.addMultiImg[ind].multiImageUrl = reader.result;
+            const imgBase64Path = reader.result;
+            this.cardImageBase64 = imgBase64Path;
+            const formdata = new FormData();
+            formdata.append('file', file);
+            this.homeService.uploadInfraMultiImage(formdata).subscribe((response) => {
+              this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
+              this.infraMultiImage.push(response);
+              this.addMultiImg[ind].multiImageUrl ='http://localhost:9000' + response;
+              this.editFile = false;
+              this.removeUpload = true;
+            });
+          } else {
+            this.toastr.error('Please upload an image with dimensions of 500x500px', 'Invalid Dimension', { timeOut: 3000, });
+          }
+        };
+      };
+    }
+  }
+  removeServiceList(val: any) {
+    this.addMultiImg.splice(val, 1);
+  }
   editInfraDetails(data: any) {
     this.infraModel = data;
+    this.getInfraMultiImages(data.id);
     this.imageUrl = 'http://localhost:9000' + data.infraImage
-    debugger
     this.isOpen = true;
     this.isUpdate = true;
   }
+  getInfraMultiImages(id: any) {
+    this.multiImage = [];
+    this.homeService.getInfraMultiImageById(id).subscribe((res: any) => {
+      this.infraMulti = res;
+      if (this.infraMulti.length > 0) {
+        this.infraMulti.forEach((element: any,ind:any) => {
+          this.multiImage.push({ name: ind+1, multiImageUrl: 'http://localhost:9000' + element.image });
+        });
+      }
+      this.addMultiImg = this.multiImage;
+    })
+  }
   updateInfraDetails() {
+    this.addMultiImg
+    debugger
     if (this.infraImages != null || undefined) {
       this.infraModel.infraImage = this.infraImages;
     }

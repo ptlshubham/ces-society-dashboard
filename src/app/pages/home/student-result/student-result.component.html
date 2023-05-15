@@ -12,6 +12,21 @@
                         <div class="row">
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
+                                    <label class="form-label">Select Year</label>
+                                    <select required class="form-control form-select" [(ngModel)]="resultModel.year"
+                                        formControlName="year" (change)="onYearChange($event)"
+                                        [ngClass]="{'is-invalid': f.year.touched && f.year.errors}">
+                                        <option value>Select</option>
+                                        <option value="{{c.value}}" *ngFor="let c of years;">{{c.value}}</option>
+                                    </select>
+                                    <div *ngIf="f.year.touched && f.year.errors" class="invalid-feedback">
+                                        <span *ngIf="f.year.errors.required">This Field is
+                                            required.</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-xl-4 col-md-6">
+                                <div class="form-group mb-3">
                                     <label>Enter Title</label>
                                     <textarea id="basicpill-address-input1" class="form-control" rows="2" id="title"
                                         placeholder="Enter Title" formControlName="title"
@@ -48,15 +63,13 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <div class="row justify-content-end">
-                                <div class="col-lg-1 col-xl-1 col-md-1 col-sm-2 col-xs-12">
-                                    <button type="submit" class="btn btn-primary" (click)="saveResultDetails()"
-                                        *ngIf="isUpdate==false"
-                                        [disabled]="validationForm.invalid || resultImage ==null">Submit</button>
-                                    <button type="submit" class="btn btn-primary" (click)="updateResultDetails()"
-                                        *ngIf="isUpdate==true"
-                                        [disabled]="validationForm.invalid || resultImage ==null">Update</button>
-                                </div>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary" (click)="saveResultDetails()"
+                                    *ngIf="isUpdate==false"
+                                    [disabled]="validationForm.invalid || resultImage ==null">Submit</button>
+                                <button type="submit" class="btn btn-primary" (click)="updateResultDetails()"
+                                    *ngIf="isUpdate==true"
+                                    [disabled]="validationForm.invalid || resultImage ==null">Update</button>
                             </div>
                         </div>
                     </form>
@@ -69,7 +82,17 @@
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
-                <h5 class="card-title">Student result List</h5>
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">Student result List</h5>
+                    <div class="form-group mb-3">
+                        <label class="form-label">Select Year</label>
+                        <select required class="form-control form-select" [(ngModel)]="currentYears"
+                            (change)="onYearChange($event)" [ngClass]="{'is-invalid': f.year.touched && f.year.errors}">
+                            <option value>Select</option>
+                            <option value="{{c.value}}" *ngFor="let c of years">{{c.value}}</option>
+                        </select>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -77,14 +100,16 @@
                         <thead class="table-light">
                             <tr>
                                 <th class="text-left">#</th>
+                                <th class="text-center">Year</th>
                                 <th class="text-center">Title</th>
                                 <th class="text-center">Image</th>
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let c of paginateData;let i=index">
+                            <tr *ngFor="let c of filterData;let i=index">
                                 <td class="text-left">{{c.index}}</td>
+                                <td class="text-center">{{c.year}}</td>
                                 <td class="text-center">{{c.title}}</td>
                                 <td class="text-center">
                                     <img src="http://localhost:9000{{c.image}}" alt="" class="rounded avatar-lg">

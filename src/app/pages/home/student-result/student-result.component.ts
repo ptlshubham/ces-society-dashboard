@@ -19,11 +19,14 @@ export class StudentResultComponent implements OnInit {
   isUpdate: boolean = false;
   resultModel: any = {};
   resultData: any = [];
+  filterData: any = [];
 
   page = 1;
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
+  years: { value: string }[] = [];
+  currentYears: any;
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
@@ -35,7 +38,13 @@ export class StudentResultComponent implements OnInit {
     this.getResultDataById();
     this.validationForm = this.formBuilder.group({
       title: ['', [Validators.required]],
+      year: ['', [Validators.required]]
     });
+    const currentYear = new Date().getFullYear();
+    this.currentYears = currentYear;
+    for (let i = 2010; i <= currentYear; i++) {
+      this.years.push({ value: i.toString() });
+    }
   }
   get f() { return this.validationForm.controls; }
 
@@ -66,16 +75,27 @@ export class StudentResultComponent implements OnInit {
 
     }
   }
+  onYearChange(event: any) {
+    console.log('Selected Year:', event.target.value);
+    this.filterData = [];
+    this.resultData.forEach((element: any) => {
+      if (element.year == event.target.value) {
+        this.filterData.push(element);
+      }
+    });
+    this.paginateData = this.filterData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
   saveResultDetails() {
     this.resultModel.image = this.resultImage;
     this.resultModel.institute_id = localStorage.getItem('InstituteId');
-
     this.homeService.saveResultData(this.resultModel).subscribe((res: any) => {
       this.resultData = res;
+      this.resultModel = {};
+      this.validationForm.markAsUntouched();
+      this.imageUrl = 'assets/images/file-upload-image.jpg';
       this.toastr.success('Student Result Details Successfully Saved.', 'Success', { timeOut: 3000, });
-
       this.getResultDataById();
-
     })
   }
   getResultDataById() {
@@ -90,7 +110,13 @@ export class StudentResultComponent implements OnInit {
     })
   }
   getPagintaion() {
-    this.paginateData = this.resultData
+    this.filterData = [];
+    this.resultData.forEach((element: any) => {
+      if (element.year == this.currentYears) {
+        this.filterData.push(element);
+      }
+    });
+    this.paginateData = this.filterData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   openEditResult(data: any) {
@@ -104,11 +130,9 @@ export class StudentResultComponent implements OnInit {
     if (this.resultImage != null || undefined) {
       this.resultModel.profile = this.resultImage;
     }
-
     this.homeService.updateResultDetails(this.resultModel).subscribe((res: any) => {
       this.resultData = res;
       this.toastr.success('Result Details Successfully Updated.', 'Updated', { timeOut: 3000, });
-
       this.getResultDataById();
     })
   }
@@ -116,8 +140,8 @@ export class StudentResultComponent implements OnInit {
     this.homeService.removeResultDetailsById(id).subscribe((res: any) => {
       this.resultData = res;
       this.toastr.success('Result Details Removed Successfully.', 'Deleted', { timeOut: 3000, });
-
       this.getResultDataById();
+      // this.getPagintaion();
     })
   }
 }
