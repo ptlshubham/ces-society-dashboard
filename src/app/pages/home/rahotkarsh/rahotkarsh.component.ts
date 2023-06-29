@@ -40,7 +40,7 @@ export class RahotkarshComponent implements OnInit {
 
   }
   goToBulkUpload() {
-    this.router.navigate(['/home/rahotkarsh-bulk']);
+    this.router.navigate(['/rahotkarsh-bulk']);
   }
   getAllInstituteDetails() {
     this.homeService.getAllInstituteData().subscribe((res: any) => {

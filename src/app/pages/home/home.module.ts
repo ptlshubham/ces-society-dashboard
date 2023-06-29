@@ -32,6 +32,8 @@ import { QuestionPapersComponent } from './question-papers/question-papers.compo
 import { GatePassComponent } from './gate-pass/gate-pass.component';
 import { AnswerKeyComponent } from './answer-key/answer-key.component';
 import { MicroDonationComponent } from './micro-donation/micro-donation.component';
+import { NaacComponent } from './naac/naac.component';
+import { NgSelectModule } from '@ng-select/ng-select';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -69,6 +71,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     GatePassComponent,
     AnswerKeyComponent,
     MicroDonationComponent,
+    NaacComponent,
   ],
   imports: [
     CommonModule,
@@ -88,7 +91,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgbTooltipModule,
     NgbPaginationModule,
     NgbToastModule,
-    ToastrModule.forRoot()
+    NgSelectModule,
+    ToastrModule.forRoot(),
   ],
   providers: [
     DatePipe,

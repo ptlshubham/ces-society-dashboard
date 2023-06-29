@@ -20,6 +20,9 @@ export class MagazineComponent implements OnInit {
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
+  progressValue: number = 0; // Variable to track the progress value
+  progressType: string = 'success'; // Type of progress bar (success, info, warning, danger)
+  isProgress: boolean = false;
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
@@ -55,28 +58,33 @@ export class MagazineComponent implements OnInit {
     }
   }
   uploadFile(event: any) {
+    this.isProgress = true;
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
+      // When file uploads set it to file form control
       reader.onload = () => {
         const formdata = new FormData();
         formdata.append('file', file);
-
+        // Reset progress bar
+        this.progressValue = 0;
+        this.progressType = 'success';
         this.homeService.savePdfData(formdata).subscribe((response) => {
+          this.toastr.success('File uploaded successfully.', 'Success', { timeOut: 3000 });
           this.pdfResponse = response;
-          this.toastr.success('Files uploaded Successfully', 'Uploaded', {
-            timeOut: 3000,
-          });
-        })
-      }
+        }, (error) => {
+          this.toastr.error('File upload failed.', 'Error', { timeOut: 3000 });
+          this.progressType = 'danger';
+        }, () => {
+          this.progressValue = 100; // Set progress bar to 100% when upload is complete
+        });
+      };
     }
   }
   viewDownloadPdf(data: any) {
     var path
-    path = 'http://localhost:9000' + data
+    path = 'https://bapsanandmandir.co.in' + data
 
     window.open(path, '_blank');
   }

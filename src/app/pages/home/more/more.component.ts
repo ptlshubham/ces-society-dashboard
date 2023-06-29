@@ -124,6 +124,6 @@ export class MoreComponent implements OnInit {
     })
   }
   viewMoreDetails(id: any) {
-    this.router.navigate(['/home/more-details', id]);
+    this.router.navigate(['/more-details', id]);
   }
 }

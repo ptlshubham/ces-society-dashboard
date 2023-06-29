@@ -183,6 +183,10 @@ export class HomeService {
     removeMagazineList(id: any) {
         return this.http.get(ApiService.removeMagazineListURL + id);
     }
+    removeNaacCrieteriaList(id: any) {
+        debugger
+        return this.http.get(ApiService.removeCrietriaListURL + id);
+    }
     getCounselingList() {
         return this.http.get(ApiService.getCounselingDataURL);
     }
@@ -196,7 +200,6 @@ export class HomeService {
         debugger
         return this.http.post<any>(ApiService.generateRahatokarshCertficateURL, data);
     }
-
     removeAnswerkeyDataById(id: any) {
         return this.http.get(ApiService.removeAnswerkeyByIdDetailsURL + id);
     }
@@ -205,5 +208,17 @@ export class HomeService {
     }
     getMicroDonation() {
         return this.http.get(ApiService.getRahatokarshDonationListURL);
+    }
+    saveNaacDetails(data: any): Observable<any> {
+        return this.http.post(ApiService.saveNaacDetailsURL, data);
+    }
+    getNAACData() {
+        return this.http.get(ApiService.getNaacDataURL);
+    }
+    getKeyNoGroup() {
+        return this.http.get(ApiService.getKeyNoDataGroupByURL);
+    }
+    updateNAACData(data: any) {
+        return this.http.post(ApiService.updateNAACDataURL, data);
     }
 }

@@ -177,18 +177,19 @@
                             <div class="col-xl-3 col-md-3" *ngIf="staffModel.researchPaper!=null ||undefined">
                                 <div class="form-group mb-3">
                                     <label>View Uploaded Research Paper</label>
-                                    <a href="http://localhost:9000{{staffModel.researchPaper}}" target="_blank">
+                                    <a href="https://bapsanandmandir.co.in{{staffModel.researchPaper}}" target="_blank">
                                         <img src="assets/images/pdf.png" alt="pdf" class="img-thumbnail"></a>
                                 </div>
                             </div>
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>Research PDF Uploader (Optional)</label>
-                                    <input class="form-control" type="file" id="formFile"
+                                    <input class="form-control mb-2" type="file" id="formFile"
                                         (change)="uploadPdfFile($event)">
+                                    <ngb-progressbar [value]="progressValue" [type]="progressType"
+                                        *ngIf="isProgress"></ngb-progressbar>
                                 </div>
                             </div>
-
                         </div>
                         <div class="form-group">
                             <div class="row justify-content-end">
@@ -239,10 +240,10 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of paginateData;let i=index">
-                                <td class="text-left">{{i+1}}</td>
+                                <td class="text-left">{{s.index}}</td>
                                 <td class="text-center">{{s.departmentName}} </td>
                                 <td class="text-center">
-                                    <img src="http://localhost:9000{{s.profile_image}}" alt=""
+                                    <img src="https://bapsanandmandir.co.in{{s.profile_image}}" alt=""
                                         class="rounded avatar-lg">
                                 </td>
                                 <td class="text-center">{{s.name}} </td>

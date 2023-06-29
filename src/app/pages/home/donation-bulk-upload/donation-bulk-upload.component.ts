@@ -28,7 +28,7 @@ export class DonationBulkUploadComponent implements OnInit {
   ngOnInit(): void {
   }
   backToTable() {
-    this.router.navigate(['/home/donation']);
+    this.router.navigate(['/donation']);
 
   }
   onFileChange(evt: any) {

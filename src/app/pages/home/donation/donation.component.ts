@@ -27,7 +27,7 @@ export class DonationComponent implements OnInit {
     this.getAllDonnerDetails();
   }
   goToBulkUpload() {
-    this.router.navigate(['/home/donation-bulk']);
+    this.router.navigate(['/donation-bulk']);
   }
   saveDonnerDetails() {
     this.donationService.saveDonnerDetails(this.donataionModel).subscribe((res: any) => {

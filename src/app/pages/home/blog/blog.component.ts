@@ -89,7 +89,7 @@ export class BlogComponent implements OnInit {
   editBlogDetails(data: any) {
     this.blogModel = data;
     this.blogModel.blogDate = this.datepipe.transform(data.blogDate, 'yyyy-MM-dd');
-    this.imageUrl = 'http://localhost:9000' + data.blogImage
+    this.imageUrl = 'https://bapsanandmandir.co.in' + data.blogImage
     this.isopen = true;
     this.isUpdate = true;
 
@@ -122,7 +122,7 @@ export class BlogComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   viewBlogDetails(id: any) {
-    this.router.navigate(['/home/details', id]);
+    this.router.navigate(['/details', id]);
   }
   removeBlogById(id: any) {
     this.homeService.removeBlog(id).subscribe((res: any) => {

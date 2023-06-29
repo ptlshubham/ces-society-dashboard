@@ -33,7 +33,9 @@ export class StaffDetailsComponent implements OnInit {
   collectionSize = 0;
   paginateData: any = [];
   pdfResponse: any;
-
+  progressValue: number = 0; // Variable to track the progress value
+  progressType: string = 'success'; // Type of progress bar (success, info, warning, danger)
+  isProgress: boolean = false;
   constructor(
     private homeService: HomeService,
     private staffService: StaffService,
@@ -122,23 +124,48 @@ export class StaffDetailsComponent implements OnInit {
     this.imageUrl = 'assets/images/file-upload-image.jpg';
 
   }
+  // uploadPdfFile(event: any) {
+  //   let reader = new FileReader(); // HTML5 FileReader API
+  //   let file = event.target.files[0];
+  //   if (event.target.files && event.target.files[0]) {
+  //     reader.readAsDataURL(file);
+
+  //     // When file uploads set it to file formcontrol
+  //     reader.onload = () => {
+  //       const formdata = new FormData();
+  //       formdata.append('file', file);
+
+  //       this.homeService.savePdfData(formdata).subscribe((response) => {
+  //         this.toastr.success('File uploaded successfully.', 'Success', { timeOut: 3000, });
+
+  //         this.pdfResponse = response;
+  //       })
+  //     }
+  //   }
+  // }
   uploadPdfFile(event: any) {
+    this.isProgress = true;
     let reader = new FileReader(); // HTML5 FileReader API
     let file = event.target.files[0];
     if (event.target.files && event.target.files[0]) {
       reader.readAsDataURL(file);
-
-      // When file uploads set it to file formcontrol
+      // When file uploads set it to file form control
       reader.onload = () => {
         const formdata = new FormData();
         formdata.append('file', file);
-
+        // Reset progress bar
+        this.progressValue = 0;
+        this.progressType = 'success';
         this.homeService.savePdfData(formdata).subscribe((response) => {
-          this.toastr.success('File uploaded successfully.', 'Success', { timeOut: 3000, });
-
+          this.toastr.success('File uploaded successfully.', 'Success', { timeOut: 3000 });
           this.pdfResponse = response;
-        })
-      }
+        }, (error) => {
+          this.toastr.error('File upload failed.', 'Error', { timeOut: 3000 });
+          this.progressType = 'danger';
+        }, () => {
+          this.progressValue = 100; // Set progress bar to 100% when upload is complete
+        });
+      };
     }
   }
   saveStaffDetails() {
@@ -163,10 +190,10 @@ export class StaffDetailsComponent implements OnInit {
   getStaffDetails() {
     this.staffService.getAllStaffDetailsData(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.staffDataTable = res;
-      debugger
       for (let i = 0; i < this.staffDataTable.length; i++) {
         this.staffDataTable[i].index = i + 1;
       }
+      debugger
       this.collectionSize = this.staffDataTable.length;
       this.getPagintaion();
     })
@@ -177,26 +204,22 @@ export class StaffDetailsComponent implements OnInit {
   }
   openUpdateStaff(data: any) {
     this.staffModel.joining_date = new Date(data.joining_date).toISOString().slice(0, 10);
-    debugger
     // this.staffModel.joining_date = this.datepipe.transform(data.joining_date, 'yyyy-MM-dd');
-    this.imageUrl = 'http://localhost:9000' + data.profile_image
+    this.imageUrl = 'https://bapsanandmandir.co.in' + data.profile_image
     this.staffModel = data;
     this.staffModel.profile = data.profile_image;
     this.isOpen = true;
     this.isUpdate = true;
   }
   onBirthdayDateChange(value: string) {
-    debugger
     console.log('New birthday date:', value);
     // Do whatever you need to do with the new value here
   }
   updateStaffDetails() {
-    debugger
     if (this.pdfResponse != null || undefined) {
       this.staffModel.researchPaper = this.pdfResponse;
     }
     if (this.staffProfileImage != null || undefined) {
-      debugger
       this.staffModel.profile = this.staffProfileImage;
     }
     this.staffService.updaetStaffDetails(this.staffModel).subscribe((res: any) => {

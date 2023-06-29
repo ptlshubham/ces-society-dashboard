@@ -29,7 +29,7 @@ export class RahotkarshBulkUploadComponent implements OnInit {
   ngOnInit(): void {
   }
   backToTable() {
-    this.router.navigate(['/home/rahotkarsh']);
+    this.router.navigate(['/rahotkarsh']);
 
   }
   onFileChange(evt: any) {

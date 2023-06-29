@@ -26,6 +26,7 @@ import { RahotkarshComponent } from './rahotkarsh/rahotkarsh.component';
 import { StaffDetailsComponent } from './staff-details/staff-details.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentResultComponent } from './student-result/student-result.component';
+import { NaacComponent } from './naac/naac.component';
 
 const routes: Routes = [
   {
@@ -131,6 +132,10 @@ const routes: Routes = [
   {
     path:'micro-donation',
     component:MicroDonationComponent
+  },
+  {
+    path:'naac',
+    component:NaacComponent
   }
 
 ];

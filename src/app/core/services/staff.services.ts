@@ -17,6 +17,7 @@ export class StaffService {
         return this.http.post(ApiService.saveStaffDetailsListURL, data);
     }
     updaetStaffDetails(data: any) {
+        debugger
         return this.http.post(ApiService.updateStaffDetailsByIdURL, data);
     }
     getAllStaffDetailsData(id: any) {

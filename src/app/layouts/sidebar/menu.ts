@@ -18,7 +18,7 @@ export const MENU: MenuItem[] = [
         id: 3,
         label: 'Department List',
         icon: 'list',
-        link: '/home/department',
+        link: '/department',
         role: 'Institute',
 
     },
@@ -26,7 +26,7 @@ export const MENU: MenuItem[] = [
         id: 4,
         label: 'Image Uploader',
         icon: 'image',
-        link: '/home/image-upload',
+        link: '/image-upload',
         role: 'Institute',
 
 
@@ -35,7 +35,7 @@ export const MENU: MenuItem[] = [
         id: 5,
         label: 'News Organizer',
         icon: 'send',
-        link: '/home/news',
+        link: '/news',
         role: 'Institute'
 
     },
@@ -43,7 +43,7 @@ export const MENU: MenuItem[] = [
         id: 6,
         label: 'Staff List',
         icon: 'users',
-        link: '/home/staff-details',
+        link: '/staff-details',
         role: 'Institute'
 
     },
@@ -51,7 +51,7 @@ export const MENU: MenuItem[] = [
         id: 7,
         label: 'Student List',
         icon: 'users',
-        link: '/home/student-details',
+        link: '/student-details',
         role: 'Institute'
 
     },
@@ -59,7 +59,7 @@ export const MENU: MenuItem[] = [
         id: 8,
         label: 'Forms,Syllabus & Report',
         icon: 'file-text',
-        link: '/home/others',
+        link: '/others',
         role: 'Institute'
 
     },
@@ -67,7 +67,7 @@ export const MENU: MenuItem[] = [
         id: 10,
         label: 'Student Result',
         icon: 'file-text',
-        link: '/home/result',
+        link: '/result',
         role: 'Institute'
 
     },
@@ -75,7 +75,7 @@ export const MENU: MenuItem[] = [
         id: 11,
         label: 'Infrastructure',
         icon: 'home',
-        link: '/home/infrastructure',
+        link: '/infrastructure',
         role: 'Institute'
 
     },
@@ -83,7 +83,7 @@ export const MENU: MenuItem[] = [
         id: 12,
         label: 'Blogs',
         icon: 'file-plus',
-        link: '/home/blog',
+        link: '/blog',
         role: 'Institute'
 
     },
@@ -91,7 +91,7 @@ export const MENU: MenuItem[] = [
         id: 17,
         label: 'Contact US List',
         icon: 'list',
-        link: '/home/contact-list',
+        link: '/contact-list',
         role: 'Institute'
 
     },
@@ -99,7 +99,7 @@ export const MENU: MenuItem[] = [
         id: 19,
         label: 'Scholarship & Calendar',
         icon: 'calendar',
-        link: '/home/more',
+        link: '/more',
         role: 'Institute'
 
     },
@@ -107,7 +107,15 @@ export const MENU: MenuItem[] = [
         id: 20,
         label: 'Old Question Papers',
         icon: 'file-text',
-        link: '/home/papers',
+        link: '/papers',
+        role: 'Institute'
+
+    },
+    {
+        id: 21,
+        label: 'NAAC',
+        icon: 'book',
+        link: '/naac',
         role: 'Institute'
 
     }
@@ -130,7 +138,7 @@ export const CES: MenuItem[] = [
         id: 3,
         label: 'Department List',
         icon: 'list',
-        link: '/home/department',
+        link: '/department',
         role: 'Institute',
 
     },
@@ -138,7 +146,7 @@ export const CES: MenuItem[] = [
         id: 4,
         label: 'Image Uploader',
         icon: 'image',
-        link: '/home/image-upload',
+        link: '/image-upload',
         role: 'Institute',
 
 
@@ -147,7 +155,7 @@ export const CES: MenuItem[] = [
         id: 5,
         label: 'News Organizer',
         icon: 'send',
-        link: '/home/news',
+        link: '/news',
         role: 'Institute'
 
     },
@@ -155,7 +163,7 @@ export const CES: MenuItem[] = [
         id: 6,
         label: 'Staff List',
         icon: 'users',
-        link: '/home/staff-details',
+        link: '/staff-details',
         role: 'Institute'
 
     },
@@ -163,7 +171,7 @@ export const CES: MenuItem[] = [
         id: 7,
         label: 'Student List',
         icon: 'users',
-        link: '/home/student-details',
+        link: '/student-details',
         role: 'Institute'
 
     },
@@ -171,13 +179,13 @@ export const CES: MenuItem[] = [
         id: 22,
         label: 'Rahatokarsh Donation',
         icon: 'star',
-        link: '/home/micro-donation',
+        link: '/micro-donation',
     },
     {
         id: 8,
         label: 'Forms,Syllabus & Report',
         icon: 'file-text',
-        link: '/home/others',
+        link: '/others',
         role: 'Institute'
 
     },
@@ -185,7 +193,7 @@ export const CES: MenuItem[] = [
         id: 9,
         label: 'Magazine',
         icon: 'book',
-        link: '/home/magazine',
+        link: '/magazine',
         role: 'Institute'
 
     },
@@ -193,7 +201,7 @@ export const CES: MenuItem[] = [
         id: 10,
         label: 'Student Result',
         icon: 'file-text',
-        link: '/home/result',
+        link: '/result',
         role: 'Institute'
 
     },
@@ -201,7 +209,7 @@ export const CES: MenuItem[] = [
         id: 11,
         label: 'Infrastructure',
         icon: 'home',
-        link: '/home/infrastructure',
+        link: '/infrastructure',
         role: 'Institute'
 
     },
@@ -209,7 +217,7 @@ export const CES: MenuItem[] = [
         id: 12,
         label: 'Blogs',
         icon: 'file-plus',
-        link: '/home/blog',
+        link: '/blog',
         role: 'Institute'
 
     },
@@ -217,7 +225,7 @@ export const CES: MenuItem[] = [
         id: 13,
         label: 'Donner List',
         icon: 'list',
-        link: '/home/donation',
+        link: '/donation',
         role: 'Admin'
 
     },
@@ -225,7 +233,7 @@ export const CES: MenuItem[] = [
         id: 14,
         label: 'Rahotkarsh Fee Fund',
         icon: 'list',
-        link: '/home/rahotkarsh',
+        link: '/rahotkarsh',
         role: 'Admin'
 
     },
@@ -233,44 +241,44 @@ export const CES: MenuItem[] = [
         id: 16,
         label: 'Alumni List',
         icon: 'list',
-        link: '/home/alumni-list',
+        link: '/alumni-list',
         role: 'Institute',
     },
     {
         id: 17,
         label: 'Contact US List',
         icon: 'list',
-        link: '/home/contact-list',
+        link: '/contact-list',
     },
     {
         id: 18,
         label: 'Counseling List',
         icon: 'calendar',
-        link: '/home/counseling',
+        link: '/counseling',
     },
     {
         id: 19,
         label: 'Scholarship & Calendar',
         icon: 'calendar',
-        link: '/home/more',
+        link: '/more',
     },
     {
         id: 20,
         label: 'Old Question Papers',
         icon: 'file-text',
-        link: '/home/papers',
+        link: '/papers',
     },
     {
         id: 21,
         label: 'Gate Pass',
         icon: 'key',
-        link: '/home/gate-pass',
+        link: '/gate-pass',
     },
     {
         id: 22,
         label: 'Answer-key',
         icon: 'key',
-        link: '/home/answer-key',
+        link: '/answer-key',
     }
 ];
 export const superAdmin: MenuItem[] = [
@@ -289,53 +297,53 @@ export const superAdmin: MenuItem[] = [
         id: 15,
         label: 'Institute List',
         icon: 'list',
-        link: '/home/college-list',
+        link: '/college-list',
 
     },
     {
         id: 9,
         label: 'Magazine',
         icon: 'book',
-        link: '/home/magazine',
+        link: '/magazine',
 
     },
     {
         id: 13,
         label: 'Donner List',
         icon: 'list',
-        link: '/home/donation',
+        link: '/donation',
 
     },
     {
         id: 14,
         label: 'Rahotkarsh Fee Fund',
         icon: 'list',
-        link: '/home/rahotkarsh',
+        link: '/rahotkarsh',
 
     },
     {
         id: 16,
         label: 'Alumni List',
         icon: 'list',
-        link: '/home/alumni-list',
+        link: '/alumni-list',
     },
     {
         id: 18,
         label: 'Counseling List',
         icon: 'calendar',
-        link: '/home/counseling',
+        link: '/counseling',
     },
     {
         id: 21,
         label: 'Gate Pass',
         icon: 'key',
-        link: '/home/gate-pass',
+        link: '/gate-pass',
     },
     {
         id: 22,
-        label:'Answer-key',
-        icon:'key',
-        link: '/home/answer-key',
+        label: 'Answer-key',
+        icon: 'key',
+        link: '/answer-key',
     }
 ];
 

@@ -1,16 +1,14 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpHeaders } from '@angular/common/http';
 declare var $: any;
 @Injectable({
   providedIn: 'root'
 })
 export class ApiService {
-  public static HOST_URL: string = "http://localhost:9000";
-  // public static HOST_URL: string = "https://bapsanandmandir.co.in";
+  // public static HOST_URL: string = "http://localhost:9000";
+  public static HOST_URL: string = "https://bapsanandmandir.co.in";
 
-  toasts: any[] = [];
   constructor(
-    private http: HttpClient,
   ) { }
   httpOption = {
     headers: new HttpHeaders({
@@ -82,14 +80,13 @@ export class ApiService {
   public static saveOthersDataListURL: string = ApiService.HOST_URL + '/admin/SaveOthersDataList';
   public static removeOtherDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveOtherDetailsById/'
   public static getOthersByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetOthersByIdDetails/';
-
   public static saveStudentListDataURL: string = ApiService.HOST_URL + '/admin/SaveStudentListData';
   public static updateStudentListDataURL: string = ApiService.HOST_URL + '/admin/UpdateStudentListData';
   public static removeStudentListDataURL: string = ApiService.HOST_URL + '/admin/RemoveStudentListData/';
   public static getStudentListDataURL: string = ApiService.HOST_URL + '/admin/GetStudentListData/';
-
   public static saveMagazineListURL: string = ApiService.HOST_URL + '/admin/SaveMagazineList';
   public static removeMagazineListURL: string = ApiService.HOST_URL + '/admin/RemoveMagazineList/';
+  public static removeCrietriaListURL: string = ApiService.HOST_URL + '/admin/RemoveCrietriaListURL/';
   public static getMagazineListURL: string = ApiService.HOST_URL + '/admin/GetMagazineList';
   public static getCounselingDataURL: string = ApiService.HOST_URL + '/admin/GetCounselingData';
   public static getRahatokarshDonationListURL: string = ApiService.HOST_URL + '/admin/GetRahatokarshDonationList';
@@ -98,21 +95,19 @@ export class ApiService {
   public static saveScholarshipDetailsURL: string = ApiService.HOST_URL + '/admin/SaveScholarshipDetails';
   public static getScholarshipDetailsURL: string = ApiService.HOST_URL + '/admin/GetScholarshipDetails/';
   public static removeScholarshipDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveScholarshipDetails/';
-
   public static saveQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/SaveQuestionPapersDetails';
   public static getQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/GetQuestionPapersDetails/';
   public static removeQuestionPapersDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveQuestionPapersDetails/';
-
   public static saveGatePassUserListURL: string = ApiService.HOST_URL + '/admin/SaveGatePassUserList';
   public static getGatePassUserListURL: string = ApiService.HOST_URL + '/admin/GetGatePassUserList';
-
   public static updateActiveDeactiveAnswerkeyURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveAnswerkey';
   public static saveAnswerkeyDataListURL: string = ApiService.HOST_URL + '/admin/SaveAnswerkeyDataList';
   public static getAnswerkeyByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllAnswerkey';
   public static removeAnswerkeyByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveAnswerkeyByIdDetails/';
-
-
-
+  public static saveNaacDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNaacDetails';
+  public static getNaacDataURL: string = ApiService.HOST_URL + '/admin/GetNaacData';
+  public static getKeyNoDataGroupByURL: string = ApiService.HOST_URL + '/admin/GetKeyNoDataGroupBy';
+  public static updateNAACDataURL: string = ApiService.HOST_URL + '/admin/UpdateNAACData';
 
 
 

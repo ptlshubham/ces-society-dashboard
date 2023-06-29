@@ -74,7 +74,9 @@
                             <div class="col-xl-4 col-md-6">
                                 <div class="form-group mb-3">
                                     <label>PDF Uploader (Optional)</label>
-                                    <input class="form-control" type="file" id="formFile" (change)="uploadFile($event)">
+                                    <input class="form-control mb-2" type="file" id="formFile" (change)="uploadFile($event)">
+                                    <ngb-progressbar [value]="progressValue" [type]="progressType" *ngIf="isProgress"></ngb-progressbar>
+
                                 </div>
                             </div>
                         </div>

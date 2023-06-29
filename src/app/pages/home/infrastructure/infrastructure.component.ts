@@ -128,7 +128,7 @@ export class InfrastructureComponent implements OnInit {
             this.homeService.uploadInfraMultiImage(formdata).subscribe((response) => {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
               this.infraMultiImage.push(response);
-              this.addMultiImg[ind].multiImageUrl ='http://localhost:9000' + response;
+              this.addMultiImg[ind].multiImageUrl ='https://bapsanandmandir.co.in' + response;
               this.editFile = false;
               this.removeUpload = true;
             });
@@ -145,7 +145,7 @@ export class InfrastructureComponent implements OnInit {
   editInfraDetails(data: any) {
     this.infraModel = data;
     this.getInfraMultiImages(data.id);
-    this.imageUrl = 'http://localhost:9000' + data.infraImage
+    this.imageUrl = 'https://bapsanandmandir.co.in' + data.infraImage
     this.isOpen = true;
     this.isUpdate = true;
   }
@@ -155,7 +155,7 @@ export class InfrastructureComponent implements OnInit {
       this.infraMulti = res;
       if (this.infraMulti.length > 0) {
         this.infraMulti.forEach((element: any,ind:any) => {
-          this.multiImage.push({ name: ind+1, multiImageUrl: 'http://localhost:9000' + element.image });
+          this.multiImage.push({ name: ind+1, multiImageUrl: 'https://bapsanandmandir.co.in' + element.image });
         });
       }
       this.addMultiImg = this.multiImage;
@@ -197,7 +197,7 @@ export class InfrastructureComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   viewInfraDetails(id: any) {
-    this.router.navigate(['/home/infra-details', id]);
+    this.router.navigate(['/infra-details', id]);
   }
 
 }
