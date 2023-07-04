@@ -42,6 +42,7 @@ export class ApiService {
   public static saveStaffProfileImagesURL: string = ApiService.HOST_URL + '/admin/SaveStaffProfileImages';
   public static saveStaffDetailsListURL: string = ApiService.HOST_URL + '/admin/SaveStaffDetailsList';
   public static updateStaffDetailsByIdURL: string = ApiService.HOST_URL + '/admin/UpdateStaffDetailsById';
+  public static removeStaffDocumentURL: string = ApiService.HOST_URL + '/admin/RemoveStaffDocument/';
   public static getAllStaffDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllStaffDetails/';
   public static removeStaffDetailsByIdURL: string = ApiService.HOST_URL + '/admin/RemoveStaffDetailsById/';
   public static saveDonnerListDetailsURL: string = ApiService.HOST_URL + '/admin/SaveDonnerListDetails';

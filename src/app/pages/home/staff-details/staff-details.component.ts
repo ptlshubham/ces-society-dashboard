@@ -41,8 +41,6 @@ export class StaffDetailsComponent implements OnInit {
     private staffService: StaffService,
     public toastr: ToastrService,
     public formBuilder: UntypedFormBuilder,
-
-
   ) { }
 
   ngOnInit(): void {
@@ -69,13 +67,16 @@ export class StaffDetailsComponent implements OnInit {
     this.isOpen = true;
     this.isUpdate = false;
     this.staffModel = {};
+    this.validationForm.markAsUntouched();
     this.staffProfileImage = null;
+    this.pdfResponse = undefined;
     this.imageUrl = 'assets/images/file-upload-image.jpg';
   }
   backToTable() {
     this.isOpen = false;
     this.isUpdate = false;
-
+    this.pdfResponse = undefined;
+    this.validationForm.markAsUntouched();
   }
   getDepartmentDetails() {
     this.homeService.getDepartmentDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
@@ -124,25 +125,6 @@ export class StaffDetailsComponent implements OnInit {
     this.imageUrl = 'assets/images/file-upload-image.jpg';
 
   }
-  // uploadPdfFile(event: any) {
-  //   let reader = new FileReader(); // HTML5 FileReader API
-  //   let file = event.target.files[0];
-  //   if (event.target.files && event.target.files[0]) {
-  //     reader.readAsDataURL(file);
-
-  //     // When file uploads set it to file formcontrol
-  //     reader.onload = () => {
-  //       const formdata = new FormData();
-  //       formdata.append('file', file);
-
-  //       this.homeService.savePdfData(formdata).subscribe((response) => {
-  //         this.toastr.success('File uploaded successfully.', 'Success', { timeOut: 3000, });
-
-  //         this.pdfResponse = response;
-  //       })
-  //     }
-  //   }
-  // }
   uploadPdfFile(event: any) {
     this.isProgress = true;
     let reader = new FileReader(); // HTML5 FileReader API
@@ -177,9 +159,12 @@ export class StaffDetailsComponent implements OnInit {
       this.staffModel.institute_id = localStorage.getItem('InstituteId');
       this.staffModel.profile = this.staffProfileImage;
       this.staffService.saveStaffDetails(this.staffModel).subscribe((res: any) => {
+        this.progressValue = 0;
+        this.isProgress = false;
         this.staffData = res;
         this.toastr.success('Staff Details Successfully Saved.', 'Success', { timeOut: 3000, });
         this.staffModel = {};
+        this.pdfResponse = undefined;
         this.validationForm.markAsUntouched();
         this.getStaffDetails();
         this.isOpen = false;
@@ -193,28 +178,27 @@ export class StaffDetailsComponent implements OnInit {
       for (let i = 0; i < this.staffDataTable.length; i++) {
         this.staffDataTable[i].index = i + 1;
       }
-      debugger
       this.collectionSize = this.staffDataTable.length;
       this.getPagintaion();
     })
   }
   getPagintaion() {
-    this.paginateData = this.staffDataTable
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    this.paginateData = this.staffDataTable.slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   openUpdateStaff(data: any) {
-    this.staffModel.joining_date = new Date(data.joining_date).toISOString().slice(0, 10);
-    // this.staffModel.joining_date = this.datepipe.transform(data.joining_date, 'yyyy-MM-dd');
     this.imageUrl = 'https://bapsanandmandir.co.in' + data.profile_image
     this.staffModel = data;
+    this.staffModel.joining_date = new Date(data.joining_date).toISOString().slice(0, 10);
+    this.staffModel.birthday_date = new Date(data.birthday_date).toISOString().slice(0, 10);
     this.staffModel.profile = data.profile_image;
+    this.progressValue = 0;
+    this.isProgress = false;
     this.isOpen = true;
     this.isUpdate = true;
   }
-  onBirthdayDateChange(value: string) {
-    console.log('New birthday date:', value);
-    // Do whatever you need to do with the new value here
-  }
+  // onBirthdayDateChange(value: string) {
+  //   console.log('New birthday date:', value);
+  // }
   updateStaffDetails() {
     if (this.pdfResponse != null || undefined) {
       this.staffModel.researchPaper = this.pdfResponse;
@@ -226,7 +210,19 @@ export class StaffDetailsComponent implements OnInit {
       this.staffData = res;
       this.toastr.success('Update Staff Details Successfully.', 'Updated', { timeOut: 3000, });
       this.getStaffDetails();
+      this.progressValue = 0;
+      this.isProgress = false;
       this.isOpen = false;
+    })
+  }
+  removeResearchPaperDoc(id: any) {
+    this.staffService.removeStaffPaper(id).subscribe((res: any) => {
+      if (res == 'success') {
+        this.getStaffDetails();
+        this.toastr.success('Removed Staff Research Paper successfully Done.', 'Deleted', { timeOut: 3000, });
+        this.isOpen = false;
+        this.isUpdate = false;
+      }
     })
   }
   removeStaffDetails(id: any) {

@@ -10,15 +10,16 @@ export class StaffService {
     ) { }
 
     saveStaffProfileImages(data: any) {
-
         return this.http.post(ApiService.saveStaffProfileImagesURL, data);
     }
     saveStaffDetails(data: any) {
         return this.http.post(ApiService.saveStaffDetailsListURL, data);
     }
     updaetStaffDetails(data: any) {
-        debugger
         return this.http.post(ApiService.updateStaffDetailsByIdURL, data);
+    }
+    removeStaffPaper(id: any) {
+        return this.http.get(ApiService.removeStaffDocumentURL + id);
     }
     getAllStaffDetailsData(id: any) {
         return this.http.get(ApiService.getAllStaffDetailsURL + id);
