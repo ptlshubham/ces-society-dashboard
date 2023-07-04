@@ -35,6 +35,7 @@ export class OthersComponent implements OnInit {
 
   ngOnInit(): void {
     this.getFormsDetails();
+    this.pdfResponse = null;
     this.validationForm = this.formBuilder.group({
       purpose: ['', [Validators.required]],
       title: ['', [Validators.required]],
@@ -83,7 +84,10 @@ export class OthersComponent implements OnInit {
         this.toastr.success('Data saved successfully', 'success', {
           timeOut: 3000,
         });
+        this.progressValue = 0;
+        this.isProgress = false;
         this.othersModel = {};
+        this.pdfResponse = null;
         this.validationForm.markAsUntouched();
         this.getFormsDetails();
       })
@@ -112,6 +116,7 @@ export class OthersComponent implements OnInit {
   getFormsDetails() {
     this.homeService.getothersDataById(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.othersData = res;
+      debugger
       this.filterdata = res;
       for (let i = 0; i < this.othersData.length; i++) {
         this.othersData[i].index = i + 1;

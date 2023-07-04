@@ -31,6 +31,9 @@ export class QuestionPapersComponent implements OnInit {
   ngOnInit(): void {
     this.getPapersDetails();
     this.getDepartmentDetails();
+    this.progressValue = 0;
+    this.isProgress = false;
+    this.pdfResponse = null;
   }
   getYears(): number[] {
     let currentYear = new Date().getFullYear();
@@ -88,6 +91,10 @@ export class QuestionPapersComponent implements OnInit {
     this.questionPapersModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveQuestionDetails(this.questionPapersModel).subscribe((res: any) => {
       this.questionPapers = res;
+      this.progressValue = 0;
+      this.isProgress = false;
+      this.questionPapersModel = {};
+      this.pdfResponse = null;
       this.toastr.success('Others Details added Successfully.', 'Saved', { timeOut: 3000, });
       this.getPapersDetails();
     })
