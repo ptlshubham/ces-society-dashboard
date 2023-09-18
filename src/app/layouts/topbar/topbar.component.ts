@@ -30,6 +30,7 @@ export class TopbarComponent implements OnInit {
   valueset: any;
   collegeName: any;
   adminName: any;
+  InstituteURL: any;
   constructor(
     private router: Router,
     private authService: AuthenticationService,
@@ -59,6 +60,7 @@ export class TopbarComponent implements OnInit {
   ngOnInit(): void {
     this.collegeName = localStorage.getItem('InstituteName');
     this.adminName = localStorage.getItem('Name');
+    this.InstituteURL = localStorage.getItem('InstituteURL');
     this.layoutMode = LAYOUT_MODE;
 
     this.element = document.documentElement;
