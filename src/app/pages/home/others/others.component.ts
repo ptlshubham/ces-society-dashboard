@@ -140,7 +140,7 @@ export class OthersComponent implements OnInit {
   }
   viewDownloadPdf(data: any) {
     var path
-    path = 'https://bapsanandmandir.co.in' + data
+    path = 'https://api.cesociety.in' + data
 
     window.open(path, '_blank');
   }

@@ -6,7 +6,9 @@ declare var $: any;
 })
 export class ApiService {
   // public static HOST_URL: string = "http://localhost:9000";
-  public static HOST_URL: string = "https://bapsanandmandir.co.in";
+  public static HOST_URL: string = "https://api.cesociety.in";
+  // public static HOST_URL: string = "https://bapsanandmandir.co.in";
+
 
   constructor(
   ) { }
