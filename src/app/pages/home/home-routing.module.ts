@@ -27,6 +27,7 @@ import { StaffDetailsComponent } from './staff-details/staff-details.component';
 import { StudentDetailsComponent } from './student-details/student-details.component';
 import { StudentResultComponent } from './student-result/student-result.component';
 import { NaacComponent } from './naac/naac.component';
+import { LinkGeneratorComponent } from './link-generator/link-generator.component';
 
 const routes: Routes = [
   {
@@ -136,6 +137,10 @@ const routes: Routes = [
   {
     path:'naac',
     component:NaacComponent
+  },
+  {
+    path:'link-generater',
+    component:LinkGeneratorComponent
   }
 
 ];

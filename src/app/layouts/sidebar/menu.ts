@@ -117,7 +117,13 @@ export const MENU: MenuItem[] = [
         icon: 'book',
         link: '/naac',
         role: 'Institute'
-
+    },
+    {
+        id: 23,
+        label: 'Link Generater',
+        icon: 'link',
+        link: '/link-generater',
+        role: 'Institute'
     }
 ];
 export const CES: MenuItem[] = [
@@ -279,6 +285,13 @@ export const CES: MenuItem[] = [
         label: 'Answer-key',
         icon: 'key',
         link: '/answer-key',
+    },
+    {
+        id: 24,
+        label: 'Link Generater',
+        icon: 'link',
+        link: '/link-generater',
+        role: 'Institute'
     }
 ];
 export const superAdmin: MenuItem[] = [

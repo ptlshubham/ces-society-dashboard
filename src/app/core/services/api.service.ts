@@ -5,9 +5,8 @@ declare var $: any;
   providedIn: 'root'
 })
 export class ApiService {
-  // public static HOST_URL: string = "http://localhost:9000";
-  public static HOST_URL: string = "https://api.cesociety.in";
-  // public static HOST_URL: string = "https://bapsanandmandir.co.in";
+  public static HOST_URL: string = "http://localhost:9000";
+  // public static HOST_URL: string = "https://api.cesociety.in";
 
 
   constructor(
@@ -111,6 +110,12 @@ export class ApiService {
   public static getNaacDataURL: string = ApiService.HOST_URL + '/admin/GetNaacData';
   public static getKeyNoDataGroupByURL: string = ApiService.HOST_URL + '/admin/GetKeyNoDataGroupBy';
   public static updateNAACDataURL: string = ApiService.HOST_URL + '/admin/UpdateNAACData';
+  public static getNaacLinkDataURL: string = ApiService.HOST_URL + '/admin/GetNaacLinkData';
+  public static getSubMenuGroupByURL: string = ApiService.HOST_URL + '/admin/GetSubMenuGroupBy';
+  public static getSubToSubMenuGroupByURL: string = ApiService.HOST_URL + '/admin/GetSubToSubMenuGroupBy';
+  public static saveNaacLinkDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNaacLinkDetails';
+  public static removeLinkByIDURL: string = ApiService.HOST_URL + '/admin/RemoveLinkByID/';
+
 
 
 

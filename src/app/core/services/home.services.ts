@@ -221,4 +221,19 @@ export class HomeService {
     updateNAACData(data: any) {
         return this.http.post(ApiService.updateNAACDataURL, data);
     }
+    saveNaacLinkDetails(data: any): Observable<any> {
+        return this.http.post(ApiService.saveNaacLinkDetailsURL, data);
+    }
+    getSubMenuGroup() {
+        return this.http.get(ApiService.getSubMenuGroupByURL);
+    }
+    getSubToSubMenuGroup() {
+        return this.http.get(ApiService.getSubToSubMenuGroupByURL);
+    }
+    getNaacLinkDetails() {
+        return this.http.get(ApiService.getNaacLinkDataURL);
+    }
+    removeNaacLink(id: any) {
+        return this.http.get(ApiService.removeLinkByIDURL + id);
+    }
 }

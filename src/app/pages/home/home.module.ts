@@ -34,6 +34,7 @@ import { AnswerKeyComponent } from './answer-key/answer-key.component';
 import { MicroDonationComponent } from './micro-donation/micro-donation.component';
 import { NaacComponent } from './naac/naac.component';
 import { NgSelectModule } from '@ng-select/ng-select';
+import { LinkGeneratorComponent } from './link-generator/link-generator.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -72,6 +73,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     AnswerKeyComponent,
     MicroDonationComponent,
     NaacComponent,
+    LinkGeneratorComponent,
   ],
   imports: [
     CommonModule,
