@@ -5,8 +5,8 @@ declare var $: any;
   providedIn: 'root'
 })
 export class ApiService {
+  public static HOST_URL: string = "http://localhost:9000";
   // public static HOST_URL: string = "http://localhost:9000";
-  public static HOST_URL: string = "https://bapsanandmandir.co.in";
 
   constructor(
   ) { }
@@ -31,6 +31,7 @@ export class ApiService {
   public static uploadGalleryImagesURL: string = ApiService.HOST_URL + '/admin/UploadGalleryImages';
   public static uploadGalleryVideoURL: string = ApiService.HOST_URL + '/admin/UploadGalleryVideo';
   public static getImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetImagesByIdDetails';
+  public static deleteInfraImageURL: string = ApiService.HOST_URL + '/admin/deleteInfraImage';
   public static getALLImagesByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetALLImagesByIdDetails';
   public static updateActiveDeactiveBannersURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveBanners';
   public static updateActiveDeactiveNewsURL: string = ApiService.HOST_URL + '/admin/UpdateActiveDeactiveNews'

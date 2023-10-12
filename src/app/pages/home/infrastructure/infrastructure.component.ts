@@ -84,6 +84,17 @@ export class InfrastructureComponent implements OnInit {
     }
   }
   removeUploadedImage() {
+    // console.log(this.infraImages);
+    let data ={
+      img :this.infraImages
+    };
+    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+      if(res =='sucess'){
+        this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
+      }else{
+        this.toastr.error('Something went wrong try again later', 'Error', { timeOut: 2000, });
+      }
+    })
     this.infraImages = null;
     this.imageUrl = 'assets/images/file-upload-image.jpg';
 
@@ -94,6 +105,10 @@ export class InfrastructureComponent implements OnInit {
     this.infraModel.infraMultiImage = this.infraMultiImage;
     this.homeService.saveInfrastructureDetails(this.infraModel).subscribe((res: any) => {
       this.infraData = res;
+      this.infraModel.infraImage = null;
+      this.infraImages = null;
+      this.infraModel.infraMultiImage=[];
+      this.infraMultiImage=[];
       this.toastr.success('Infrastructure Details added Successfully.', 'Saved', { timeOut: 3000, });
       this.isUpdate = false;
       this.isOpen = false;
@@ -128,7 +143,7 @@ export class InfrastructureComponent implements OnInit {
             this.homeService.uploadInfraMultiImage(formdata).subscribe((response) => {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
               this.infraMultiImage.push(response);
-              this.addMultiImg[ind].multiImageUrl ='https://bapsanandmandir.co.in' + response;
+              this.addMultiImg[ind].multiImageUrl ='http://localhost:9000' + response;
               this.editFile = false;
               this.removeUpload = true;
             });
@@ -140,12 +155,22 @@ export class InfrastructureComponent implements OnInit {
     }
   }
   removeServiceList(val: any) {
+    let data ={
+      img :this.addMultiImg[val].multiImageUrl
+    };
+    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+      if(res =='sucess'){
+        this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
+      }else{
+        this.toastr.error('Something went wrong try again later', 'Error', { timeOut: 2000, });
+      }
+    })
     this.addMultiImg.splice(val, 1);
   }
   editInfraDetails(data: any) {
     this.infraModel = data;
     this.getInfraMultiImages(data.id);
-    this.imageUrl = 'https://bapsanandmandir.co.in' + data.infraImage
+    this.imageUrl = 'http://localhost:9000' + data.infraImage
     this.isOpen = true;
     this.isUpdate = true;
   }
@@ -155,7 +180,7 @@ export class InfrastructureComponent implements OnInit {
       this.infraMulti = res;
       if (this.infraMulti.length > 0) {
         this.infraMulti.forEach((element: any,ind:any) => {
-          this.multiImage.push({ name: ind+1, multiImageUrl: 'https://bapsanandmandir.co.in' + element.image });
+          this.multiImage.push({ name: ind+1, multiImageUrl: 'http://localhost:9000' + element.image });
         });
       }
       this.addMultiImg = this.multiImage;

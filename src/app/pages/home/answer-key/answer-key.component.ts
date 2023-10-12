@@ -132,7 +132,7 @@ export class AnswerKeyComponent implements OnInit {
   }
   viewDownloadPdf(data: any) {
     var path
-    path = 'https://bapsanandmandir.co.in' + data
+    path = 'http://localhost:9000' + data
 
     window.open(path, '_blank');
   }
