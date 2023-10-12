@@ -84,6 +84,17 @@ export class InfrastructureComponent implements OnInit {
     }
   }
   removeUploadedImage() {
+    // console.log(this.infraImages);
+    let data ={
+      img :this.infraImages
+    };
+    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+      if(res =='sucess'){
+        this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
+      }else{
+        this.toastr.error('Something went wrong try again later', 'Error', { timeOut: 2000, });
+      }
+    })
     this.infraImages = null;
     this.imageUrl = 'assets/images/file-upload-image.jpg';
 
@@ -94,6 +105,10 @@ export class InfrastructureComponent implements OnInit {
     this.infraModel.infraMultiImage = this.infraMultiImage;
     this.homeService.saveInfrastructureDetails(this.infraModel).subscribe((res: any) => {
       this.infraData = res;
+      this.infraModel.infraImage = null;
+      this.infraImages = null;
+      this.infraModel.infraMultiImage=[];
+      this.infraMultiImage=[];
       this.toastr.success('Infrastructure Details added Successfully.', 'Saved', { timeOut: 3000, });
       this.isUpdate = false;
       this.isOpen = false;
@@ -140,6 +155,16 @@ export class InfrastructureComponent implements OnInit {
     }
   }
   removeServiceList(val: any) {
+    let data ={
+      img :this.addMultiImg[val].multiImageUrl
+    };
+    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+      if(res =='sucess'){
+        this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
+      }else{
+        this.toastr.error('Something went wrong try again later', 'Error', { timeOut: 2000, });
+      }
+    })
     this.addMultiImg.splice(val, 1);
   }
   editInfraDetails(data: any) {
