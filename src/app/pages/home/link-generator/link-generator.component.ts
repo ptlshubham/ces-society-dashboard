@@ -203,6 +203,12 @@ export class LinkGeneratorComponent implements OnInit {
       debugger
       for (let i = 0; i < this.LinkData.length; i++) {
         this.LinkData[i].index = i + 1;
+        if( this.LinkData[i].subMenu == '[object Object]' && this.LinkData[i].subMenu !== null){
+          this.LinkData[i].subMenu='';
+        }
+        if( this.LinkData[i].subToSub === '[object Object]' && this.LinkData[i].subToSub !== null){
+          this.LinkData[i].subToSub='';
+        }
       }
       this.collectionSize = this.LinkData.length;
       this.getPagintaion();
