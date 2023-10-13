@@ -203,7 +203,7 @@ export class LinkGeneratorComponent implements OnInit {
       debugger
       for (let i = 0; i < this.LinkData.length; i++) {
         this.LinkData[i].index = i + 1;
-        if( this.LinkData[i].subMenu == '[object Object]' && this.LinkData[i].subMenu !== null){
+        if( this.LinkData[i].subMenu === '[object Object]' && this.LinkData[i].subMenu !== null){
           this.LinkData[i].subMenu='';
         }
         if( this.LinkData[i].subToSub === '[object Object]' && this.LinkData[i].subToSub !== null){
@@ -223,6 +223,7 @@ export class LinkGeneratorComponent implements OnInit {
 
   getGroupSubMenuDetails() {
     this.homeService.getSubMenuGroup().subscribe((res: any) => {
+      debugger
       // this.subList = res;
       // this.subList.forEach((element: any) => {
       //   if (element.subMenu != null) {
@@ -231,7 +232,7 @@ export class LinkGeneratorComponent implements OnInit {
       // });
       // this.subMenuList = res;
       res.forEach((ele:any)=>{
-        if(typeof ele.subMenu === 'object' && ele.subMenu !== null){
+        if( ele.subMenu != '[object Object]' && ele.subMenu != null){
           this.subMenuList.push(ele)
         }
       })
@@ -240,9 +241,10 @@ export class LinkGeneratorComponent implements OnInit {
   }
   getGroupSubToSubDetails() {
     this.homeService.getSubToSubMenuGroup().subscribe((res: any) => {
+      debugger
       res.forEach((ele:any)=>{
-        if(typeof ele.subToSub === 'object' && ele.subToSub !== null){
-          this.subToSubMenu.push(ele)
+        if( ele.subToSub != '[object Object]' && ele.subToSub != null){
+          this.subToSubMenu.push(ele);
         }
       })
     })
