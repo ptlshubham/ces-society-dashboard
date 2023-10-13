@@ -33,7 +33,7 @@
                                         placeholder="Select Sub Menu" (change)="onSubMenuChange($event)"
                                         [addTag]="addSubMenu" [(ngModel)]="subMenu"
                                         [ngModelOptions]="{standalone: true}">
-                                        <ng-template ng-optgroup-tmp let-item="item">
+                                        <ng-template ng-optgroup-tmp let-item="item" >
                                             {{item.subMenu}}
                                         </ng-template>
                                     </ng-select>

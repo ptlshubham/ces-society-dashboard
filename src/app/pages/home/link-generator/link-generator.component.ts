@@ -51,13 +51,11 @@ export class LinkGeneratorComponent implements OnInit {
 
   subMenuList: any = [];
   subToSubMenu: any = [];
-
   srNumber = [];
   selectedCriteria: any;
   subMenu: any;
   subToSub: any;
   LinkData: any = [];
-
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
@@ -225,14 +223,22 @@ export class LinkGeneratorComponent implements OnInit {
       //     this.subMenuList.push({subMenu:element.subMenu});
       //   }
       // });
-
-      this.subMenuList = res;
-      debugger
+      // this.subMenuList = res;
+      res.forEach((ele:any)=>{
+        if(typeof ele.subMenu === 'object' && ele.subMenu !== null){
+          this.subMenuList.push(ele)
+        }
+      })
+      
     })
   }
   getGroupSubToSubDetails() {
     this.homeService.getSubToSubMenuGroup().subscribe((res: any) => {
-      this.subToSubMenu = res;
+      res.forEach((ele:any)=>{
+        if(typeof ele.subToSub === 'object' && ele.subToSub !== null){
+          this.subToSubMenu.push(ele)
+        }
+      })
     })
   }
   openNaacDetails(data: any) {
