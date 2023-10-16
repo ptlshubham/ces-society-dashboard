@@ -124,6 +124,13 @@ export const MENU: MenuItem[] = [
         icon: 'link',
         link: '/link-generater',
         role: 'Institute'
+    },
+    {
+        id: 25,
+        label: 'Committee',
+        icon: 'users',
+        link: '/committee',
+        role: 'Institute'
     }
 ];
 export const CES: MenuItem[] = [
@@ -291,6 +298,13 @@ export const CES: MenuItem[] = [
         label: 'Link Generater',
         icon: 'link',
         link: '/link-generater',
+        role: 'Institute'
+    },
+    {
+        id: 25,
+        label: 'Committee',
+        icon: 'users',
+        link: '/committee',
         role: 'Institute'
     }
 ];

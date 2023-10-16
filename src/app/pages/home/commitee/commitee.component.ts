@@ -3,13 +3,12 @@ import { HomeService } from 'src/app/core/services/home.services';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-
 @Component({
-  selector: 'app-infrastructure',
-  templateUrl: './infrastructure.component.html',
-  styleUrls: ['./infrastructure.component.scss']
+  selector: 'app-commitee',
+  templateUrl: './commitee.component.html',
+  styleUrls: ['./commitee.component.scss']
 })
-export class InfrastructureComponent implements OnInit {
+export class CommiteeComponent implements OnInit {
   public Editor = ClassicEditor;
 
   @ViewChild('fileInput') el!: ElementRef;
@@ -221,7 +220,7 @@ export class InfrastructureComponent implements OnInit {
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   viewInfraDetails(id: any) {
-    this.router.navigate(['/infra-details', id]);
+    this.router.navigate(['/comm-details', id]);
   }
 
 }

@@ -116,6 +116,14 @@ export class ApiService {
   public static saveNaacLinkDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNaacLinkDetails';
   public static removeLinkByIDURL: string = ApiService.HOST_URL + '/admin/RemoveLinkByID/';
 
+  public static uploadCommitteeImageURL: string = ApiService.HOST_URL + '/admin/UploadCommitteeImage';
+  public static uploadCommMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadCommMultiImage';
+  public static saveCommitteeDetailsURL: string = ApiService.HOST_URL + '/admin/SaveCommitteeDetails';
+  public static getCommitteeMultiImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetCommitteeMultiImagesById/';
+  public static updateCommitteeDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateCommitteeDetails';
+  public static removeCommitteeDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveCommitteeDetails/';
+  public static getCommitteeDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetCommitteeDetailsById/';
+  public static deleteCommitteeImageURL: string = ApiService.HOST_URL + '/admin/deleteCommitteeImage';
 
 
 

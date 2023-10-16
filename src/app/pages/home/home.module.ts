@@ -35,6 +35,8 @@ import { MicroDonationComponent } from './micro-donation/micro-donation.componen
 import { NaacComponent } from './naac/naac.component';
 import { NgSelectModule } from '@ng-select/ng-select';
 import { LinkGeneratorComponent } from './link-generator/link-generator.component';
+import { CommiteeComponent } from './commitee/commitee.component';
+import { CommDetailsComponent } from './comm-details/comm-details.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -74,6 +76,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     MicroDonationComponent,
     NaacComponent,
     LinkGeneratorComponent,
+    CommiteeComponent,
+    CommDetailsComponent,
   ],
   imports: [
     CommonModule,
