@@ -39,7 +39,7 @@ export class CommiteeComponent implements OnInit {
 
   ngOnInit(): void {
     this.val++;
-    this.getInfraDataById();
+    this.getCommeteeDataById();
   }
   openAddInfra() {
     this.infraModel = {};
@@ -97,11 +97,11 @@ export class CommiteeComponent implements OnInit {
     this.imageUrl = 'assets/images/file-upload-image.jpg';
 
   }
-  saveInfraDetails() {
+  saveCommiteeDetails() {
     this.infraModel.institute_id = localStorage.getItem('InstituteId');
     this.infraModel.infraImage = this.infraImages;
     this.infraModel.infraMultiImage = this.infraMultiImage;
-    this.homeService.saveInfrastructureDetails(this.infraModel).subscribe((res: any) => {
+    this.homeService.saveCommeeteDetails(this.infraModel).subscribe((res: any) => {
       this.infraData = res;
       this.infraModel.infraImage = null;
       this.infraImages = null;
@@ -110,7 +110,7 @@ export class CommiteeComponent implements OnInit {
       this.toastr.success('Infrastructure Details added Successfully.', 'Saved', { timeOut: 3000, });
       this.isUpdate = false;
       this.isOpen = false;
-      this.getInfraDataById();
+      this.getCommeteeDataById();
     })
   }
   addServiceList() {
@@ -165,16 +165,16 @@ export class CommiteeComponent implements OnInit {
     })
     this.addMultiImg.splice(val, 1);
   }
-  editInfraDetails(data: any) {
+  editCommiteeDetails(data: any) {
     this.infraModel = data;
-    this.getInfraMultiImages(data.id);
+    this.getCommiteeMultiImage(data.id);
     this.imageUrl = 'http://localhost:9000' + data.infraImage
     this.isOpen = true;
     this.isUpdate = true;
   }
-  getInfraMultiImages(id: any) {
+  getCommiteeMultiImage(id: any) {
     this.multiImage = [];
-    this.homeService.getInfraMultiImageById(id).subscribe((res: any) => {
+    this.homeService.getCommiteeMultiImageById(id).subscribe((res: any) => {
       this.infraMulti = res;
       if (this.infraMulti.length > 0) {
         this.infraMulti.forEach((element: any,ind:any) => {
@@ -184,29 +184,29 @@ export class CommiteeComponent implements OnInit {
       this.addMultiImg = this.multiImage;
     })
   }
-  updateInfraDetails() {
+  updateCommiteeDetails() {
     this.addMultiImg
     debugger
     if (this.infraImages != null || undefined) {
       this.infraModel.infraImage = this.infraImages;
     }
-    this.homeService.updateInfraDetails(this.infraModel).subscribe((res: any) => {
+    this.homeService.updateCommiteeDetails(this.infraModel).subscribe((res: any) => {
       this.infraData = res;
       this.toastr.success('Infrastructure Details Updated Successfully.', 'Updated', { timeOut: 3000, });
-      this.getInfraDataById();
+      this.getCommeteeDataById();
       this.isOpen = false;
       this.isUpdate = false;
     })
   }
-  removeInfraDetails(id: any) {
+  removeCommiteeById(id: any) {
     this.homeService.removeInfraById(id).subscribe((res: any) => {
       this.infraData = res;
       this.toastr.success('Infrastructure Details deleted Successfully.', 'Removed', { timeOut: 3000, });
-      this.getInfraDataById();
+      this.getCommeteeDataById();
     })
   }
-  getInfraDataById() {
-    this.homeService.getImfraDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+  getCommeteeDataById() {
+    this.homeService.getCommeteeDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.infraData = res;
       for (let i = 0; i < this.infraData.length; i++) {
         this.infraData[i].index = i + 1;
@@ -219,7 +219,7 @@ export class CommiteeComponent implements OnInit {
     this.paginateData = this.infraData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
-  viewInfraDetails(id: any) {
+  viewCommiteeDetails(id: any) {
     this.router.navigate(['/comm-details', id]);
   }
 

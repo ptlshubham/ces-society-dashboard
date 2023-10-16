@@ -239,4 +239,19 @@ export class HomeService {
     removeNaacLink(id: any) {
         return this.http.get(ApiService.removeLinkByIDURL + id);
     }
+    getCommeteeDetails(id: any) {
+        return this.http.get(ApiService.getCommitteeDetailsByIdURL + id);
+    }
+    saveCommeeteDetails(data: any) {
+        return this.http.post(ApiService.saveCommitteeDetailsURL, data);
+    }
+    updateCommiteeDetails(data: any) {
+        return this.http.post(ApiService.updateCommitteeDetailsURL, data);
+    }
+    getCommiteeMultiImageById(id: any) {
+        return this.http.get(ApiService.getCommitteeMultiImagesByIdURL + id);
+    }
+    removeCommiteeById(id: any) {
+        return this.http.get(ApiService.removeCommitteeDetailsURL + id);
+    }
 }
