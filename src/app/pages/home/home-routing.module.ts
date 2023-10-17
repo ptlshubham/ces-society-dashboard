@@ -29,6 +29,7 @@ import { StudentResultComponent } from './student-result/student-result.componen
 import { NaacComponent } from './naac/naac.component';
 import { LinkGeneratorComponent } from './link-generator/link-generator.component';
 import { CommiteeComponent } from './commitee/commitee.component';
+import { CommDetailsComponent } from './comm-details/comm-details.component';
 
 const routes: Routes = [
   {
@@ -149,7 +150,7 @@ const routes: Routes = [
   },
   {
     path: 'comm-details/:id',
-    component: InfraDetailsComponent
+    component: CommDetailsComponent
   },
 
 ];

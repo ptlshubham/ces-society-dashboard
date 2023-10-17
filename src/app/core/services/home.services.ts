@@ -239,6 +239,7 @@ export class HomeService {
     removeNaacLink(id: any) {
         return this.http.get(ApiService.removeLinkByIDURL + id);
     }
+
     getCommeteeDetails(id: any) {
         return this.http.get(ApiService.getCommitteeDetailsByIdURL + id);
     }
@@ -253,5 +254,14 @@ export class HomeService {
     }
     removeCommiteeById(id: any) {
         return this.http.get(ApiService.removeCommitteeDetailsURL + id);
+    }
+    uploadCommitteeImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadCommitteeImageURL, img);
+    }
+    uploadCommitteeMultiImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadCommMultiImageURL, img);
+    }
+    deleteCommiImage(data:any){
+        return this.http.post(ApiService.deleteCommitteeImageURL,data);
     }
 }

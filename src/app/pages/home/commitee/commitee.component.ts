@@ -16,10 +16,10 @@ export class CommiteeComponent implements OnInit {
   editFile: boolean = true;
   removeUpload: boolean = false;
   cardImageBase64: any;
-  infraImages: any;
-  infraMultiImage: any = [];
-  infraData: any = [];
-  infraModel: any = {};
+  commImages: any;
+  commMultiImage: any = [];
+  commiData: any = [];
+  commiModel: any = {};
   isOpen: boolean = false;
   isUpdate: boolean = false;
   addMultiImg: any = [];
@@ -42,14 +42,14 @@ export class CommiteeComponent implements OnInit {
     this.getCommeteeDataById();
   }
   openAddInfra() {
-    this.infraModel = {};
+    this.commiModel = {};
     this.addMultiImg = [];
     this.imageUrl = 'assets/images/file-upload-image.jpg';
     this.isOpen = true;
     this.isUpdate = false;
 
   }
-  closeAddInfra() {
+  closeAddComm() {
     this.isOpen = false;
     this.isUpdate = false;
   }
@@ -68,9 +68,9 @@ export class CommiteeComponent implements OnInit {
             this.cardImageBase64 = imgBase64Path;
             const formdata = new FormData();
             formdata.append('file', file);
-            this.homeService.uploadOInfraImage(formdata).subscribe((response) => {
+            this.homeService.uploadCommitteeImage(formdata).subscribe((response) => {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
-              this.infraImages = response;
+              this.commImages = response;
               this.editFile = false;
               this.removeUpload = true;
             });
@@ -82,9 +82,9 @@ export class CommiteeComponent implements OnInit {
     }
   }
   removeUploadedImage() {
-    // console.log(this.infraImages);
+    // console.log(this.commImages);
     let data ={
-      img :this.infraImages
+      img :this.commImages
     };
     this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
       if(res =='sucess'){
@@ -93,20 +93,21 @@ export class CommiteeComponent implements OnInit {
         this.toastr.error('Something went wrong try again later', 'Error', { timeOut: 2000, });
       }
     })
-    this.infraImages = null;
+    this.commImages = null;
     this.imageUrl = 'assets/images/file-upload-image.jpg';
 
   }
   saveCommiteeDetails() {
-    this.infraModel.institute_id = localStorage.getItem('InstituteId');
-    this.infraModel.infraImage = this.infraImages;
-    this.infraModel.infraMultiImage = this.infraMultiImage;
-    this.homeService.saveCommeeteDetails(this.infraModel).subscribe((res: any) => {
-      this.infraData = res;
-      this.infraModel.infraImage = null;
-      this.infraImages = null;
-      this.infraModel.infraMultiImage=[];
-      this.infraMultiImage=[];
+    this.commiModel.institute_id = localStorage.getItem('InstituteId');
+    this.commiModel.commImage = this.commImages;
+    this.commiModel.commMultiImage = this.commMultiImage;
+    debugger
+    this.homeService.saveCommeeteDetails(this.commiModel).subscribe((res: any) => {
+      this.commiData = res;
+      this.commiModel.commImage = null;
+      this.commImages = null;
+      this.commiModel.commMultiImage=[];
+      this.commMultiImage=[];
       this.toastr.success('Infrastructure Details added Successfully.', 'Saved', { timeOut: 3000, });
       this.isUpdate = false;
       this.isOpen = false;
@@ -138,9 +139,9 @@ export class CommiteeComponent implements OnInit {
             this.cardImageBase64 = imgBase64Path;
             const formdata = new FormData();
             formdata.append('file', file);
-            this.homeService.uploadInfraMultiImage(formdata).subscribe((response) => {
+            this.homeService.uploadCommitteeMultiImage(formdata).subscribe((response) => {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
-              this.infraMultiImage.push(response);
+              this.commMultiImage.push(response);
               this.addMultiImg[ind].multiImageUrl ='http://localhost:9000' + response;
               this.editFile = false;
               this.removeUpload = true;
@@ -156,7 +157,7 @@ export class CommiteeComponent implements OnInit {
     let data ={
       img :this.addMultiImg[val].multiImageUrl
     };
-    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+    this.homeService.deleteCommiImage(data).subscribe((res:any)=>{
       if(res =='sucess'){
         this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
       }else{
@@ -166,9 +167,9 @@ export class CommiteeComponent implements OnInit {
     this.addMultiImg.splice(val, 1);
   }
   editCommiteeDetails(data: any) {
-    this.infraModel = data;
+    this.commiModel = data;
     this.getCommiteeMultiImage(data.id);
-    this.imageUrl = 'http://localhost:9000' + data.infraImage
+    this.imageUrl = 'http://localhost:9000' + data.commImage
     this.isOpen = true;
     this.isUpdate = true;
   }
@@ -187,11 +188,11 @@ export class CommiteeComponent implements OnInit {
   updateCommiteeDetails() {
     this.addMultiImg
     debugger
-    if (this.infraImages != null || undefined) {
-      this.infraModel.infraImage = this.infraImages;
+    if (this.commImages != null || undefined) {
+      this.commiModel.commImage = this.commImages;
     }
-    this.homeService.updateCommiteeDetails(this.infraModel).subscribe((res: any) => {
-      this.infraData = res;
+    this.homeService.updateCommiteeDetails(this.commiModel).subscribe((res: any) => {
+      this.commiData = res;
       this.toastr.success('Infrastructure Details Updated Successfully.', 'Updated', { timeOut: 3000, });
       this.getCommeteeDataById();
       this.isOpen = false;
@@ -199,24 +200,24 @@ export class CommiteeComponent implements OnInit {
     })
   }
   removeCommiteeById(id: any) {
-    this.homeService.removeInfraById(id).subscribe((res: any) => {
-      this.infraData = res;
+    this.homeService.removeCommiteeById(id).subscribe((res: any) => {
+      this.commiData = res;
       this.toastr.success('Infrastructure Details deleted Successfully.', 'Removed', { timeOut: 3000, });
       this.getCommeteeDataById();
     })
   }
   getCommeteeDataById() {
     this.homeService.getCommeteeDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
-      this.infraData = res;
-      for (let i = 0; i < this.infraData.length; i++) {
-        this.infraData[i].index = i + 1;
+      this.commiData = res;
+      for (let i = 0; i < this.commiData.length; i++) {
+        this.commiData[i].index = i + 1;
       }
-      this.collectionSize = this.infraData.length;
+      this.collectionSize = this.commiData.length;
       this.getPagintaion();
     })
   }
   getPagintaion() {
-    this.paginateData = this.infraData
+    this.paginateData = this.commiData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
   viewCommiteeDetails(id: any) {
