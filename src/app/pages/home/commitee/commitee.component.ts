@@ -156,7 +156,7 @@ export class CommiteeComponent implements OnInit {
     let data ={
       img :this.addMultiImg[val].multiImageUrl
     };
-    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+    this.homeService.deleteCommiteeImage(data).subscribe((res:any)=>{
       if(res =='sucess'){
         this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
       }else{
@@ -199,7 +199,7 @@ export class CommiteeComponent implements OnInit {
     })
   }
   removeCommiteeById(id: any) {
-    this.homeService.removeInfraById(id).subscribe((res: any) => {
+    this.homeService.removeCommiteeById(id).subscribe((res: any) => {
       this.infraData = res;
       this.toastr.success('Infrastructure Details deleted Successfully.', 'Removed', { timeOut: 3000, });
       this.getCommeteeDataById();

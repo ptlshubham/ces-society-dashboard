@@ -254,4 +254,7 @@ export class HomeService {
     removeCommiteeById(id: any) {
         return this.http.get(ApiService.removeCommitteeDetailsURL + id);
     }
+    deleteCommiteeImage(data:any){
+        return this.http.post(ApiService.deleteCommitteeImageURL,data);
+    }
 }
