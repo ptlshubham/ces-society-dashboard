@@ -8,41 +8,41 @@ import { HomeService } from 'src/app/core/services/home.services';
   styleUrls: ['./comm-details.component.scss']
 })
 export class CommDetailsComponent implements OnInit {
-  infraDetails: any = [];
-  infra: any = {};
-  infraMulti: any = [];
+  commDetails: any = [];
+  commi: any = {};
+  commMulti: any = [];
   infraId: any;
   showNavigationIndicators: any;
-  infraData: any = [];
+  commData: any = [];
   constructor(
     private homeService: HomeService,
     private activatedRoute: ActivatedRoute
   ) {
     this.activatedRoute.params.subscribe(params => {
       this.infraId = params['id'];
-      this.getInfraDataById();
+      this.getCommDataById();
     });
   }
   ngOnInit(): void {
   }
-  getInfraDataById() {
-    this.homeService.getImfraDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
-      this.infraDetails = res;
-      this.getInfraMultiImages();
-      this.infraDetails.forEach((element: any) => {
+  getCommDataById() {
+    this.homeService.getCommeteeDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+      this.commDetails = res;
+      this.getCommMultiImages();
+      this.commDetails.forEach((element: any) => {
         if (element.id == this.infraId) {
-          this.infra = element;
-          this.infraData.push(element.infraImage)
+          this.commi = element;
+          this.commData.push(element.commImage)
         }
       });
     })
   }
-  getInfraMultiImages() {
-    this.homeService.getInfraMultiImageById(this.infraId).subscribe((res: any) => {
-      this.infraMulti = res;
-      if (this.infraMulti.length > 0) {
-        this.infraMulti.forEach((element: any) => {
-          this.infraData.push(element.image);
+  getCommMultiImages() {
+    this.homeService.getCommiteeMultiImageById(this.infraId).subscribe((res: any) => {
+      this.commMulti = res;
+      if (this.commMulti.length > 0) {
+        this.commMulti.forEach((element: any) => {
+          this.commData.push(element.image);
         });
       }
     })
