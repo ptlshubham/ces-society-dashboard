@@ -86,7 +86,7 @@ export class CommiteeComponent implements OnInit {
     let data ={
       img :this.commImages
     };
-    this.homeService.deleteInfraImage(data).subscribe((res:any)=>{
+    this.homeService.deleteCommiImage(data).subscribe((res:any)=>{
       if(res =='sucess'){
         this.toastr.success('Image removed successfully.', 'Deleted', { timeOut: 2000, });
       }else{

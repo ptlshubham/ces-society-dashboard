@@ -33,6 +33,7 @@ export class HomeService {
         return this.http.post<any>(ApiService.uploadGalleryVideoURL, data);
     }
     deleteInfraImage(data:any){
+        debugger
         return this.http.post(ApiService.deleteInfraImageURL,data);
     }
     getBannersImagesById(id: any) {
@@ -262,6 +263,7 @@ export class HomeService {
         return this.http.post<any>(ApiService.uploadCommMultiImageURL, img);
     }
     deleteCommiImage(data:any){
+        debugger
         return this.http.post(ApiService.deleteCommitteeImageURL,data);
     }
 }
