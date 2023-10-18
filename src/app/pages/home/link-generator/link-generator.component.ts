@@ -46,7 +46,10 @@ export class LinkGeneratorComponent implements OnInit {
     { name: 'Criteria 6' },
     { name: 'Criteria 7' },
     { name: 'SSR' },
-    { name: 'AQAR' }
+    { name: 'AQAR' },
+    { name: 'Extended Profile of College' },
+    { name: 'Other Documents' }
+
   ];
 
   subMenuList: any = [];

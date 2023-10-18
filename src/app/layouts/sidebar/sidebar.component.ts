@@ -19,7 +19,6 @@ export class SidebarComponent implements OnInit {
 
   @ViewChild('sideMenu') sideMenu!: ElementRef;
   menu: any;
-  allItems: MenuItem[] = [];
   menuItems: MenuItem[] = [];
 
   constructor(private router: Router, public translate: TranslateService) {
