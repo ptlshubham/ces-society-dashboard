@@ -132,7 +132,7 @@ export class AnswerKeyComponent implements OnInit {
   }
   viewDownloadPdf(data: any) {
     var path
-    path = 'http://localhost:9000' + data
+    path = 'https://api.cesociety.in' + data
 
     window.open(path, '_blank');
   }
