@@ -266,4 +266,32 @@ export class HomeService {
         debugger
         return this.http.post(ApiService.deleteCommitteeImageURL,data);
     }
+
+
+
+    
+    getPlacementDetails(id: any) {
+        return this.http.get(ApiService.getPlacementDetailsByIdURL + id);
+    }
+    savePlacementDetails(data: any) {
+        return this.http.post(ApiService.savePlacementDetailsURL, data);
+    }
+    updatePlacementDetails(data: any) {
+        return this.http.post(ApiService.updatePlacementDetailsURL, data);
+    }
+    getPlacementMultiImageById(id: any) {
+        return this.http.get(ApiService.getPlacementMultiImagesByIdURL + id);
+    }
+    removePlacementById(id: any) {
+        return this.http.get(ApiService.removePlacementDetailsURL + id);
+    }
+    uploadPlacementImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadPlacementImageURL, img);
+    }
+    uploadPlacementMultiImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadPlacementMultiImageURL, img);
+    }
+    deletePlacementImage(data:any){
+        return this.http.post(ApiService.deletePlacementImageURL,data);
+    }
 }

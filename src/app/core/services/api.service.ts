@@ -5,8 +5,8 @@ declare var $: any;
   providedIn: 'root'
 })
 export class ApiService {
-  // public static HOST_URL: string = "http://localhost:9000";
-  public static HOST_URL: string = "https://api.cesociety.in";
+  public static HOST_URL: string = "http://localhost:9000";
+  // public static HOST_URL: string = "https://api.cesociety.in";
 
   constructor(
   ) { }
@@ -124,6 +124,22 @@ export class ApiService {
   public static removeCommitteeDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveCommitteeDetails/';
   public static getCommitteeDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetCommitteeDetailsById/';
   public static deleteCommitteeImageURL: string = ApiService.HOST_URL + '/admin/deleteCommitteeImage';
+
+  //PLACEMENT
+
+  public static getPlacementDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetPlacementDetailsById/';
+  public static getPlacementMultiImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetPlacementMultiImagesById/';
+  public static deletePlacementImageURL: string = ApiService.HOST_URL + '/admin/deletePlacementImage';
+  public static removePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/RemovePlacementDetails/';
+  public static uploadPlacementImageURL: string = ApiService.HOST_URL + '/admin/UploadPlacementImage';
+  public static uploadPlacementMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadPlacementMultiImage';
+  public static updatePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/UpdatePlacementDetails';
+  public static savePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/SavePlacementDetails';
+  
+  
+  
+ 
+  
 
 
 
