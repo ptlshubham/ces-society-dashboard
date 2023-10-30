@@ -37,6 +37,10 @@ import { NgSelectModule } from '@ng-select/ng-select';
 import { LinkGeneratorComponent } from './link-generator/link-generator.component';
 import { CommiteeComponent } from './commitee/commitee.component';
 import { CommDetailsComponent } from './comm-details/comm-details.component';
+import { PlacementCellComponent } from './placement-cell/placement-cell.component';
+import { PlacementDetailsComponent } from './placement-details/placement-details.component';
+import { ResearchComponent } from './research/research.component';
+import { ResearchDetailsComponent } from './research-details/research-details.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -78,6 +82,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     LinkGeneratorComponent,
     CommiteeComponent,
     CommDetailsComponent,
+    PlacementCellComponent,
+    PlacementDetailsComponent,
+    ResearchComponent,
+    ResearchDetailsComponent,
   ],
   imports: [
     CommonModule,

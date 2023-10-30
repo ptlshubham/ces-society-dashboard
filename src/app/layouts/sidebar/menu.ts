@@ -131,6 +131,20 @@ export const MENU: MenuItem[] = [
         icon: 'users',
         link: '/committee',
         role: 'Institute'
+    },
+    {
+        id: 26,
+        label: 'Placement Cell',
+        icon: 'file-text',
+        link: '/placement',
+        role: 'Institute'
+    },
+    {
+        id: 27,
+        label: 'Research',
+        icon: 'book-open',
+        link: '/research',
+        role: 'Institute'
     }
 ];
 export const CES: MenuItem[] = [
@@ -306,7 +320,22 @@ export const CES: MenuItem[] = [
         icon: 'users',
         link: '/committee',
         role: 'Institute'
+    },
+    {
+        id: 26,
+        label: 'Placement Cell',
+        icon: 'file-text',
+        link: '/placement',
+        role: 'Institute'
+    },
+    {
+        id: 27,
+        label: 'Research',
+        icon: 'book-open',
+        link: '/research',
+        role: 'Institute'
     }
+
 ];
 export const superAdmin: MenuItem[] = [
     {
@@ -371,6 +400,6 @@ export const superAdmin: MenuItem[] = [
         label: 'Answer-key',
         icon: 'key',
         link: '/answer-key',
-    }
+    },
 ];
 

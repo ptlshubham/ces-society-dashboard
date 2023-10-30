@@ -30,6 +30,10 @@ import { NaacComponent } from './naac/naac.component';
 import { LinkGeneratorComponent } from './link-generator/link-generator.component';
 import { CommiteeComponent } from './commitee/commitee.component';
 import { CommDetailsComponent } from './comm-details/comm-details.component';
+import { PlacementCellComponent } from './placement-cell/placement-cell.component';
+import { PlacementDetailsComponent } from './placement-details/placement-details.component';
+import { ResearchComponent } from './research/research.component';
+import { ResearchDetailsComponent } from './research-details/research-details.component';
 
 const routes: Routes = [
   {
@@ -129,29 +133,45 @@ const routes: Routes = [
     component: GatePassComponent
   },
   {
-    path:'answer-key',
-    component:AnswerKeyComponent
+    path: 'answer-key',
+    component: AnswerKeyComponent
   },
   {
-    path:'micro-donation',
-    component:MicroDonationComponent
+    path: 'micro-donation',
+    component: MicroDonationComponent
   },
   {
-    path:'naac',
-    component:NaacComponent
+    path: 'naac',
+    component: NaacComponent
   },
   {
-    path:'link-generater',
-    component:LinkGeneratorComponent
+    path: 'link-generater',
+    component: LinkGeneratorComponent
   },
   {
-    path:'committee',
-    component:CommiteeComponent
+    path: 'committee',
+    component: CommiteeComponent
   },
   {
     path: 'comm-details/:id',
     component: CommDetailsComponent
+  }, 
+  {
+    path: 'placement',
+    component: PlacementCellComponent
   },
+  {
+    path: 'placement-details/:id',
+    component: PlacementDetailsComponent
+  },
+  {
+    path: 'research',
+    component: ResearchComponent
+  },
+  {
+    path: 'research-details/:id',
+    component: ResearchDetailsComponent
+  }, 
 
 ];
 
