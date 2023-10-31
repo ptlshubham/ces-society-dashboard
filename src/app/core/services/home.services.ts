@@ -294,4 +294,21 @@ export class HomeService {
     deletePlacementImage(data:any){
         return this.http.post(ApiService.deletePlacementImageURL,data);
     }
+
+
+
+     
+    getResearchDetails(id: any) {
+        return this.http.get(ApiService.getResearchDetailsByIdURL + id);
+    }
+    saveResearchDetails(data: any) {
+        return this.http.post(ApiService.saveResearchDetailsURL, data);
+    }
+    updateResearchDetails(data: any) {
+        return this.http.post(ApiService.updateResearchDetailsURL, data);
+    }
+   
+    removeResearchById(id: any) {
+        return this.http.get(ApiService.removeResearchDetailsURL + id);
+    }
 }

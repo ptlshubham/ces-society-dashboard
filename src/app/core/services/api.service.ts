@@ -126,7 +126,6 @@ export class ApiService {
   public static deleteCommitteeImageURL: string = ApiService.HOST_URL + '/admin/deleteCommitteeImage';
 
   //PLACEMENT
-
   public static getPlacementDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetPlacementDetailsById/';
   public static getPlacementMultiImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetPlacementMultiImagesById/';
   public static deletePlacementImageURL: string = ApiService.HOST_URL + '/admin/deletePlacementImage';
@@ -135,6 +134,12 @@ export class ApiService {
   public static uploadPlacementMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadPlacementMultiImage';
   public static updatePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/UpdatePlacementDetails';
   public static savePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/SavePlacementDetails';
+
+  //RESEARCH
+  public static getResearchDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetResearchDetailsById/';
+  public static removeResearchDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveResearchDetails/';
+  public static updateResearchDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateResearchDetails';
+  public static saveResearchDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResearchDetails';
   
   
   
