@@ -31,8 +31,7 @@ export class NaacComponent implements OnInit {
   progressType1: string = 'success'; // Type of progress bar (success, info, warning, danger)
   isProgress1: boolean = false;
 
-  NAACDetailsModel: any = {
-  };
+  NAACDetailsModel: any = {};
 
   // For Select Dropdown with new entry
   criteria = [

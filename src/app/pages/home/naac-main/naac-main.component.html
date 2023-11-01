@@ -12,7 +12,6 @@
             <div class="card-body">
                 <div>
                     <form [formGroup]="validationForm">
-                        <input type="hidden" />
                         <div class="row">
                             <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
                                 <div class="mb-3">
@@ -25,6 +24,13 @@
                                         </ng-template>
                                     </ng-select>
                                 </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="form-group mb-3">
+                                <label>Naac Details</label>
+                                <ckeditor [editor]="Editor" data="" [ngModelOptions]="{standalone: true}"
+                                    [(ngModel)]="NAACDetailsModel.naacDetails"></ckeditor>
                             </div>
                         </div>
                         <div class="form-group">
@@ -70,7 +76,7 @@
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
-                        <!-- <tbody>
+                        <tbody>
                             <tr *ngFor="let s of paginateData;let i=index">
                                 <td class="text-left">{{s.index}}</td>
                                 <td class="text-center">{{s.criteria}} </td>
@@ -95,7 +101,7 @@
 
                                 <td class="text-center">{{s.createddate |date}}</td>
 
-                                <td class="text-end">
+                                <!-- <td class="text-end">
                                     <div class="d-flex flex-wrap gap-2">
                                         <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                             (click)="openNaacDetails(s)"><i
@@ -105,10 +111,10 @@
                                                 class="bx bx-trash-alt font-size-16"></i></button>
 
                                     </div>
-                                </td>
+                                </td> -->
 
                             </tr>
-                        </tbody> -->
+                        </tbody>
                     </table>
                 </div>
                 <!-- <div class="row mt-4">

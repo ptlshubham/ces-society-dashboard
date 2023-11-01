@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
+import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 
 @Component({
   selector: 'app-naac-main',
@@ -9,6 +10,9 @@ import { HomeService } from 'src/app/core/services/home.services';
   styleUrls: ['./naac-main.component.scss']
 })
 export class NaacMainComponent implements OnInit {
+  public Editor = ClassicEditor;
+  paginateData: any = [];
+
   validationForm!: FormGroup;
   criteria = [
     { name: 'Criteria 1' },
@@ -24,6 +28,7 @@ export class NaacMainComponent implements OnInit {
   selectedCriteria: any;
   isOpen: boolean = false;
   isUpdate: boolean = false;
+  NAACDetailsModel: any = {};
 
   constructor(
     private homeService: HomeService,
@@ -67,5 +72,20 @@ export class NaacMainComponent implements OnInit {
   }
   onCriteriaChange(event: any) {
     this.selectedCriteria = event.name;
+  }
+  getPlacementDataById() {
+    // this.homeService.getPlacementDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
+    //   this.placementData = res;
+    //   debugger
+    //   for (let i = 0; i < this.placementData.length; i++) {
+    //     this.placementData[i].index = i + 1;
+    //   }
+    //   this.collectionSize = this.placementData.length;
+    //   this.getPagintaion();
+    // })
+  }
+  getPagintaion() {
+    // this.paginateData = this.placementData
+    //   .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 }
