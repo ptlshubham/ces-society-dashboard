@@ -26,78 +26,6 @@
                                     </ng-select>
                                 </div>
                             </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                                <div class="mb-3">
-                                    <label for="choices-single-default" class="form-label">Select Key Indicator</label>
-                                    <ng-select [items]="keyIndicator" bindLabel="keyno" bindValue="keyno"
-                                        placeholder="Select Key Indicator" (change)="onKeyIndicatorChange($event)"
-                                        [addTag]="addNewIndicator" [(ngModel)]="selectedKeyNo"
-                                        [ngModelOptions]="{standalone: true}">
-                                        <ng-template ng-optgroup-tmp let-item="item">
-                                            {{item.keyno}}
-                                        </ng-template>
-                                    </ng-select>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                                <div class="form-group mb-3">
-                                    <label>Parameter Name</label>
-                                    <input type="text" class="form-control" id="paraname"
-                                        placeholder="Enter Parameter Name" [(ngModel)]="NAACDetailsModel.paraname"
-                                        formControlName="paraname"
-                                        [ngClass]="{'is-invalid': f.paraname.touched && f.paraname.errors}">
-                                    <div *ngIf="f.paraname.touched && f.paraname.errors" class="invalid-feedback">
-                                        <span *ngIf="f.paraname.errors.required">This Field is
-                                            required.</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6"
-                                *ngIf="NAACDetailsModel.paralink!='' && NAACDetailsModel.paralink!=undefined && NAACDetailsModel.paralink!=null">
-                                <div class="form-group mb-3">
-                                    <label>View Uploaded Parameter Link</label>
-                                    <a href="http://localhost:9000{{NAACDetailsModel.paralink}}"
-                                        target="_blank">
-                                        <img src="assets/images/pdf.png" alt="pdf" class="img-thumbnail"
-                                            style="height: 50%;width: 50%;"></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                                <div class="form-group mb-3">
-                                    <label>Parameter PDF Uploader (Optional)</label>
-                                    <input class="form-control mb-2" type="file" id="formFile"
-                                        (change)="uploadParameterPdfFile($event)">
-                                    <ngb-progressbar [value]="progressValue" [type]="progressType"
-                                        *ngIf="isProgress"></ngb-progressbar>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                                <div class="form-group mb-3">
-                                    <label>Attachment Name</label>
-                                    <input type="text" class="form-control" id="attachname"
-                                        placeholder="Enter Attachment Name" [ngModelOptions]="{standalone: true}"
-                                        [(ngModel)]="NAACDetailsModel.attachname">
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6"
-                                *ngIf="NAACDetailsModel.attachlink!='' && NAACDetailsModel.attachlink!=undefined && NAACDetailsModel.attachlink!=null">
-                                <div class="form-group mb-3">
-                                    <label>View Uploaded Attachment Link</label>
-                                    <a href="http://localhost:9000{{NAACDetailsModel.attachlink}}"
-                                        target="_blank">
-                                        <img src="assets/images/pdf.png" alt="pdf" class="img-thumbnail"
-                                            style="height: 50%;width: 50%;"></a>
-                                </div>
-                            </div>
-                            <div class="col-xl-4 col-lg-4 col-md-4 col-sm-6">
-                                <div class="form-group mb-3">
-                                    <label>Attachment PDF Uploader (Optional)</label>
-                                    <input class="form-control mb-2" type="file" id="formFile"
-                                        (change)="uploadAttachmentPdfFile($event)">
-                                    <ngb-progressbar [value]="progressValue1" [type]="progressType1"
-                                        *ngIf="isProgress1"></ngb-progressbar>
-                                </div>
-                            </div>
                         </div>
                         <div class="form-group">
                             <div class="row justify-content-end">
@@ -142,7 +70,7 @@
                                 <th class="text-end">Action</th>
                             </tr>
                         </thead>
-                        <tbody>
+                        <!-- <tbody>
                             <tr *ngFor="let s of paginateData;let i=index">
                                 <td class="text-left">{{s.index}}</td>
                                 <td class="text-center">{{s.criteria}} </td>
@@ -180,15 +108,15 @@
                                 </td>
 
                             </tr>
-                        </tbody>
+                        </tbody> -->
                     </table>
                 </div>
-                <div class="row mt-4">
+                <!-- <div class="row mt-4">
                     <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page"
                         [maxSize]="5" [rotate]="true" [ellipses]="false" [boundaryLinks]="true"
                         (pageChange)="getPagintaion();" aria-label="Default pagination"
                         class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>

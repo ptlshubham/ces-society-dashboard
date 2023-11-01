@@ -41,6 +41,7 @@ import { PlacementCellComponent } from './placement-cell/placement-cell.componen
 import { PlacementDetailsComponent } from './placement-details/placement-details.component';
 import { ResearchComponent } from './research/research.component';
 import { ResearchDetailsComponent } from './research-details/research-details.component';
+import { NaacMainComponent } from './naac-main/naac-main.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -86,6 +87,7 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PlacementDetailsComponent,
     ResearchComponent,
     ResearchDetailsComponent,
+    NaacMainComponent,
   ],
   imports: [
     CommonModule,

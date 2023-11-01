@@ -100,10 +100,12 @@
                             </div>
                         </div>
                         <div class="form-group">
-                            <button type="submit" class="btn btn-primary" (click)="saveCommiteeDetails()"
-                                *ngIf="!isUpdate">Submit</button>
-                            <button type="submit" class="btn btn-primary" (click)="updateCommiteeDetails()"
-                                *ngIf="isUpdate">Update</button>
+                            <div class="d-flex justify-content-end">
+                                <button type="submit" class="btn btn-primary" (click)="saveCommiteeDetails()"
+                                    *ngIf="!isUpdate">Submit</button>
+                                <button type="submit" class="btn btn-primary" (click)="updateCommiteeDetails()"
+                                    *ngIf="isUpdate">Update</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -140,7 +142,7 @@
                                 <td class="text-center">{{c.commTitle}}</td>
                                 <!-- <td class="text-center" [innerHtml]='c.infraDetails'> </td> -->
                                 <td class="text-center">
-                                    <img src="https://api.cesociety.in{{c.commImage}}" alt="" class="rounded avatar-lg"
+                                    <img src="http://localhost:9000{{c.commImage}}" alt="" class="rounded avatar-lg"
                                         *ngIf="c.commImage!='null' && c.commImage!='undefined' && c.commImage!=undefined">
                                     <span class="bg-warning badge me-2"
                                         *ngIf="c.commImage=='null' || c.commImage=='undefined' || c.commImage==undefined">File

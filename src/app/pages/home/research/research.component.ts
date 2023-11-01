@@ -12,11 +12,6 @@ import { HomeService } from 'src/app/core/services/home.services';
 export class ResearchComponent implements OnInit {
 
   public Editor = ClassicEditor;
-
-  @ViewChild('fileInput') el!: ElementRef;
-  imageUrl: any = "assets/images/file-upload-image.jpg";
-  editFile: boolean = true;
-  removeUpload: boolean = false;
   researchData: any = [];
   researchModel: any = {};
   isOpen: boolean = false;
@@ -26,7 +21,6 @@ export class ResearchComponent implements OnInit {
   pageSize = 10;
   collectionSize = 0;
   paginateData: any = [];
-  infraMulti: any = [];
   constructor(
     private homeService: HomeService,
     private router: Router,
@@ -60,10 +54,6 @@ export class ResearchComponent implements OnInit {
       this.getResearchDataById();
     })
   }
-  addServiceList() {
-    this.val++;
-  }
-
  
   editResearchDetails(data: any) {
     this.researchModel = data;

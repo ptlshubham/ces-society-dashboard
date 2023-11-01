@@ -104,7 +104,7 @@ export class PlacementCellComponent implements OnInit {
     this.placementModel.placeMultiImage = this.placeMultiImage;
     this.homeService.savePlacementDetails(this.placementModel).subscribe((res: any) => {
       this.placementData = res;
-      this.placementModel.commImage = null;
+      this.placementModel.placeImage = null;
       this.placeImages = null;
       this.placementModel.placeMultiImage=[];
       this.placeMultiImage=[];
@@ -141,7 +141,7 @@ export class PlacementCellComponent implements OnInit {
             this.homeService.uploadPlacementMultiImage(formdata).subscribe((response) => {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
               this.placeMultiImage.push(response);
-              this.addMultiImg[ind].multiImageUrl ='https://api.cesociety.in' + response;
+              this.addMultiImg[ind].multiImageUrl ='http://localhost:9000' + response;
               this.editFile = false;
               this.removeUpload = true;
             });
@@ -168,7 +168,8 @@ export class PlacementCellComponent implements OnInit {
   editPlacementDetails(data: any) {
     this.placementModel = data;
     this.getPlacementMultiImage(data.id);
-    this.imageUrl = 'https://api.cesociety.in' + data.commImage
+    this.imageUrl = 'http://localhost:9000' + data.placeImage
+    debugger
     this.isOpen = true;
     this.isUpdate = true;
   }
@@ -178,7 +179,7 @@ export class PlacementCellComponent implements OnInit {
       this.placeMulti = res;
       if (this.placeMulti.length > 0) {
         this.placeMulti.forEach((element: any,ind:any) => {
-          this.multiImage.push({ name: ind+1, multiImageUrl: 'https://api.cesociety.in' + element.image });
+          this.multiImage.push({ name: ind+1, multiImageUrl: 'http://localhost:9000' + element.image });
         });
       }
       this.addMultiImg = this.multiImage;
@@ -188,7 +189,7 @@ export class PlacementCellComponent implements OnInit {
     this.addMultiImg
     debugger
     if (this.placeImages != null || undefined) {
-      this.placementModel.commImage = this.placeImages;
+      this.placementModel.placeImage = this.placeImages;
     }
     this.homeService.updatePlacementDetails(this.placementModel).subscribe((res: any) => {
       this.placementData = res;
