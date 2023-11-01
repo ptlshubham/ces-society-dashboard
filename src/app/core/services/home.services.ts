@@ -307,8 +307,21 @@ export class HomeService {
     updateResearchDetails(data: any) {
         return this.http.post(ApiService.updateResearchDetailsURL, data);
     }
-   
     removeResearchById(id: any) {
         return this.http.get(ApiService.removeResearchDetailsURL + id);
     }
+
+    SaveNewNaacDetails(data:any){
+        return this.http.post(ApiService.SaveNewNaacDetailsURL, data);
+    }
+    UpdateNewNaacDetails(data:any){
+        return this.http.post(ApiService.UpdateNewNaacDetailsURL, data);
+    }
+    getNewNaacDetails(id:any){
+        return this.http.get(ApiService.GetNewNaacDetailsByIdURL+id);
+    }
+    removeNewNaacById(id: any) {
+        return this.http.get(ApiService.removeNewNaacDetailsURL + id);
+    }
+
 }

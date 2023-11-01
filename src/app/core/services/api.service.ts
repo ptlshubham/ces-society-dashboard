@@ -140,6 +140,14 @@ export class ApiService {
   public static removeResearchDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveResearchDetails/';
   public static updateResearchDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateResearchDetails';
   public static saveResearchDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResearchDetails';
+
+  
+  public static SaveNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNewNaacDetails';
+  public static UpdateNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateNewNaacDetails';
+  public static GetNewNaacDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetNewNaacDetailsById/';
+  public static removeNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/removeNewNaacDetails/';
+  
+
   
   
   

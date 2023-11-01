@@ -12,8 +12,9 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class NaacMainComponent implements OnInit {
   public Editor = ClassicEditor;
   paginateData: any = [];
-
+  instituteId:any;
   validationForm!: FormGroup;
+  NaacData:any=[];
   criteria = [
     { name: 'Criteria 1' },
     { name: 'Criteria 2' },
@@ -29,12 +30,16 @@ export class NaacMainComponent implements OnInit {
   isOpen: boolean = false;
   isUpdate: boolean = false;
   NAACDetailsModel: any = {};
-
+  val: number = 0;
+  page = 1;
+  pageSize = 10;
+  collectionSize = 0;
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
     public formBuilder: UntypedFormBuilder,
   ) {
+    this.instituteId = localStorage.getItem('InstituteId');
     this.criteria = [
       { name: 'Criteria 1' },
       { name: 'Criteria 2' },
@@ -50,6 +55,7 @@ export class NaacMainComponent implements OnInit {
   }
   get f() { return this.validationForm.controls; }
   ngOnInit(): void {
+    this.getAllNAACDetails();
   }
   backToList() {
     this.isOpen = false;
@@ -65,13 +71,59 @@ export class NaacMainComponent implements OnInit {
 
   }
   saveNAACDetails(){
-
+    this.NAACDetailsModel;
+    this.NAACDetailsModel.selectedCriteria = this.selectedCriteria;
+    this.NAACDetailsModel.institute_id = this.instituteId;
+    this.homeService.SaveNewNaacDetails(this.NAACDetailsModel).subscribe((res:any)=>{
+      if(res=='success'){
+        this.toastr.success('NAAC Details added Successfully.', 'Saved', { timeOut: 3000, });
+        this.isOpen = false;
+        this.isUpdate = false;
+        this.getAllNAACDetails();
+      }
+    })
   }
   updateNaacDetails(){
-
+    this.NAACDetailsModel;
+    this.NAACDetailsModel.selectedCriteria = this.selectedCriteria;
+    this.NAACDetailsModel.institute_id = this.instituteId;
+    this.homeService.UpdateNewNaacDetails(this.NAACDetailsModel).subscribe((res:any)=>{
+      if(res=='success'){
+        this.toastr.success('NAAC Details Updated Successfully.', 'Saved', { timeOut: 3000, });
+        this.isOpen = false;
+        this.isUpdate = false;
+        this.getAllNAACDetails();
+      }
+    })
   }
+  getAllNAACDetails() {
+    this.homeService.getNewNaacDetails(this.instituteId).subscribe((res: any) => {
+      this.NaacData = res;
+      for (let i = 0; i < this.NaacData.length; i++) {
+        this.NaacData[i].index = i + 1;
+      }
+      this.collectionSize = this.NaacData.length;
+      this.getPagintaion();
+    })
+  }
+ 
   onCriteriaChange(event: any) {
     this.selectedCriteria = event.name;
+  }
+  removeNaacDetails(id:any){
+    this.homeService.removeNewNaacById(id).subscribe((res:any)=>{
+      if(res=='sucess'){
+        this.toastr.success('NAAC Details deleted Successfully.', 'Removed', { timeOut: 3000, });
+        this.getAllNAACDetails();
+      }
+    })
+  }
+  openNaacDetails(data:any){
+    this.isUpdate=true;
+    this.isOpen = true;
+    this.selectedCriteria=data.criteria;
+    this.NAACDetailsModel.naacDetails = data.details;
+    this.NAACDetailsModel.id = data.id;
   }
   getPlacementDataById() {
     // this.homeService.getPlacementDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
@@ -85,7 +137,7 @@ export class NaacMainComponent implements OnInit {
     // })
   }
   getPagintaion() {
-    // this.paginateData = this.placementData
-    //   .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    this.paginateData = this.NaacData
+      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 }

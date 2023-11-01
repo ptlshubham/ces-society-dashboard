@@ -67,11 +67,11 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">Criteria</th>
-                                <th class="text-center">Key No</th>
-                                <th class="text-center">Parameter</th>
+                                <th class="text-center">Details</th>
+                                <!-- <th class="text-center">Parameter</th>
                                 <th class="text-center">Parameter Link</th>
                                 <th class="text-center">Attachment Name</th>
-                                <th class="text-center">Attachment Link</th>
+                                <th class="text-center">Attachment Link</th> -->
                                 <th class="text-center">Created Date</th>
                                 <th class="text-end">Action</th>
                             </tr>
@@ -80,8 +80,8 @@
                             <tr *ngFor="let s of paginateData;let i=index">
                                 <td class="text-left">{{s.index}}</td>
                                 <td class="text-center">{{s.criteria}} </td>
-                                <td class="text-center">{{s.keyno}}</td>
-                                <td class="text-center">{{s.paraname}}</td>
+                                <td class="text-center">{{s.details}}</td>
+                                <!-- <td class="text-center">{{s.paraname}}</td>
                                 <td class="text-center" *ngIf="s.paralink!='undefined' && s.paralink!=''"><a
                                         href="http://localhost:9000{{s.paralink}}" target="_blank"><u>View
                                             More</u></a>
@@ -97,11 +97,11 @@
                                 </td>
                                 <td class="text-center" *ngIf="s.attachlink=='undefined' || s.attachlink=='' "><span
                                         class="badge bg-warning ms-1">Not Uploaded</span>
-                                </td>
+                                </td> -->
 
                                 <td class="text-center">{{s.createddate |date}}</td>
 
-                                <!-- <td class="text-end">
+                                <td class="text-end">
                                     <div class="d-flex flex-wrap gap-2">
                                         <button type="button" class="btn btn-soft-primary waves-effect waves-light"
                                             (click)="openNaacDetails(s)"><i
@@ -111,7 +111,7 @@
                                                 class="bx bx-trash-alt font-size-16"></i></button>
 
                                     </div>
-                                </td> -->
+                                </td>
 
                             </tr>
                         </tbody>
