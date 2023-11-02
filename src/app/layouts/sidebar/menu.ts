@@ -149,7 +149,7 @@ export const MENU: MenuItem[] = [
     {
         id: 27,
         label: 'Campus Life',
-        icon: 'book-open',
+        icon: 'dribbble',
         link: '/campus',
         role: 'Institute'
     }
@@ -345,7 +345,7 @@ export const CES: MenuItem[] = [
     {
         id: 27,
         label: 'Campus Life',
-        icon: 'book-open',
+        icon: 'dribbble',
         link: '/campus',
         role: 'Institute'
     }
