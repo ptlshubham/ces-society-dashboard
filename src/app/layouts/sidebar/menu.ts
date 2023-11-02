@@ -145,6 +145,13 @@ export const MENU: MenuItem[] = [
         icon: 'book-open',
         link: '/research',
         role: 'Institute'
+    },
+    {
+        id: 27,
+        label: 'Campus Life',
+        icon: 'book-open',
+        link: '/campus',
+        role: 'Institute'
     }
 ];
 export const CES: MenuItem[] = [
@@ -333,6 +340,13 @@ export const CES: MenuItem[] = [
         label: 'Research',
         icon: 'book-open',
         link: '/research',
+        role: 'Institute'
+    },
+    {
+        id: 27,
+        label: 'Campus Life',
+        icon: 'book-open',
+        link: '/campus',
         role: 'Institute'
     }
 
