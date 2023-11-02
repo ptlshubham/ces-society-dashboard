@@ -135,6 +135,16 @@ export class ApiService {
   public static updatePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/UpdatePlacementDetails';
   public static savePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/SavePlacementDetails';
 
+    //CAMPUS LIFE
+    public static getCampusDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetCampusDetailsById/';
+    public static getCampusMultiImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetCampusMultiImagesById/';
+    public static deleteCampusImageURL: string = ApiService.HOST_URL + '/admin/deleteCampusImage';
+    public static removeCampusDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveCampusDetails/';
+    public static uploadCampusImageURL: string = ApiService.HOST_URL + '/admin/UploadCampusImage';
+    public static uploadCampusMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadCampusMultiImage';
+    public static updateCampusDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateCampusDetails';
+    public static saveCampusDetailsURL: string = ApiService.HOST_URL + '/admin/SaveCampusDetails';
+
   //RESEARCH
   public static getResearchDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetResearchDetailsById/';
   public static removeResearchDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveResearchDetails/';

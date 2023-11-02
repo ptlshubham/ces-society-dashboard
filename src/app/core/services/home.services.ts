@@ -296,6 +296,32 @@ export class HomeService {
     }
 
 
+    getCampusDetails(id: any) {
+        return this.http.get(ApiService.getCampusDetailsByIdURL + id);
+    }
+    saveCampusDetails(data: any) {
+        return this.http.post(ApiService.saveCampusDetailsURL, data);
+    }
+    updateCampusDetails(data: any) {
+        return this.http.post(ApiService.updateCampusDetailsURL, data);
+    }
+    getCampusMultiImageById(id: any) {
+        return this.http.get(ApiService.getCampusMultiImagesByIdURL + id);
+    }
+    removeCampusById(id: any) {
+        return this.http.get(ApiService.removeCampusDetailsURL + id);
+    }
+    uploadCampusImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadCampusImageURL, img);
+    }
+    uploadCampusMultiImage(img: any): Observable<any> {
+        return this.http.post<any>(ApiService.uploadCampusMultiImageURL, img);
+    }
+    deleteCapusImage(data:any){
+        return this.http.post(ApiService.deleteCampusImageURL,data);
+    }
+
+
 
      
     getResearchDetails(id: any) {
