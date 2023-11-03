@@ -5,8 +5,8 @@ declare var $: any;
   providedIn: 'root'
 })
 export class ApiService {
-  public static HOST_URL: string = "http://localhost:9000";
-  // public static HOST_URL: string = "https://api.cesociety.in";
+  // public static HOST_URL: string = "http://localhost:9000";
+  public static HOST_URL: string = "https://api.cesociety.in";
 
   constructor(
   ) { }
@@ -135,15 +135,15 @@ export class ApiService {
   public static updatePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/UpdatePlacementDetails';
   public static savePlacementDetailsURL: string = ApiService.HOST_URL + '/admin/SavePlacementDetails';
 
-    //CAMPUS LIFE
-    public static getCampusDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetCampusDetailsById/';
-    public static getCampusMultiImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetCampusMultiImagesById/';
-    public static deleteCampusImageURL: string = ApiService.HOST_URL + '/admin/deleteCampusImage';
-    public static removeCampusDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveCampusDetails/';
-    public static uploadCampusImageURL: string = ApiService.HOST_URL + '/admin/UploadCampusImage';
-    public static uploadCampusMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadCampusMultiImage';
-    public static updateCampusDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateCampusDetails';
-    public static saveCampusDetailsURL: string = ApiService.HOST_URL + '/admin/SaveCampusDetails';
+  //CAMPUS LIFE
+  public static getCampusDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetCampusDetailsById/';
+  public static getCampusMultiImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetCampusMultiImagesById/';
+  public static deleteCampusImageURL: string = ApiService.HOST_URL + '/admin/deleteCampusImage';
+  public static removeCampusDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveCampusDetails/';
+  public static uploadCampusImageURL: string = ApiService.HOST_URL + '/admin/UploadCampusImage';
+  public static uploadCampusMultiImageURL: string = ApiService.HOST_URL + '/admin/UploadCampusMultiImage';
+  public static updateCampusDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateCampusDetails';
+  public static saveCampusDetailsURL: string = ApiService.HOST_URL + '/admin/SaveCampusDetails';
 
   //RESEARCH
   public static getResearchDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetResearchDetailsById/';
@@ -151,18 +151,18 @@ export class ApiService {
   public static updateResearchDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateResearchDetails';
   public static saveResearchDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResearchDetails';
 
-  
+
   public static SaveNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNewNaacDetails';
   public static UpdateNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateNewNaacDetails';
   public static GetNewNaacDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetNewNaacDetailsById/';
   public static removeNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/removeNewNaacDetails/';
-  
 
-  
-  
-  
- 
-  
+
+
+
+
+
+
 
 
 

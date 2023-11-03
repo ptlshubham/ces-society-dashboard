@@ -137,10 +137,10 @@ export class CampusLifeComponent implements OnInit {
             this.cardImageBase64 = imgBase64Path;
             const formdata = new FormData();
             formdata.append('file', file);
-            this.homeService.uploadPlacementMultiImage(formdata).subscribe((response) => {
+            this.homeService.uploadCampusMultiImage(formdata).subscribe((response) => {
               this.toastr.success('Image Uploaded Successfully', 'Uploaded', { timeOut: 3000, });
               this.campusMultiImage.push(response);
-              this.addMultiImg[ind].multiImageUrl ='http://localhost:9000' + response;
+              this.addMultiImg[ind].multiImageUrl ='https://api.cesociety.in' + response;
               this.editFile = false;
               this.removeUpload = true;
             });
@@ -167,7 +167,7 @@ export class CampusLifeComponent implements OnInit {
   editCampusDetails(data: any) {
     this.campusModel = data;
     this.getCampusMultiImage(data.id);
-    this.imageUrl = 'http://localhost:9000' + data.campusImage
+    this.imageUrl = 'https://api.cesociety.in' + data.campusImage
     debugger
     this.isOpen = true;
     this.isUpdate = true;
@@ -178,7 +178,7 @@ export class CampusLifeComponent implements OnInit {
       this.campusMulti = res;
       if (this.campusMulti.length > 0) {
         this.campusMulti.forEach((element: any,ind:any) => {
-          this.multiImage.push({ name: ind+1, multiImageUrl: 'http://localhost:9000' + element.image });
+          this.multiImage.push({ name: ind+1, multiImageUrl: 'https://api.cesociety.in' + element.image });
         });
       }
       this.addMultiImg = this.multiImage;
