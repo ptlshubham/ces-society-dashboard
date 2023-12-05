@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { ApiService } from './api.service';
 import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({ providedIn: 'root' })
 export class HomeService {
@@ -32,9 +33,9 @@ export class HomeService {
         debugger
         return this.http.post<any>(ApiService.uploadGalleryVideoURL, data);
     }
-    deleteInfraImage(data:any){
+    deleteInfraImage(data: any) {
         debugger
-        return this.http.post(ApiService.deleteInfraImageURL,data);
+        return this.http.post(ApiService.deleteInfraImageURL, data);
     }
     getBannersImagesById(id: any) {
         let data = {
@@ -262,14 +263,14 @@ export class HomeService {
     uploadCommitteeMultiImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadCommMultiImageURL, img);
     }
-    deleteCommiImage(data:any){
+    deleteCommiImage(data: any) {
         debugger
-        return this.http.post(ApiService.deleteCommitteeImageURL,data);
+        return this.http.post(ApiService.deleteCommitteeImageURL, data);
     }
 
 
 
-    
+
     getPlacementDetails(id: any) {
         return this.http.get(ApiService.getPlacementDetailsByIdURL + id);
     }
@@ -291,8 +292,8 @@ export class HomeService {
     uploadPlacementMultiImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadPlacementMultiImageURL, img);
     }
-    deletePlacementImage(data:any){
-        return this.http.post(ApiService.deletePlacementImageURL,data);
+    deletePlacementImage(data: any) {
+        return this.http.post(ApiService.deletePlacementImageURL, data);
     }
 
 
@@ -317,13 +318,13 @@ export class HomeService {
     uploadCampusMultiImage(img: any): Observable<any> {
         return this.http.post<any>(ApiService.uploadCampusMultiImageURL, img);
     }
-    deleteCapusImage(data:any){
-        return this.http.post(ApiService.deleteCampusImageURL,data);
+    deleteCapusImage(data: any) {
+        return this.http.post(ApiService.deleteCampusImageURL, data);
     }
 
 
 
-     
+
     getResearchDetails(id: any) {
         return this.http.get(ApiService.getResearchDetailsByIdURL + id);
     }
@@ -337,17 +338,31 @@ export class HomeService {
         return this.http.get(ApiService.removeResearchDetailsURL + id);
     }
 
-    SaveNewNaacDetails(data:any){
+    SaveNewNaacDetails(data: any) {
         return this.http.post(ApiService.SaveNewNaacDetailsURL, data);
     }
-    UpdateNewNaacDetails(data:any){
+    UpdateNewNaacDetails(data: any) {
         return this.http.post(ApiService.UpdateNewNaacDetailsURL, data);
     }
-    getNewNaacDetails(id:any){
-        return this.http.get(ApiService.GetNewNaacDetailsByIdURL+id);
+    getNewNaacDetails(id: any) {
+        return this.http.get(ApiService.GetNewNaacDetailsByIdURL + id);
     }
     removeNewNaacById(id: any) {
         return this.http.get(ApiService.removeNewNaacDetailsURL + id);
     }
 
+    getPhotoContestData() {
+        return this.http.get<any>(ApiService.getPhotoContestListURL);
+    }
+    getContestImages(id: any) {
+        return this.http.get(ApiService.getPhotoContestImagesByIdURL + id);
+    }
+    removeContestDetails(id: any) {
+        return this.http.get(ApiService.removePhotoContestDetailsById + id);
+    }
+    downloadImage(url: string): Observable<Blob> {
+        return this.http.get(url, { responseType: 'blob' }).pipe(
+            map(response => new Blob([response]))
+        );
+    }
 }

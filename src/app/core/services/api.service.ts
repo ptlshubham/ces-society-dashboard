@@ -157,6 +157,9 @@ export class ApiService {
   public static GetNewNaacDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetNewNaacDetailsById/';
   public static removeNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/removeNewNaacDetails/';
 
+  public static getPhotoContestListURL: string = ApiService.HOST_URL + '/admin/GetPhotoContestList';
+  public static getPhotoContestImagesByIdURL: string = ApiService.HOST_URL + '/admin/GetPhotoContestImagesById/';
+  public static removePhotoContestDetailsById: string = ApiService.HOST_URL + '/admin/RemovePhotoContestDetailsById/';
 
 
 

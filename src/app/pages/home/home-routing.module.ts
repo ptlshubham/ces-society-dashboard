@@ -36,6 +36,9 @@ import { ResearchDetailsComponent } from './research-details/research-details.co
 import { NaacMainComponent } from './naac-main/naac-main.component';
 import { CampusLifeComponent } from './campus-life/campus-life.component';
 import { CampusDetailsComponent } from './campus-details/campus-details.component';
+import { PhotoContestComponent } from './photo-contest/photo-contest.component';
+import { PhotoContestImagesComponent } from './photo-contest-images/photo-contest-images.component';
+import { NaacViewComponent } from './naac-view/naac-view.component';
 
 const routes: Routes = [
   {
@@ -147,6 +150,10 @@ const routes: Routes = [
     component: NaacMainComponent
   },
   {
+    path: 'naac-view/:id',
+    component: NaacViewComponent
+  },
+  {
     path: 'link-generater',
     component: LinkGeneratorComponent
   },
@@ -157,7 +164,7 @@ const routes: Routes = [
   {
     path: 'comm-details/:id',
     component: CommDetailsComponent
-  }, 
+  },
   {
     path: 'placement',
     component: PlacementCellComponent
@@ -173,7 +180,7 @@ const routes: Routes = [
   {
     path: 'research-details/:id',
     component: ResearchDetailsComponent
-  }, 
+  },
   {
     path: 'campus',
     component: CampusLifeComponent
@@ -182,6 +189,14 @@ const routes: Routes = [
     path: 'campus-details/:id',
     component: CampusDetailsComponent
   },
+  {
+    path: 'photo-contest',
+    component: PhotoContestComponent
+  },
+  {
+    path: 'contest-images',
+    component: PhotoContestImagesComponent
+  }
 ];
 
 @NgModule({

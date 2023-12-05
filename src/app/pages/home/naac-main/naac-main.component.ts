@@ -3,6 +3,7 @@ import { FormGroup, UntypedFormBuilder } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-naac-main',
@@ -12,9 +13,9 @@ import * as ClassicEditor from '@ckeditor/ckeditor5-build-classic';
 export class NaacMainComponent implements OnInit {
   public Editor = ClassicEditor;
   paginateData: any = [];
-  instituteId:any;
+  instituteId: any;
   validationForm!: FormGroup;
-  NaacData:any=[];
+  NaacData: any = [];
   criteria = [
     { name: 'Criteria 1' },
     { name: 'Criteria 2' },
@@ -38,6 +39,7 @@ export class NaacMainComponent implements OnInit {
     private homeService: HomeService,
     public toastr: ToastrService,
     public formBuilder: UntypedFormBuilder,
+    private router: Router
   ) {
     this.instituteId = localStorage.getItem('InstituteId');
     this.criteria = [
@@ -70,12 +72,12 @@ export class NaacMainComponent implements OnInit {
     this.validationForm.markAsUntouched();
 
   }
-  saveNAACDetails(){
+  saveNAACDetails() {
     this.NAACDetailsModel;
     this.NAACDetailsModel.selectedCriteria = this.selectedCriteria;
     this.NAACDetailsModel.institute_id = this.instituteId;
-    this.homeService.SaveNewNaacDetails(this.NAACDetailsModel).subscribe((res:any)=>{
-      if(res=='success'){
+    this.homeService.SaveNewNaacDetails(this.NAACDetailsModel).subscribe((res: any) => {
+      if (res == 'success') {
         this.toastr.success('NAAC Details added Successfully.', 'Saved', { timeOut: 3000, });
         this.isOpen = false;
         this.isUpdate = false;
@@ -83,12 +85,12 @@ export class NaacMainComponent implements OnInit {
       }
     })
   }
-  updateNaacDetails(){
+  updateNaacDetails() {
     this.NAACDetailsModel;
     this.NAACDetailsModel.selectedCriteria = this.selectedCriteria;
     this.NAACDetailsModel.institute_id = this.instituteId;
-    this.homeService.UpdateNewNaacDetails(this.NAACDetailsModel).subscribe((res:any)=>{
-      if(res=='success'){
+    this.homeService.UpdateNewNaacDetails(this.NAACDetailsModel).subscribe((res: any) => {
+      if (res == 'success') {
         this.toastr.success('NAAC Details Updated Successfully.', 'Saved', { timeOut: 3000, });
         this.isOpen = false;
         this.isUpdate = false;
@@ -106,22 +108,22 @@ export class NaacMainComponent implements OnInit {
       this.getPagintaion();
     })
   }
- 
+
   onCriteriaChange(event: any) {
     this.selectedCriteria = event.name;
   }
-  removeNaacDetails(id:any){
-    this.homeService.removeNewNaacById(id).subscribe((res:any)=>{
-      if(res=='sucess'){
+  removeNaacDetails(id: any) {
+    this.homeService.removeNewNaacById(id).subscribe((res: any) => {
+      if (res == 'sucess') {
         this.toastr.success('NAAC Details deleted Successfully.', 'Removed', { timeOut: 3000, });
         this.getAllNAACDetails();
       }
     })
   }
-  openNaacDetails(data:any){
-    this.isUpdate=true;
+  openNaacDetails(data: any) {
+    this.isUpdate = true;
     this.isOpen = true;
-    this.selectedCriteria=data.criteria;
+    this.selectedCriteria = data.criteria;
     this.NAACDetailsModel.naacDetails = data.details;
     this.NAACDetailsModel.id = data.id;
   }
@@ -139,5 +141,8 @@ export class NaacMainComponent implements OnInit {
   getPagintaion() {
     this.paginateData = this.NaacData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+  }
+  viewNaacTable(id: any) {
+    this.router.navigate(['/naac-view', id]);
   }
 }

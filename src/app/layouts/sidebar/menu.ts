@@ -348,6 +348,13 @@ export const CES: MenuItem[] = [
         icon: 'dribbble',
         link: '/campus',
         role: 'Institute'
+    },
+    {
+        id: 28,
+        label: 'Photo Contest',
+        icon: 'camera',
+        link: '/photo-contest',
+        role: 'Institute'
     }
 
 ];
