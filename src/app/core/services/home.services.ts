@@ -229,14 +229,15 @@ export class HomeService {
     saveNaacLinkDetails(data: any): Observable<any> {
         return this.http.post(ApiService.saveNaacLinkDetailsURL, data);
     }
-    getSubMenuGroup() {
-        return this.http.get(ApiService.getSubMenuGroupByURL);
+    getSubMenuGroup(id: any) {
+        return this.http.get(ApiService.getSubMenuGroupByURL + id);
     }
-    getSubToSubMenuGroup() {
-        return this.http.get(ApiService.getSubToSubMenuGroupByURL);
+    getSubToSubMenuGroup(id: any) {
+        return this.http.get(ApiService.getSubToSubMenuGroupByURL + id);
     }
-    getNaacLinkDetails() {
-        return this.http.get(ApiService.getNaacLinkDataURL);
+    getNaacLinkDetails(id: any) {
+        debugger
+        return this.http.get(ApiService.getNaacLinkDataURL + id);
     }
     removeNaacLink(id: any) {
         return this.http.get(ApiService.removeLinkByIDURL + id);

@@ -178,6 +178,7 @@ export class LinkGeneratorComponent implements OnInit {
   }
   saveLinkDetails() {
     this.LinkDetailsModel.criteria = this.selectedCriteria;
+    this.LinkDetailsModel.institute_id = localStorage.getItem('InstituteId');
     this.LinkDetailsModel.subMenu = this.subMenu;
     this.LinkDetailsModel.subToSub = this.subToSub;
     this.LinkDetailsModel.paralink = this.pdfResponse;
@@ -202,7 +203,7 @@ export class LinkGeneratorComponent implements OnInit {
   }
 
   getAllLinkDetails() {
-    this.homeService.getNaacLinkDetails().subscribe((res: any) => {
+    this.homeService.getNaacLinkDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       this.LinkData = res;
       debugger
       for (let i = 0; i < this.LinkData.length; i++) {
@@ -226,7 +227,7 @@ export class LinkGeneratorComponent implements OnInit {
   }
 
   getGroupSubMenuDetails() {
-    this.homeService.getSubMenuGroup().subscribe((res: any) => {
+    this.homeService.getSubMenuGroup(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       debugger
       // this.subList = res;
       // this.subList.forEach((element: any) => {
@@ -244,7 +245,7 @@ export class LinkGeneratorComponent implements OnInit {
     })
   }
   getGroupSubToSubDetails() {
-    this.homeService.getSubToSubMenuGroup().subscribe((res: any) => {
+    this.homeService.getSubToSubMenuGroup(localStorage.getItem('InstituteId')).subscribe((res: any) => {
       debugger
       res.forEach((ele: any) => {
         if (ele.subToSub != '[object Object]' && ele.subToSub != null) {
