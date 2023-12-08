@@ -39,6 +39,8 @@ import { CampusDetailsComponent } from './campus-details/campus-details.componen
 import { PhotoContestComponent } from './photo-contest/photo-contest.component';
 import { PhotoContestImagesComponent } from './photo-contest-images/photo-contest-images.component';
 import { NaacViewComponent } from './naac-view/naac-view.component';
+import { SyllabusComponent } from './syllabus/syllabus.component';
+import { SyllaDetailsComponent } from './sylla-details/sylla-details.component';
 
 const routes: Routes = [
   {
@@ -196,7 +198,15 @@ const routes: Routes = [
   {
     path: 'contest-images',
     component: PhotoContestImagesComponent
-  }
+  },
+  {
+    path: 'syllabus',
+    component: SyllabusComponent
+  },
+  {
+    path: 'syllabus-details/:id',
+    component: SyllaDetailsComponent
+  },
 ];
 
 @NgModule({

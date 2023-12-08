@@ -47,6 +47,9 @@ import { CampusDetailsComponent } from './campus-details/campus-details.componen
 import { PhotoContestComponent } from './photo-contest/photo-contest.component';
 import { PhotoContestImagesComponent } from './photo-contest-images/photo-contest-images.component';
 import { NaacViewComponent } from './naac-view/naac-view.component';
+import { SyllabusComponent } from './syllabus/syllabus.component';
+import { SyllaDetailsComponent } from './sylla-details/sylla-details.component';
+// import { SyllabusDetailsComponent } from './syllabus-details/syllabus-details.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -98,6 +101,8 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     PhotoContestComponent,
     PhotoContestImagesComponent,
     NaacViewComponent,
+    SyllabusComponent,
+    SyllaDetailsComponent,
   ],
   imports: [
     CommonModule,

@@ -151,6 +151,11 @@ export class ApiService {
   public static updateResearchDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateResearchDetails';
   public static saveResearchDetailsURL: string = ApiService.HOST_URL + '/admin/SaveResearchDetails';
 
+  //Syllabus
+  public static getSyllabusDetailsByIdURL: string = ApiService.HOST_URL + '/admin/GetSyllabusDetailsById/';
+  public static removeSyllabusDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveSyllabusDetails/';
+  public static updateSyllabusDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateSyllabusDetails';
+  public static saveSyllabusDetailsURL: string = ApiService.HOST_URL + '/admin/SaveSyllabusDetails';
 
   public static SaveNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNewNaacDetails';
   public static UpdateNewNaacDetailsURL: string = ApiService.HOST_URL + '/admin/UpdateNewNaacDetails';

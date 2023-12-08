@@ -322,10 +322,6 @@ export class HomeService {
     deleteCapusImage(data: any) {
         return this.http.post(ApiService.deleteCampusImageURL, data);
     }
-
-
-
-
     getResearchDetails(id: any) {
         return this.http.get(ApiService.getResearchDetailsByIdURL + id);
     }
@@ -337,6 +333,19 @@ export class HomeService {
     }
     removeResearchById(id: any) {
         return this.http.get(ApiService.removeResearchDetailsURL + id);
+    }
+
+    getSyllabusDetails(id: any) {
+        return this.http.get(ApiService.getSyllabusDetailsByIdURL + id);
+    }
+    saveSyllabusDetails(data: any) {
+        return this.http.post(ApiService.saveSyllabusDetailsURL, data);
+    }
+    updateSyllabusDetails(data: any) {
+        return this.http.post(ApiService.updateSyllabusDetailsURL, data);
+    }
+    removeSyllabusById(id: any) {
+        return this.http.get(ApiService.removeSyllabusDetailsURL + id);
     }
 
     SaveNewNaacDetails(data: any) {

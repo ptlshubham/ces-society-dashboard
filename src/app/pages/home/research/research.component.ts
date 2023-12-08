@@ -48,7 +48,7 @@ export class ResearchComponent implements OnInit {
     this.researchModel.institute_id = localStorage.getItem('InstituteId');
     this.homeService.saveResearchDetails(this.researchModel).subscribe((res: any) => {
       this.researchData = res;
-      this.toastr.success('Infrastructure Details added Successfully.', 'Saved', { timeOut: 3000, });
+      this.toastr.success('Research Details added Successfully.', 'Saved', { timeOut: 3000, });
       this.isUpdate = false;
       this.isOpen = false;
       this.getResearchDataById();
@@ -61,22 +61,10 @@ export class ResearchComponent implements OnInit {
     this.isOpen = true;
     this.isUpdate = true;
   }
-  // getResearchMultiImage(id: any) {
-  //   this.multiImage = [];
-  //   this.homeService.getCommiteeMultiImageById(id).subscribe((res: any) => {
-  //     this.infraMulti = res;
-  //     if (this.infraMulti.length > 0) {
-  //       this.infraMulti.forEach((element: any,ind:any) => {
-  //         this.multiImage.push({ name: ind+1, multiImageUrl: 'https://api.cesociety.in' + element.image });
-  //       });
-  //     }
-  //     this.addMultiImg = this.multiImage;
-  //   })
-  // }
   updateResearchDetails() {
     this.homeService.updateResearchDetails(this.researchModel).subscribe((res: any) => {
       this.researchData = res;
-      this.toastr.success('Infrastructure Details Updated Successfully.', 'Updated', { timeOut: 3000, });
+      this.toastr.success('Research Details Updated Successfully.', 'Updated', { timeOut: 3000, });
       this.getResearchDataById();
       this.isOpen = false;
       this.isUpdate = false;
@@ -85,7 +73,7 @@ export class ResearchComponent implements OnInit {
   removeResearchById(id: any) {
     this.homeService.removeResearchById(id).subscribe((res: any) => {
       this.researchData = res;
-      this.toastr.success('Infrastructure Details deleted Successfully.', 'Removed', { timeOut: 3000, });
+      this.toastr.success('Research Details deleted Successfully.', 'Removed', { timeOut: 3000, });
       this.getResearchDataById();
     })
   }
