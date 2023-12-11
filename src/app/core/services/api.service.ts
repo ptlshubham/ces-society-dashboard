@@ -106,6 +106,7 @@ export class ApiService {
   public static saveAnswerkeyDataListURL: string = ApiService.HOST_URL + '/admin/SaveAnswerkeyDataList';
   public static getAnswerkeyByIdDetailsURL: string = ApiService.HOST_URL + '/admin/GetAllAnswerkey';
   public static removeAnswerkeyByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveAnswerkeyByIdDetails/';
+  public static removeAlumniByIdDetailsURL: string = ApiService.HOST_URL + '/admin/RemoveAlumniByIdDetails/';
   public static saveNaacDetailsURL: string = ApiService.HOST_URL + '/admin/SaveNaacDetails';
   public static getNaacDataURL: string = ApiService.HOST_URL + '/admin/GetNaacData';
   public static getKeyNoDataGroupByURL: string = ApiService.HOST_URL + '/admin/GetKeyNoDataGroupBy';

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { HomeService } from 'src/app/core/services/home.services';
 
 @Component({
@@ -15,7 +16,8 @@ export class AlumniListComponent implements OnInit {
   paginateData: any = [];
 
   constructor(
-    private homeService: HomeService
+    private homeService: HomeService,
+    private toastr:ToastrService
   ) {
     this.getAlumniDetails();
   }
@@ -36,5 +38,13 @@ export class AlumniListComponent implements OnInit {
     this.paginateData = this.alumniData
       .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
-
+  removeAlumniDetails(id: any) {
+    this.homeService.removeAlumniDataById(id).subscribe((res: any) => {
+      this.alumniData = res;
+      this.toastr.success('Answerkey deleted successfully', 'Deleted', {
+        timeOut: 3000,
+      });
+      this.getAlumniDetails();
+    })
+  }
 }

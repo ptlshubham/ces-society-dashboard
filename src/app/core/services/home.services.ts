@@ -208,6 +208,9 @@ export class HomeService {
     removeAnswerkeyDataById(id: any) {
         return this.http.get(ApiService.removeAnswerkeyByIdDetailsURL + id);
     }
+    removeAlumniDataById(id: any) {
+        return this.http.get(ApiService.removeAlumniByIdDetailsURL + id);
+    }
     getAnswerkeyDataById() {
         return this.http.get(ApiService.getAnswerkeyByIdDetailsURL);
     }

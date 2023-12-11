@@ -37,10 +37,10 @@
                                 <td class="text-end">
                                     <div class="d-flex flex-wrap gap-2 text-end">
                                         <!-- <button type="button" class="btn btn-soft-primary waves-effect waves-light"><i
-                                                class="bx bx-edit font-size-16 align-middle" (click)="openUpdateStaff(s)"></i></button>
+                                                class="bx bx-edit font-size-16 align-middle" (click)="openUpdateStaff(s)"></i></button> -->
                                         <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            (click)="removeStaffDetails(s.id)"><i
-                                                class="bx bx-trash-alt font-size-16 align-middle"></i></button> -->
+                                            (click)="removeAlumniDetails(s.id)"><i
+                                                class="bx bx-trash-alt font-size-16 align-middle"></i></button>
 
                                     </div>
                                 </td>
@@ -50,9 +50,9 @@
                     </table>
                 </div>
                 <ngb-pagination [collectionSize]="collectionSize" [pageSize]="pageSize" [(page)]="page" [maxSize]="5"
-                [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
-                aria-label="Default pagination"
-                class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
+                    [rotate]="true" [ellipses]="false" [boundaryLinks]="true" (pageChange)="getPagintaion();"
+                    aria-label="Default pagination"
+                    class="d-flex justify-content-end pagination-rounded-flat pagination-success"></ngb-pagination>
             </div>
             <!-- end card body -->
         </div>
