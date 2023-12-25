@@ -36,6 +36,7 @@ export class NewsComponent implements OnInit {
   }
   openAddNews() {
     this.isOpen = true;
+    this.newsModel = {};
   }
   closeAddNews() {
     this.isOpen = false;

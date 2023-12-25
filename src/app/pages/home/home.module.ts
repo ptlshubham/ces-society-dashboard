@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule, DatePipe } from '@angular/common';
+import { CommonModule, DatePipe, DecimalPipe } from '@angular/common';
 import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { HomeRoutingModule } from './home-routing.module';
 import { NewsComponent } from './news/news.component';
@@ -14,7 +14,7 @@ import { CKEditorModule } from '@ckeditor/ckeditor5-angular';
 import { CollegeListComponent } from './college-list/college-list.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { DepartmentComponent } from './department/department.component';
-import { NgbAccordionModule, NgbAlertModule, NgbCarouselModule, NgbCollapseModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule, NgbPopoverModule, NgbProgressbarModule, NgbToastModule, NgbTooltipModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbAlertModule, NgbCarouselModule, NgbCollapseModule, NgbDropdownModule, NgbNavModule, NgbPaginationModule, NgbPopoverModule, NgbProgressbarModule, NgbToastModule, NgbTooltipModule, NgbTypeaheadModule } from '@ng-bootstrap/ng-bootstrap';
 import { DonationComponent } from './donation/donation.component';
 import { RahotkarshComponent } from './rahotkarsh/rahotkarsh.component';
 import { RahotkarshBulkUploadComponent } from './rahotkarsh-bulk-upload/rahotkarsh-bulk-upload.component';
@@ -49,7 +49,6 @@ import { PhotoContestImagesComponent } from './photo-contest-images/photo-contes
 import { NaacViewComponent } from './naac-view/naac-view.component';
 import { SyllabusComponent } from './syllabus/syllabus.component';
 import { SyllaDetailsComponent } from './sylla-details/sylla-details.component';
-// import { SyllabusDetailsComponent } from './syllabus-details/syllabus-details.component';
 
 const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
   // Change this to your upload POST address:
@@ -124,9 +123,10 @@ const DEFAULT_DROPZONE_CONFIG: DropzoneConfigInterface = {
     NgbToastModule,
     NgSelectModule,
     ToastrModule.forRoot(),
+    NgbTypeaheadModule,
   ],
   providers: [
-    DatePipe,
+    DecimalPipe,
     {
       provide: DROPZONE_CONFIG,
       useValue: DEFAULT_DROPZONE_CONFIG

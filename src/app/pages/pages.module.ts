@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DecimalPipe } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
 import { CountToModule } from 'angular-count-to';
@@ -40,6 +40,7 @@ import { FormsModule } from '@angular/forms';
     LightboxModule,
     LeafletModule,
     FormsModule
-  ]
+  ],
+  providers: [DecimalPipe],
 })
 export class PagesModule { }

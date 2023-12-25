@@ -1,12 +1,18 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, QueryList, ViewChild, ViewChildren } from '@angular/core';
 import { FormGroup, UntypedFormBuilder, Validators } from '@angular/forms';
 import { ToastrService } from 'ngx-toastr';
+import { Observable } from 'rxjs';
 import { HomeService } from 'src/app/core/services/home.services';
+import { SortableNaacDirective } from './datatable-sortableNaac.directive';
+import { DataTableNaacService } from './link.services';
+import { TableNaac } from './datatable.model';
+import { naacData } from './linkData';
 
 @Component({
   selector: 'app-link-generator',
   templateUrl: './link-generator.component.html',
-  styleUrls: ['./link-generator.component.scss']
+  styleUrls: ['./link-generator.component.scss'],
+
 })
 export class LinkGeneratorComponent implements OnInit {
   validationForm!: FormGroup;
@@ -21,7 +27,7 @@ export class LinkGeneratorComponent implements OnInit {
   page = 1;
   pageSize = 10;
   collectionSize = 0;
-  paginateData: any = [];
+  LinkData: any = [];
   pdfResponse: any = '';
   progressValue: number = 0; // Variable to track the progress value
   progressType: string = 'success'; // Type of progress bar (success, info, warning, danger)
@@ -59,13 +65,25 @@ export class LinkGeneratorComponent implements OnInit {
   selectedCriteria: any;
   subMenu: any;
   subToSub: any;
-  LinkData: any = [];
+  naacData: any = [];
+
+  @ViewChildren(SortableNaacDirective)
+  headers!: QueryList<SortableNaacDirective>;
+  tableData!: TableNaac[];
+  hideme: boolean[] = [];
+  tables$: Observable<TableNaac[]>;
+  total$: Observable<number>;
+
   constructor(
     private homeService: HomeService,
     public toastr: ToastrService,
     public formBuilder: UntypedFormBuilder,
+    public service: DataTableNaacService,
+
   ) {
     this.getAllLinkDetails();
+    this.tables$ = this.service.table$;
+    this.total$ = this.service.totals$;
   }
 
   ngOnInit(): void {
@@ -74,6 +92,8 @@ export class LinkGeneratorComponent implements OnInit {
       // subMenu: ['', Validators.required],
       paraname: ['', Validators.required]
     });
+    this._fetchData();
+
   }
   get f() { return this.validationForm.controls; }
 
@@ -183,7 +203,7 @@ export class LinkGeneratorComponent implements OnInit {
     this.LinkDetailsModel.subToSub = this.subToSub;
     this.LinkDetailsModel.paralink = this.pdfResponse;
     this.homeService.saveNaacLinkDetails(this.LinkDetailsModel).subscribe((res: any) => {
-      this.LinkData = res;
+      this.naacData = res;
       this.LinkDetailsModel = {};
       this.selectedCriteria = {};
       this.subMenu = {};
@@ -204,38 +224,49 @@ export class LinkGeneratorComponent implements OnInit {
 
   getAllLinkDetails() {
     this.homeService.getNaacLinkDetails(localStorage.getItem('InstituteId')).subscribe((res: any) => {
-      this.LinkData = res;
+      this.naacData = res;
       debugger
-      for (let i = 0; i < this.LinkData.length; i++) {
-        this.LinkData[i].index = i + 1;
-        if (this.LinkData[i].subMenu === '[object Object]' && this.LinkData[i].subMenu !== null) {
-          this.LinkData[i].subMenu = '';
+      for (let i = 0; i < this.naacData.length; i++) {
+        this.naacData[i].index = i + 1;
+        if (this.naacData[i].subMenu === '[object Object]' && this.naacData[i].subMenu !== null) {
+          this.naacData[i].subMenu = '';
         }
-        if (this.LinkData[i].subToSub === '[object Object]' && this.LinkData[i].subToSub !== null) {
-          this.LinkData[i].subToSub = '';
+        if (this.naacData[i].subToSub === '[object Object]' && this.naacData[i].subToSub !== null) {
+          this.naacData[i].subToSub = '';
         }
       }
-      this.collectionSize = this.LinkData.length;
-      this.getPagintaion();
+      naacData.forEach((element, index) => {
+        delete naacData[index];
+      });
+      naacData.length = 0;
+      this.LinkData = res;
+       
+      this.LinkData.forEach((ele: any, ind: number) => {
+        let data: any = {
+          id:ele.id,
+          srNo: ind + 1,
+          criteria: ele.criteria,
+          subMenu: ele.subMenu,
+          subToSub: ele.subToSub,
+          linkName: ele.linkName,
+          link: ele.link,
+          createddate: ele.createddate,
+        }
+        naacData.push(data);
+      })
+      // this.collectionSize = this.naacData.length;
+      // this.getPagintaion();
       this.getGroupSubMenuDetails();
       this.getGroupSubToSubDetails();
     })
   }
   getPagintaion() {
-    this.paginateData = this.LinkData
-      .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
+    // this.paginateData = this.naacData
+    //   .slice((this.page - 1) * this.pageSize, (this.page - 1) * this.pageSize + this.pageSize);
   }
 
   getGroupSubMenuDetails() {
     this.homeService.getSubMenuGroup(localStorage.getItem('InstituteId')).subscribe((res: any) => {
-      debugger
-      // this.subList = res;
-      // this.subList.forEach((element: any) => {
-      //   if (element.subMenu != null) {
-      //     this.subMenuList.push({subMenu:element.subMenu});
-      //   }
-      // });
-      // this.subMenuList = res;
       res.forEach((ele: any) => {
         if (ele.subMenu != '[object Object]' && ele.subMenu != null) {
           this.subMenuList.push(ele)
@@ -295,7 +326,7 @@ export class LinkGeneratorComponent implements OnInit {
   //     this.LinkDetailsModel.attachlink
   //   }
   //   this.homeService.updateNAACData(this.LinkDetailsModel).subscribe((res: any) => {
-  //     this.LinkData = res;
+  //     this.naacData = res;
   //     this.toastr.success('NAAC Crietria Updated Successfully', 'Updated', {
   //       timeOut: 3000,
   //     });
@@ -304,8 +335,9 @@ export class LinkGeneratorComponent implements OnInit {
   //   })
   // }
   removeLinkDetails(id: any) {
+    debugger
     this.homeService.removeNaacLink(id).subscribe((res: any) => {
-      this.LinkData = res;
+      this.naacData = res;
       this.toastr.success('NAAC Crietria Deleted Successfully', 'Removed', {
         timeOut: 3000,
       });
@@ -314,4 +346,25 @@ export class LinkGeneratorComponent implements OnInit {
       this.getAllLinkDetails();
     })
   }
+
+  _fetchData() {
+    this.tableData = this.tableData;
+  }
+
+  /**
+   * Sort table data
+   * @param param0 sort the column
+   *
+   */
+  onSortNaac({ columnNaac, direction }: any) {
+    // resetting other headers
+    this.headers.forEach(header => {
+      if (header.sortableNaac !== columnNaac) {
+        header.direction = '';
+      }
+    });
+    this.service.sortColumn = columnNaac;
+    this.service.sortDirection = direction;
+  }
+
 }

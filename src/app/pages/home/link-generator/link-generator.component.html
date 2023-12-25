@@ -33,7 +33,7 @@
                                         placeholder="Select Sub Menu" (change)="onSubMenuChange($event)"
                                         [addTag]="addSubMenu" [(ngModel)]="subMenu"
                                         [ngModelOptions]="{standalone: true}">
-                                        <ng-template ng-optgroup-tmp let-item="item" >
+                                        <ng-template ng-optgroup-tmp let-item="item">
                                             {{item.subMenu}}
                                         </ng-template>
                                     </ng-select>
@@ -128,7 +128,7 @@
         </div>
     </div>
 </div>
-<div class="row" *ngIf="!isOpen">
+<!-- <div class="row" *ngIf="!isOpen">
     <div class="col-lg-12">
         <div class="card">
             <div class="card-header">
@@ -175,15 +175,9 @@
 
                                 <td class="text-end">
                                     <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            (click)="removeLinkDetails(s.id)"><i
-                                                class="bx bx-trash-alt font-size-16"></i></button>
-                                    <!-- <div class="d-flex flex-wrap gap-2">
-                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light"
-                                            (click)="openNaacDetails(s)"><i
-                                                class="bx bx-edit font-size-16"></i></button>
-                                        
-
-                                    </div> -->
+                                        (click)="removeLinkDetails(s.id)"><i
+                                            class="bx bx-trash-alt font-size-16"></i></button>
+                              
                                 </td>
 
                             </tr>
@@ -199,4 +193,120 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
+
+<div class="row" *ngIf="!isOpen">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-header">
+                <div class="d-flex justify-content-between">
+                    <h5 class="card-title">URL List</h5>
+                    <button type="button" class="btn btn-primary waves-effect btn-label waves-light"
+                        (click)="openAddNAACDetails()"><i class="bx bx-user-plus label-icon"></i>
+                        Add URL Details</button>
+                </div>
+            </div>
+            <div class="card-body">
+                <div class="row mb-md-2">
+                    <div class="col-sm-12 col-md-6">
+                        <div class="dataTables_length" id="tickets-table_length"><label
+                                class="d-inline-flex align-items-center">Show
+                                <select name="tickets-table_length" aria-controls="tickets-table" name="pageSize"
+                                    [(ngModel)]="service.pageSize" class="form-control form-control-sm mx-2">
+                                    <option [ngValue]="10">10</option>
+                                    <option [ngValue]="25">25</option>
+                                    <option [ngValue]="35">35</option>
+                                    <option [ngValue]="50">50</option>
+                                    <option [ngValue]="50">70</option>
+                                    <option [ngValue]="100">100</option>
+                                </select> entries</label></div>
+                    </div>
+                    <!-- Search -->
+                    <div class="col-sm-12 col-md-6">
+                        <div id="tickets-table_filter" class="dataTables_filter text-md-end"><label
+                                class="d-inline-flex align-items-center">Search:
+                                <input type="text" name="searchTerm" class="form-control form-control-sm ms-2"
+                                    aria-controls="tickets-table" [(ngModel)]="service.searchTerm"></label></div>
+                    </div>
+                    <!-- End search -->
+                </div>
+
+                <table id="datatable" class="table table-bordered dt-responsive nowrap w-100 datatables">
+                    <thead>
+                        <tr>
+                            <th class="text-center" sortablepay="srNo" (sort)="onSortNaac($event)">Sr No</th>
+                            <th class="text-center" sortable="criteria" (sort)="onSortNaac($event)">Criteria</th>
+                            <th class="text-center" sortable="subMenu" (sort)="onSortNaac($event)">Sub Menu</th>
+                            <th class="text-center" sortable="subToSub" (sort)="onSortNaac($event)">Sub To Sub</th>
+                            <th class="text-center" sortable="linkName" (sort)="onSortNaac($event)">Link Name</th>
+                            <th class="text-center" sortable="link" (sort)="onSortNaac($event)">Link</th>
+                            <th class="text-center" sortable="createddate" (sort)="onSortNaac($event)">Created date</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody *ngFor="let table of tables$ | async;let i=index">
+                        <tr>
+                            <td>
+                                <ngb-highlight [result]="table.srNo | number"
+                                    [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="table.criteria" [term]="service.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="table.subMenu" [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="table.subToSub" [term]="service.searchTerm">
+                                </ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="table.linkName" [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td *ngIf="table.link!='undefined' && table.link!=''">
+                                <a [href]="'https://api.cesociety.in' + table.link" target="_blank">
+                                    <ngb-highlight [result]="'https://api.cesociety.in' + table.link"
+                                        [term]="service.searchTerm"></ngb-highlight>
+                                </a>
+                            </td>
+                            <td *ngIf="table.link==''|| undefined || table.link=='undefined'" class="text-center">
+                                <ngb-highlight class=" badge bg-warning ms-1 text-center" [result]="'Not Uploaded'"
+                                    [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <ngb-highlight [result]="table.createddate | date"
+                                    [term]="service.searchTerm"></ngb-highlight>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-soft-danger waves-effect waves-light"
+                                    (click)="removeLinkDetails(table.id)"><i
+                                        class="bx bx-trash-alt font-size-16"></i></button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="row justify-content-md-between align-items-md-center mt-2">
+                    <div class="col-sm-12 col-md-5">
+                        <div class="dataTables_info mb-2" id="tickets-table_info" role="status" aria-live="polite">
+                            Showing
+                            {{service.startIndex}} to
+                            {{service.endIndex}} of {{service.totalRecords}}
+                            entries
+                        </div>
+                    </div>
+                    <!-- Pagination -->
+                    <div class="col-sm-12 col-md-5">
+                        <div class="text-md-right float-md-end pagination-rounded">
+                            <ngb-pagination [collectionSize]="(total$ | async)!" [(page)]="service.page"
+                                [pageSize]="service.pageSize">
+                            </ngb-pagination>
+                        </div>
+                    </div>
+                    <!-- End Pagination -->
+                </div>
+            </div>
+
+        </div>
+    </div> <!-- end col -->
+</div> <!-- end row -->
