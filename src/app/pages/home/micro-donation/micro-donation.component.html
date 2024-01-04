@@ -15,38 +15,37 @@
                             <tr>
                                 <th class="text-left">#</th>
                                 <th class="text-center">Name</th>
-                                <th class="text-center">Email Address</th>
+                                <th class="text-center">Email</th>
+                                <th class="text-center">Contact</th>
+                                <th class="text-center">City</th>
                                 <th class="text-center">Amount</th>
-                                <!-- <th class="text-center">Address</th> -->
+                                <th class="text-center">Payment Id</th>
+                                <th class="text-center">ID Proof</th>
                                 <th class="text-center">Date</th>
-                                <th class="text-end">Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr *ngFor="let s of paginateData;let i=index">
                                 <td class="text-left">{{s.index}}</td>
-                                <td class="text-center">{{s.name}} </td>
-                                <td class="text-center">{{s.email}} </td>
-                                <td class="text-center">{{s.amount}}</td>
-                                <!-- <td class="text-center">{{s.address}} </td> -->
-                                <td class="text-center">{{s.createddate |date}} </td>
-                                <td class="text-end">
-                                    <button type="button" class="btn btn-warning waves-effect btn-label waves-light"
-                                        *ngIf="!s.isactive" (click)="verifyAndGenerate(s)"><i
-                                            class="bx bx-check-double label-icon"></i> Verify</button>
-                                    <button type="button" class="btn btn-success waves-effect btn-label waves-light"
-                                        *ngIf="s.isactive"><i
-                                            class="bx bx-block label-icon"></i> Verification Done</button>
-                                    <!-- <div class="d-flex flex-wrap gap-2 text-end">
-                                        <button type="button" class="btn btn-soft-primary waves-effect waves-light" (click)="generatePDF()"><i
-                                                class="bx bx-edit font-size-16 align-middle" ></i></button>
-                                        <button type="button" class="btn btn-soft-danger waves-effect waves-light"
-                                            (click)="removeStaffDetails(s.id)"><i
-                                                class="bx bx-trash-alt font-size-16 align-middle"></i></button>
-
-                                    </div> -->
+                                <td class="text-center">{{s.name}}</td>
+                                <td class="text-center">{{s.email}}</td>
+                                <td class="text-center">{{s.number}}</td>
+                                <td class="text-center">{{s.amount}} ₹</td>
+                                <td class="text-center">{{s.city}}</td>
+                                <td class="text-center">
+                                    <span class="bg-success badge me-2">{{s.paymentId}}</span>
                                 </td>
+                                <td class="text-center">
+                                    <span class="bg-warning badge me-2"
+                                        *ngIf="s.idProof==null && s.idProof!='NULL'">File
+                                        Not Uploaded</span>
 
+                                    <a href="https://api.cesociety.in{{s.idProof}}"
+                                        *ngIf="s.idProof!=null && s.idProof!='NULL'">
+                                        <img src="https://api.cesociety.in{{s.idProof}} " alt="Id Proof"
+                                            class="rounded avatar-lg"></a>
+                                </td>
+                                <td class="text-center">{{s.createddate |date}} </td>
                             </tr>
                         </tbody>
                     </table>

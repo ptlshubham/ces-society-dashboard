@@ -196,33 +196,6 @@ export const CES: MenuItem[] = [
         link: '/news',
         role: 'Institute'
     },
-    // {
-    //     id: 6,
-    //     label: 'Staff List',
-    //     icon: 'users',
-    //     link: '/staff-details',
-    //     role: 'Institute'
-    // },
-    // {
-    //     id: 7,
-    //     label: 'Student List',
-    //     icon: 'users',
-    //     link: '/student-details',
-    //     role: 'Institute'
-    // },
-    {
-        id: 22,
-        label: 'Rahatokarsh Donation',
-        icon: 'star',
-        link: '/micro-donation',
-    },
-    // {
-    //     id: 8,
-    //     label: 'Forms,Syllabus & Report',
-    //     icon: 'file-text',
-    //     link: '/others',
-    //     role: 'Institute'
-    // },
     {
         id: 9,
         label: 'Magazine',
@@ -230,26 +203,18 @@ export const CES: MenuItem[] = [
         link: '/magazine',
         role: 'Institute'
     },
-    // {
-    //     id: 10,
-    //     label: 'Student Result',
-    //     icon: 'file-text',
-    //     link: '/result',
-    //     role: 'Institute'
-    // },
-    // {
-    //     id: 11,
-    //     label: 'Infrastructure',
-    //     icon: 'home',
-    //     link: '/infrastructure',
-    //     role: 'Institute'
-    // },
     {
         id: 12,
         label: 'Blogs',
         icon: 'file-plus',
         link: '/blog',
         role: 'Institute'
+    },
+    {
+        id: 22,
+        label: 'Rahatokarsh Donation',
+        icon: 'archive',
+        link: '/micro-donation',
     },
     {
         id: 13,
@@ -284,18 +249,6 @@ export const CES: MenuItem[] = [
         icon: 'calendar',
         link: '/counseling',
     },
-    // {
-    //     id: 19,
-    //     label: 'Scholarship & Calendar',
-    //     icon: 'calendar',
-    //     link: '/more',
-    // },
-    // {
-    //     id: 20,
-    //     label: 'Old Question Papers',
-    //     icon: 'file-text',
-    //     link: '/papers',
-    // },
     {
         id: 21,
         label: 'Gate Pass',
@@ -315,34 +268,6 @@ export const CES: MenuItem[] = [
         link: '/link-generater',
         role: 'Institute'
     },
-    // {
-    //     id: 25,
-    //     label: 'Committee',
-    //     icon: 'users',
-    //     link: '/committee',
-    //     role: 'Institute'
-    // },
-    // {
-    //     id: 26,
-    //     label: 'Placement Cell',
-    //     icon: 'file-text',
-    //     link: '/placement',
-    //     role: 'Institute'
-    // },
-    // {
-    //     id: 27,
-    //     label: 'Research',
-    //     icon: 'book-open',
-    //     link: '/research',
-    //     role: 'Institute'
-    // },
-    // {
-    //     id: 27,
-    //     label: 'Campus Life',
-    //     icon: 'dribbble',
-    //     link: '/campus',
-    //     role: 'Institute'
-    // },
     {
         id: 28,
         label: 'Photo Contest',

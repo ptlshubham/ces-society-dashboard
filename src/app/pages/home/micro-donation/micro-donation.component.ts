@@ -49,22 +49,4 @@ export class MicroDonationComponent implements OnInit {
 
     pdfMake.createPdf(docDefinition).open();
   }
-  verifyAndGenerate(data: any) {
-    Swal.fire({
-      title: 'Are you sure?',
-      text: 'You won\'t be able to revert this!',
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonColor: '#34c38f',
-      cancelButtonColor: '#f46a6a',
-      confirmButtonText: 'Yes, Verify it!'
-    }).then(result => {
-      if (result.value) {
-        this.homeService.generateCertificate(data).subscribe((res: any) => {
-          Swal.fire('Verified!', 'Your payment has been validated.', 'success');
-          this.getRahatokarshList();
-        })
-      }
-    });
-  }
 }

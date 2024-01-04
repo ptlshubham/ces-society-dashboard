@@ -201,10 +201,6 @@ export class HomeService {
     saveAnswerkeyListData(data: any) {
         return this.http.post(ApiService.saveAnswerkeyDataListURL, data);
     }
-    generateCertificate(data: any): Observable<any> {
-        debugger
-        return this.http.post<any>(ApiService.generateRahatokarshCertficateURL, data);
-    }
     removeAnswerkeyDataById(id: any) {
         return this.http.get(ApiService.removeAnswerkeyByIdDetailsURL + id);
     }
